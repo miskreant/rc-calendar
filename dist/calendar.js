@@ -54,19 +54,36 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (global, factory) {
+	  if (true) {
+	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [module, exports, __webpack_require__(15)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	  } else if (typeof exports !== "undefined") {
+	    factory(module, exports, require('./src/'));
+	  } else {
+	    var mod = {
+	      exports: {}
+	    };
+	    factory(mod, mod.exports, global.src);
+	    global.index = mod.exports;
+	  }
+	})(this, function (module, exports, _src) {
+	  'use strict';
 
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
+	  Object.defineProperty(exports, "__esModule", {
+	    value: true
+	  });
+
+	  var _src2 = _interopRequireDefault(_src);
+
+	  function _interopRequireDefault(obj) {
+	    return obj && obj.__esModule ? obj : {
+	      default: obj
+	    };
+	  }
+
+	  exports.default = _src2.default;
+	  module.exports = exports['default'];
 	});
-
-	var _src = __webpack_require__(15);
-
-	var _src2 = _interopRequireDefault(_src);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	exports.default = _src2.default;
 
 /***/ },
 /* 1 */,
@@ -86,354 +103,382 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 15 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (global, factory) {
+	  if (true) {
+	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [module, exports, __webpack_require__(16)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	  } else if (typeof exports !== "undefined") {
+	    factory(module, exports, require('./Calendar'));
+	  } else {
+	    var mod = {
+	      exports: {}
+	    };
+	    factory(mod, mod.exports, global.Calendar);
+	    global.index = mod.exports;
+	  }
+	})(this, function (module, exports, _Calendar) {
+	  'use strict';
 
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
+	  Object.defineProperty(exports, "__esModule", {
+	    value: true
+	  });
+
+	  var _Calendar2 = _interopRequireDefault(_Calendar);
+
+	  function _interopRequireDefault(obj) {
+	    return obj && obj.__esModule ? obj : {
+	      default: obj
+	    };
+	  }
+
+	  exports.default = _Calendar2.default;
+	  module.exports = exports['default'];
 	});
-
-	var _Calendar = __webpack_require__(16);
-
-	var _Calendar2 = _interopRequireDefault(_Calendar);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	exports.default = _Calendar2.default;
 
 /***/ },
 /* 16 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-	var _react = __webpack_require__(17);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _reactDom = __webpack_require__(18);
-
-	var _reactDom2 = _interopRequireDefault(_reactDom);
-
-	var _KeyCode = __webpack_require__(19);
-
-	var _KeyCode2 = _interopRequireDefault(_KeyCode);
-
-	var _DateTable = __webpack_require__(20);
-
-	var _DateTable2 = _interopRequireDefault(_DateTable);
-
-	var _CalendarHeader = __webpack_require__(129);
-
-	var _CalendarHeader2 = _interopRequireDefault(_CalendarHeader);
-
-	var _CalendarFooter = __webpack_require__(136);
-
-	var _CalendarFooter2 = _interopRequireDefault(_CalendarFooter);
-
-	var _CalendarMixin = __webpack_require__(140);
-
-	var _CalendarMixin2 = _interopRequireDefault(_CalendarMixin);
-
-	var _CommonMixin = __webpack_require__(141);
-
-	var _CommonMixin2 = _interopRequireDefault(_CommonMixin);
-
-	var _DateInput = __webpack_require__(143);
-
-	var _DateInput2 = _interopRequireDefault(_DateInput);
-
-	var _index = __webpack_require__(128);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function noop() {}
-
-	function goStartMonth() {
-	  var next = this.state.value.clone();
-	  next.startOf('month');
-	  this.setValue(next);
-	}
-
-	function goEndMonth() {
-	  var next = this.state.value.clone();
-	  next.endOf('month');
-	  this.setValue(next);
-	}
-
-	function goTime(direction, unit) {
-	  var next = this.state.value.clone();
-	  next.add(direction, unit);
-	  this.setValue(next);
-	}
-
-	function goMonth(direction) {
-	  return goTime.call(this, direction, 'months');
-	}
-
-	function goYear(direction) {
-	  return goTime.call(this, direction, 'years');
-	}
-
-	function goWeek(direction) {
-	  return goTime.call(this, direction, 'weeks');
-	}
-
-	function goDay(direction) {
-	  return goTime.call(this, direction, 'days');
-	}
-
-	var Calendar = _react2.default.createClass({
-	  displayName: 'Calendar',
-
-	  propTypes: {
-	    disabledDate: _react.PropTypes.func,
-	    disabledTime: _react.PropTypes.any,
-	    value: _react.PropTypes.object,
-	    selectedValue: _react.PropTypes.object,
-	    defaultValue: _react.PropTypes.object,
-	    className: _react.PropTypes.string,
-	    locale: _react.PropTypes.object,
-	    showWeekNumber: _react.PropTypes.bool,
-	    style: _react.PropTypes.object,
-	    showToday: _react.PropTypes.bool,
-	    showDateInput: _react.PropTypes.bool,
-	    visible: _react.PropTypes.bool,
-	    onSelect: _react.PropTypes.func,
-	    onOk: _react.PropTypes.func,
-	    showOk: _react.PropTypes.bool,
-	    prefixCls: _react.PropTypes.string,
-	    onKeyDown: _react.PropTypes.func,
-	    timePicker: _react.PropTypes.element,
-	    dateInputPlaceholder: _react.PropTypes.any,
-	    onClear: _react.PropTypes.func,
-	    onChange: _react.PropTypes.func
-	  },
-
-	  mixins: [_CommonMixin2.default, _CalendarMixin2.default],
-
-	  getDefaultProps: function getDefaultProps() {
-	    return {
-	      showToday: true,
-	      showDateInput: true,
-	      timePicker: null,
-	      onOk: noop
+	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (global, factory) {
+	  if (true) {
+	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [module, exports, __webpack_require__(17), __webpack_require__(18), __webpack_require__(19), __webpack_require__(20), __webpack_require__(138), __webpack_require__(128), __webpack_require__(134), __webpack_require__(135), __webpack_require__(137), __webpack_require__(127)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	  } else if (typeof exports !== "undefined") {
+	    factory(module, exports, require('react'), require('react-dom'), require('rc-util/lib/KeyCode'), require('./date/DateTable'), require('./calendar/CalendarHeader'), require('./calendar/CalendarFooter'), require('./mixin/CalendarMixin'), require('./mixin/CommonMixin'), require('./date/DateInput'), require('./util/index'));
+	  } else {
+	    var mod = {
+	      exports: {}
 	    };
-	  },
-	  getInitialState: function getInitialState() {
-	    return {
-	      showTimePicker: false
+	    factory(mod, mod.exports, global.react, global.reactDom, global.KeyCode, global.DateTable, global.CalendarHeader, global.CalendarFooter, global.CalendarMixin, global.CommonMixin, global.DateInput, global.index);
+	    global.Calendar = mod.exports;
+	  }
+	})(this, function (module, exports, _react, _reactDom, _KeyCode, _DateTable, _CalendarHeader, _CalendarFooter, _CalendarMixin, _CommonMixin, _DateInput, _index) {
+	  'use strict';
+
+	  Object.defineProperty(exports, "__esModule", {
+	    value: true
+	  });
+
+	  var _react2 = _interopRequireDefault(_react);
+
+	  var _reactDom2 = _interopRequireDefault(_reactDom);
+
+	  var _KeyCode2 = _interopRequireDefault(_KeyCode);
+
+	  var _DateTable2 = _interopRequireDefault(_DateTable);
+
+	  var _CalendarHeader2 = _interopRequireDefault(_CalendarHeader);
+
+	  var _CalendarFooter2 = _interopRequireDefault(_CalendarFooter);
+
+	  var _CalendarMixin2 = _interopRequireDefault(_CalendarMixin);
+
+	  var _CommonMixin2 = _interopRequireDefault(_CommonMixin);
+
+	  var _DateInput2 = _interopRequireDefault(_DateInput);
+
+	  function _interopRequireDefault(obj) {
+	    return obj && obj.__esModule ? obj : {
+	      default: obj
 	    };
-	  },
-	  onKeyDown: function onKeyDown(event) {
-	    if (event.target.nodeName.toLowerCase() === 'input') {
-	      return undefined;
-	    }
-	    var keyCode = event.keyCode;
-	    // mac
-	    var ctrlKey = event.ctrlKey || event.metaKey;
-	    switch (keyCode) {
-	      case _KeyCode2.default.DOWN:
-	        goWeek.call(this, 1);
-	        event.preventDefault();
-	        return 1;
-	      case _KeyCode2.default.UP:
-	        goWeek.call(this, -1);
-	        event.preventDefault();
-	        return 1;
-	      case _KeyCode2.default.LEFT:
-	        if (ctrlKey) {
-	          goYear.call(this, -1);
-	        } else {
-	          goDay.call(this, -1);
+	  }
+
+	  var _extends = Object.assign || function (target) {
+	    for (var i = 1; i < arguments.length; i++) {
+	      var source = arguments[i];
+
+	      for (var key in source) {
+	        if (Object.prototype.hasOwnProperty.call(source, key)) {
+	          target[key] = source[key];
 	        }
-	        event.preventDefault();
-	        return 1;
-	      case _KeyCode2.default.RIGHT:
-	        if (ctrlKey) {
-	          goYear.call(this, 1);
-	        } else {
-	          goDay.call(this, 1);
-	        }
-	        event.preventDefault();
-	        return 1;
-	      case _KeyCode2.default.HOME:
-	        goStartMonth.call(this);
-	        event.preventDefault();
-	        return 1;
-	      case _KeyCode2.default.END:
-	        goEndMonth.call(this);
-	        event.preventDefault();
-	        return 1;
-	      case _KeyCode2.default.PAGE_DOWN:
-	        goMonth.call(this, 1);
-	        event.preventDefault();
-	        return 1;
-	      case _KeyCode2.default.PAGE_UP:
-	        goMonth.call(this, -1);
-	        event.preventDefault();
-	        return 1;
-	      case _KeyCode2.default.ENTER:
-	        this.onSelect(this.state.value, {
-	          source: 'keyboard'
-	        });
-	        event.preventDefault();
-	        return 1;
-	      default:
-	        this.props.onKeyDown(event);
-	        return 1;
+	      }
 	    }
-	  },
-	  onClear: function onClear() {
-	    this.onSelect(null);
-	    this.props.onClear();
-	  },
-	  onOk: function onOk() {
-	    var selectedValue = this.state.selectedValue;
 
-	    if (this.isAllowedDate(selectedValue)) {
-	      this.props.onOk(selectedValue);
-	    }
-	  },
-	  onDateInputChange: function onDateInputChange(value) {
-	    this.onSelect(value, {
-	      source: 'dateInput'
-	    });
-	  },
-	  onDateTableSelect: function onDateTableSelect(value) {
-	    this.onSelect(value);
-	  },
-	  onToday: function onToday() {
-	    var value = this.state.value;
+	    return target;
+	  };
 
-	    var now = (0, _index.getTodayTime)(value);
-	    this.onSelect(now, {
-	      source: 'todayButton'
-	    });
-	  },
-	  getRootDOMNode: function getRootDOMNode() {
-	    return _reactDom2.default.findDOMNode(this);
-	  },
-	  openTimePicker: function openTimePicker() {
-	    this.setState({
-	      showTimePicker: true
-	    });
-	  },
-	  closeTimePicker: function closeTimePicker() {
-	    this.setState({
-	      showTimePicker: false
-	    });
-	  },
-	  render: function render() {
-	    var props = this.props;
-	    var locale = props.locale;
-	    var prefixCls = props.prefixCls;
-	    var disabledDate = props.disabledDate;
-	    var dateInputPlaceholder = props.dateInputPlaceholder;
-	    var timePicker = props.timePicker;
-	    var disabledTime = props.disabledTime;
+	  function noop() {}
 
-	    var state = this.state;
-	    var value = state.value;
-	    var selectedValue = state.selectedValue;
-	    var showTimePicker = state.showTimePicker;
+	  function goStartMonth() {
+	    var next = this.state.value.clone();
+	    next.startOf('month');
+	    this.setValue(next);
+	  }
 
-	    var disabledTimeConfig = disabledTime && timePicker ? (0, _index.getTimeConfig)(selectedValue, disabledTime) : null;
+	  function goEndMonth() {
+	    var next = this.state.value.clone();
+	    next.endOf('month');
+	    this.setValue(next);
+	  }
 
-	    var timePickerEle = timePicker && showTimePicker ? _react2.default.cloneElement(timePicker, _extends({
-	      showHour: true,
-	      showSecond: true,
-	      onChange: this.onDateInputChange,
-	      defaultOpenValue: value,
-	      value: selectedValue,
-	      disabledHours: noop,
-	      disabledMinutes: noop,
-	      disabledSeconds: noop
-	    }, disabledTimeConfig)) : null;
-	    var dateInputElement = props.showDateInput ? _react2.default.createElement(_DateInput2.default, {
-	      ref: 'dateInput',
-	      format: this.getFormat(),
-	      key: 'date-input',
-	      value: value,
-	      locale: locale,
-	      placeholder: dateInputPlaceholder,
-	      showClear: true,
-	      disabledTime: disabledTime,
-	      disabledDate: disabledDate,
-	      onClear: this.onClear,
-	      prefixCls: prefixCls,
-	      selectedValue: selectedValue,
-	      onChange: this.onDateInputChange
-	    }) : null;
-	    var children = [dateInputElement, _react2.default.createElement(
-	      'div',
-	      {
-	        key: 'date-panel',
-	        className: prefixCls + '-date-panel'
-	      },
-	      _react2.default.createElement(_CalendarHeader2.default, {
-	        locale: locale,
-	        onValueChange: this.setValue,
+	  function goTime(direction, unit) {
+	    var next = this.state.value.clone();
+	    next.add(direction, unit);
+	    this.setValue(next);
+	  }
+
+	  function goMonth(direction) {
+	    return goTime.call(this, direction, 'months');
+	  }
+
+	  function goYear(direction) {
+	    return goTime.call(this, direction, 'years');
+	  }
+
+	  function goWeek(direction) {
+	    return goTime.call(this, direction, 'weeks');
+	  }
+
+	  function goDay(direction) {
+	    return goTime.call(this, direction, 'days');
+	  }
+
+	  var Calendar = _react2.default.createClass({
+	    displayName: 'Calendar',
+
+	    propTypes: {
+	      disabledDate: _react.PropTypes.func,
+	      disabledTime: _react.PropTypes.any,
+	      value: _react.PropTypes.object,
+	      selectedValue: _react.PropTypes.object,
+	      defaultValue: _react.PropTypes.object,
+	      className: _react.PropTypes.string,
+	      locale: _react.PropTypes.object,
+	      showWeekNumber: _react.PropTypes.bool,
+	      style: _react.PropTypes.object,
+	      showToday: _react.PropTypes.bool,
+	      showDateInput: _react.PropTypes.bool,
+	      visible: _react.PropTypes.bool,
+	      onSelect: _react.PropTypes.func,
+	      onOk: _react.PropTypes.func,
+	      showOk: _react.PropTypes.bool,
+	      prefixCls: _react.PropTypes.string,
+	      onKeyDown: _react.PropTypes.func,
+	      timePicker: _react.PropTypes.element,
+	      dateInputPlaceholder: _react.PropTypes.any,
+	      onClear: _react.PropTypes.func,
+	      onChange: _react.PropTypes.func
+	    },
+
+	    mixins: [_CommonMixin2.default, _CalendarMixin2.default],
+
+	    getDefaultProps: function getDefaultProps() {
+	      return {
+	        showToday: true,
+	        showDateInput: true,
+	        timePicker: null,
+	        onOk: noop
+	      };
+	    },
+	    getInitialState: function getInitialState() {
+	      return {
+	        showTimePicker: false
+	      };
+	    },
+	    onKeyDown: function onKeyDown(event) {
+	      if (event.target.nodeName.toLowerCase() === 'input') {
+	        return undefined;
+	      }
+	      var keyCode = event.keyCode;
+	      // mac
+	      var ctrlKey = event.ctrlKey || event.metaKey;
+	      switch (keyCode) {
+	        case _KeyCode2.default.DOWN:
+	          goWeek.call(this, 1);
+	          event.preventDefault();
+	          return 1;
+	        case _KeyCode2.default.UP:
+	          goWeek.call(this, -1);
+	          event.preventDefault();
+	          return 1;
+	        case _KeyCode2.default.LEFT:
+	          if (ctrlKey) {
+	            goYear.call(this, -1);
+	          } else {
+	            goDay.call(this, -1);
+	          }
+	          event.preventDefault();
+	          return 1;
+	        case _KeyCode2.default.RIGHT:
+	          if (ctrlKey) {
+	            goYear.call(this, 1);
+	          } else {
+	            goDay.call(this, 1);
+	          }
+	          event.preventDefault();
+	          return 1;
+	        case _KeyCode2.default.HOME:
+	          goStartMonth.call(this);
+	          event.preventDefault();
+	          return 1;
+	        case _KeyCode2.default.END:
+	          goEndMonth.call(this);
+	          event.preventDefault();
+	          return 1;
+	        case _KeyCode2.default.PAGE_DOWN:
+	          goMonth.call(this, 1);
+	          event.preventDefault();
+	          return 1;
+	        case _KeyCode2.default.PAGE_UP:
+	          goMonth.call(this, -1);
+	          event.preventDefault();
+	          return 1;
+	        case _KeyCode2.default.ENTER:
+	          this.onSelect(this.state.value, {
+	            source: 'keyboard'
+	          });
+	          event.preventDefault();
+	          return 1;
+	        default:
+	          this.props.onKeyDown(event);
+	          return 1;
+	      }
+	    },
+	    onClear: function onClear() {
+	      this.onSelect(null);
+	      this.props.onClear();
+	    },
+	    onOk: function onOk() {
+	      var selectedValue = this.state.selectedValue;
+
+	      if (this.isAllowedDate(selectedValue)) {
+	        this.props.onOk(selectedValue);
+	      }
+	    },
+	    onDateInputChange: function onDateInputChange(value) {
+	      this.onSelect(value, {
+	        source: 'dateInput'
+	      });
+	    },
+	    onDateTableSelect: function onDateTableSelect(value) {
+	      this.onSelect(value);
+	    },
+	    onToday: function onToday() {
+	      var value = this.state.value;
+
+	      var now = (0, _index.getTodayTime)(value);
+	      this.onSelect(now, {
+	        source: 'todayButton'
+	      });
+	    },
+	    getRootDOMNode: function getRootDOMNode() {
+	      return _reactDom2.default.findDOMNode(this);
+	    },
+	    openTimePicker: function openTimePicker() {
+	      this.setState({
+	        showTimePicker: true
+	      });
+	    },
+	    closeTimePicker: function closeTimePicker() {
+	      this.setState({
+	        showTimePicker: false
+	      });
+	    },
+	    render: function render() {
+	      var props = this.props;
+	      var locale = props.locale;
+	      var prefixCls = props.prefixCls;
+	      var disabledDate = props.disabledDate;
+	      var dateInputPlaceholder = props.dateInputPlaceholder;
+	      var timePicker = props.timePicker;
+	      var disabledTime = props.disabledTime;
+
+	      var state = this.state;
+	      var value = state.value;
+	      var selectedValue = state.selectedValue;
+	      var showTimePicker = state.showTimePicker;
+
+	      var disabledTimeConfig = disabledTime && timePicker ? (0, _index.getTimeConfig)(selectedValue, disabledTime) : null;
+
+	      var timePickerEle = timePicker && showTimePicker ? _react2.default.cloneElement(timePicker, _extends({
+	        showHour: true,
+	        showSecond: true,
+	        onChange: this.onDateInputChange,
+	        defaultOpenValue: value,
+	        value: selectedValue,
+	        disabledHours: noop,
+	        disabledMinutes: noop,
+	        disabledSeconds: noop
+	      }, disabledTimeConfig)) : null;
+	      var dateInputElement = props.showDateInput ? _react2.default.createElement(_DateInput2.default, {
+	        ref: 'dateInput',
+	        format: this.getFormat(),
+	        key: 'date-input',
 	        value: value,
-	        showTimePicker: showTimePicker,
-	        prefixCls: prefixCls
-	      }),
-	      timePicker && showTimePicker ? _react2.default.createElement(
+	        locale: locale,
+	        placeholder: dateInputPlaceholder,
+	        showClear: true,
+	        disabledTime: disabledTime,
+	        disabledDate: disabledDate,
+	        onClear: this.onClear,
+	        prefixCls: prefixCls,
+	        selectedValue: selectedValue,
+	        onChange: this.onDateInputChange
+	      }) : null;
+	      var children = [dateInputElement, _react2.default.createElement(
 	        'div',
-	        { className: prefixCls + '-time-picker' },
+	        {
+	          key: 'date-panel',
+	          className: prefixCls + '-date-panel'
+	        },
+	        _react2.default.createElement(_CalendarHeader2.default, {
+	          locale: locale,
+	          onValueChange: this.setValue,
+	          value: value,
+	          showTimePicker: showTimePicker,
+	          prefixCls: prefixCls
+	        }),
+	        timePicker && showTimePicker ? _react2.default.createElement(
+	          'div',
+	          { className: prefixCls + '-time-picker' },
+	          _react2.default.createElement(
+	            'div',
+	            { className: prefixCls + '-time-picker-panel' },
+	            timePickerEle
+	          )
+	        ) : null,
 	        _react2.default.createElement(
 	          'div',
-	          { className: prefixCls + '-time-picker-panel' },
-	          timePickerEle
-	        )
-	      ) : null,
-	      _react2.default.createElement(
-	        'div',
-	        { className: prefixCls + '-body' },
-	        _react2.default.createElement(_DateTable2.default, {
+	          { className: prefixCls + '-body' },
+	          _react2.default.createElement(_DateTable2.default, {
+	            locale: locale,
+	            value: value,
+	            selectedValue: selectedValue,
+	            prefixCls: prefixCls,
+	            dateRender: props.dateRender,
+	            onSelect: this.onDateTableSelect,
+	            disabledDate: disabledDate,
+	            showWeekNumber: props.showWeekNumber
+	          })
+	        ),
+	        _react2.default.createElement(_CalendarFooter2.default, {
+	          showOk: props.showOk,
 	          locale: locale,
-	          value: value,
-	          selectedValue: selectedValue,
 	          prefixCls: prefixCls,
-	          dateRender: props.dateRender,
-	          onSelect: this.onDateTableSelect,
+	          showToday: props.showToday,
+	          disabledTime: disabledTime,
+	          showTimePicker: showTimePicker,
+	          showDateInput: props.showDateInput,
+	          timePicker: timePicker,
+	          selectedValue: selectedValue,
+	          value: value,
 	          disabledDate: disabledDate,
-	          showWeekNumber: props.showWeekNumber
+	          onOk: this.onOk,
+	          onSelect: this.onSelect,
+	          onToday: this.onToday,
+	          onOpenTimePicker: this.openTimePicker,
+	          onCloseTimePicker: this.closeTimePicker
 	        })
-	      ),
-	      _react2.default.createElement(_CalendarFooter2.default, {
-	        showOk: props.showOk,
-	        locale: locale,
-	        prefixCls: prefixCls,
-	        showToday: props.showToday,
-	        disabledTime: disabledTime,
-	        showTimePicker: showTimePicker,
-	        showDateInput: props.showDateInput,
-	        timePicker: timePicker,
-	        selectedValue: selectedValue,
-	        value: value,
-	        disabledDate: disabledDate,
-	        onOk: this.onOk,
-	        onSelect: this.onSelect,
-	        onToday: this.onToday,
-	        onOpenTimePicker: this.openTimePicker,
-	        onCloseTimePicker: this.closeTimePicker
-	      })
-	    )];
+	      )];
 
-	    return this.renderRoot({
-	      children: children,
-	      className: props.showWeekNumber ? prefixCls + '-week-number' : ''
-	    });
-	  }
+	      return this.renderRoot({
+	        children: children,
+	        className: props.showWeekNumber ? prefixCls + '-week-number' : ''
+	      });
+	    }
+	  });
+
+	  exports.default = Calendar;
+	  module.exports = exports['default'];
 	});
-
-	exports.default = Calendar;
 
 /***/ },
 /* 17 */
@@ -976,190 +1021,311 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 20 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (global, factory) {
+	  if (true) {
+	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [module, exports, __webpack_require__(17), __webpack_require__(21), __webpack_require__(126)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	  } else if (typeof exports !== "undefined") {
+	    factory(module, exports, require('react'), require('./DateTHead'), require('./DateTBody'));
+	  } else {
+	    var mod = {
+	      exports: {}
+	    };
+	    factory(mod, mod.exports, global.react, global.DateTHead, global.DateTBody);
+	    global.DateTable = mod.exports;
+	  }
+	})(this, function (module, exports, _react, _DateTHead, _DateTBody) {
+	  'use strict';
 
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
+	  Object.defineProperty(exports, "__esModule", {
+	    value: true
+	  });
 
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	  var _react2 = _interopRequireDefault(_react);
 
-	var _react = __webpack_require__(17);
+	  var _DateTHead2 = _interopRequireDefault(_DateTHead);
 
-	var _react2 = _interopRequireDefault(_react);
+	  var _DateTBody2 = _interopRequireDefault(_DateTBody);
 
-	var _DateTHead = __webpack_require__(21);
-
-	var _DateTHead2 = _interopRequireDefault(_DateTHead);
-
-	var _DateTBody = __webpack_require__(127);
-
-	var _DateTBody2 = _interopRequireDefault(_DateTBody);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var DateTable = function (_React$Component) {
-	  _inherits(DateTable, _React$Component);
-
-	  function DateTable() {
-	    _classCallCheck(this, DateTable);
-
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(DateTable).apply(this, arguments));
+	  function _interopRequireDefault(obj) {
+	    return obj && obj.__esModule ? obj : {
+	      default: obj
+	    };
 	  }
 
-	  _createClass(DateTable, [{
-	    key: 'render',
-	    value: function render() {
-	      var props = this.props;
-	      var prefixCls = props.prefixCls;
-	      return _react2.default.createElement(
-	        'table',
-	        { className: prefixCls + '-table', cellSpacing: '0', role: 'grid' },
-	        _react2.default.createElement(_DateTHead2.default, props),
-	        _react2.default.createElement(_DateTBody2.default, props)
-	      );
+	  function _classCallCheck(instance, Constructor) {
+	    if (!(instance instanceof Constructor)) {
+	      throw new TypeError("Cannot call a class as a function");
 	    }
-	  }]);
+	  }
 
-	  return DateTable;
-	}(_react2.default.Component);
+	  var _createClass = function () {
+	    function defineProperties(target, props) {
+	      for (var i = 0; i < props.length; i++) {
+	        var descriptor = props[i];
+	        descriptor.enumerable = descriptor.enumerable || false;
+	        descriptor.configurable = true;
+	        if ("value" in descriptor) descriptor.writable = true;
+	        Object.defineProperty(target, descriptor.key, descriptor);
+	      }
+	    }
 
-	exports.default = DateTable;
+	    return function (Constructor, protoProps, staticProps) {
+	      if (protoProps) defineProperties(Constructor.prototype, protoProps);
+	      if (staticProps) defineProperties(Constructor, staticProps);
+	      return Constructor;
+	    };
+	  }();
+
+	  function _possibleConstructorReturn(self, call) {
+	    if (!self) {
+	      throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+	    }
+
+	    return call && (typeof call === "object" || typeof call === "function") ? call : self;
+	  }
+
+	  function _inherits(subClass, superClass) {
+	    if (typeof superClass !== "function" && superClass !== null) {
+	      throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
+	    }
+
+	    subClass.prototype = Object.create(superClass && superClass.prototype, {
+	      constructor: {
+	        value: subClass,
+	        enumerable: false,
+	        writable: true,
+	        configurable: true
+	      }
+	    });
+	    if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
+	  }
+
+	  var DateTable = function (_React$Component) {
+	    _inherits(DateTable, _React$Component);
+
+	    function DateTable() {
+	      _classCallCheck(this, DateTable);
+
+	      return _possibleConstructorReturn(this, Object.getPrototypeOf(DateTable).apply(this, arguments));
+	    }
+
+	    _createClass(DateTable, [{
+	      key: 'render',
+	      value: function render() {
+	        var props = this.props;
+	        var prefixCls = props.prefixCls;
+	        return _react2.default.createElement(
+	          'table',
+	          { className: prefixCls + '-table', cellSpacing: '0', role: 'grid' },
+	          _react2.default.createElement(_DateTHead2.default, props),
+	          _react2.default.createElement(_DateTBody2.default, props)
+	        );
+	      }
+	    }]);
+
+	    return DateTable;
+	  }(_react2.default.Component);
+
+	  exports.default = DateTable;
+	  module.exports = exports['default'];
+	});
 
 /***/ },
 /* 21 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (global, factory) {
+	  if (true) {
+	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [module, exports, __webpack_require__(17), __webpack_require__(22), __webpack_require__(23)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	  } else if (typeof exports !== "undefined") {
+	    factory(module, exports, require('react'), require('./DateConstants'), require('moment'));
+	  } else {
+	    var mod = {
+	      exports: {}
+	    };
+	    factory(mod, mod.exports, global.react, global.DateConstants, global.moment);
+	    global.DateTHead = mod.exports;
+	  }
+	})(this, function (module, exports, _react, _DateConstants, _moment) {
+	  'use strict';
 
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
+	  Object.defineProperty(exports, "__esModule", {
+	    value: true
+	  });
 
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	  var _react2 = _interopRequireDefault(_react);
 
-	var _react = __webpack_require__(17);
+	  var _DateConstants2 = _interopRequireDefault(_DateConstants);
 
-	var _react2 = _interopRequireDefault(_react);
+	  var _moment2 = _interopRequireDefault(_moment);
 
-	var _DateConstants = __webpack_require__(22);
-
-	var _DateConstants2 = _interopRequireDefault(_DateConstants);
-
-	var _moment = __webpack_require__(23);
-
-	var _moment2 = _interopRequireDefault(_moment);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var DateTHead = function (_React$Component) {
-	  _inherits(DateTHead, _React$Component);
-
-	  function DateTHead() {
-	    _classCallCheck(this, DateTHead);
-
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(DateTHead).apply(this, arguments));
+	  function _interopRequireDefault(obj) {
+	    return obj && obj.__esModule ? obj : {
+	      default: obj
+	    };
 	  }
 
-	  _createClass(DateTHead, [{
-	    key: 'render',
-	    value: function render() {
-	      var props = this.props;
-	      var value = props.value;
-	      var localeData = value.localeData();
-	      var prefixCls = props.prefixCls;
-	      var veryShortWeekdays = [];
-	      var weekDays = [];
-	      var firstDayOfWeek = localeData.firstDayOfWeek();
-	      var showWeekNumberEl = void 0;
-	      var now = (0, _moment2.default)();
-	      for (var dateColIndex = 0; dateColIndex < _DateConstants2.default.DATE_COL_COUNT; dateColIndex++) {
-	        var index = (firstDayOfWeek + dateColIndex) % _DateConstants2.default.DATE_COL_COUNT;
-	        now.day(index);
-	        veryShortWeekdays[dateColIndex] = localeData.weekdaysMin(now);
-	        weekDays[dateColIndex] = localeData.weekdaysShort(now);
-	      }
-
-	      if (props.showWeekNumber) {
-	        showWeekNumberEl = _react2.default.createElement(
-	          'th',
-	          {
-	            role: 'columnheader',
-	            className: prefixCls + '-column-header ' + prefixCls + '-week-number-header'
-	          },
-	          _react2.default.createElement(
-	            'span',
-	            { className: prefixCls + '-column-header-inner' },
-	            'x'
-	          )
-	        );
-	      }
-	      var weekDaysEls = weekDays.map(function (day, xindex) {
-	        return _react2.default.createElement(
-	          'th',
-	          {
-	            key: xindex,
-	            role: 'columnheader',
-	            title: day,
-	            className: prefixCls + '-column-header'
-	          },
-	          _react2.default.createElement(
-	            'span',
-	            { className: prefixCls + '-column-header-inner' },
-	            veryShortWeekdays[xindex]
-	          )
-	        );
-	      });
-	      return _react2.default.createElement(
-	        'thead',
-	        null,
-	        _react2.default.createElement(
-	          'tr',
-	          { role: 'row' },
-	          showWeekNumberEl,
-	          weekDaysEls
-	        )
-	      );
+	  function _classCallCheck(instance, Constructor) {
+	    if (!(instance instanceof Constructor)) {
+	      throw new TypeError("Cannot call a class as a function");
 	    }
-	  }]);
+	  }
 
-	  return DateTHead;
-	}(_react2.default.Component);
+	  var _createClass = function () {
+	    function defineProperties(target, props) {
+	      for (var i = 0; i < props.length; i++) {
+	        var descriptor = props[i];
+	        descriptor.enumerable = descriptor.enumerable || false;
+	        descriptor.configurable = true;
+	        if ("value" in descriptor) descriptor.writable = true;
+	        Object.defineProperty(target, descriptor.key, descriptor);
+	      }
+	    }
 
-	exports.default = DateTHead;
+	    return function (Constructor, protoProps, staticProps) {
+	      if (protoProps) defineProperties(Constructor.prototype, protoProps);
+	      if (staticProps) defineProperties(Constructor, staticProps);
+	      return Constructor;
+	    };
+	  }();
+
+	  function _possibleConstructorReturn(self, call) {
+	    if (!self) {
+	      throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+	    }
+
+	    return call && (typeof call === "object" || typeof call === "function") ? call : self;
+	  }
+
+	  function _inherits(subClass, superClass) {
+	    if (typeof superClass !== "function" && superClass !== null) {
+	      throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
+	    }
+
+	    subClass.prototype = Object.create(superClass && superClass.prototype, {
+	      constructor: {
+	        value: subClass,
+	        enumerable: false,
+	        writable: true,
+	        configurable: true
+	      }
+	    });
+	    if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
+	  }
+
+	  var DateTHead = function (_React$Component) {
+	    _inherits(DateTHead, _React$Component);
+
+	    function DateTHead() {
+	      _classCallCheck(this, DateTHead);
+
+	      return _possibleConstructorReturn(this, Object.getPrototypeOf(DateTHead).apply(this, arguments));
+	    }
+
+	    _createClass(DateTHead, [{
+	      key: 'render',
+	      value: function render() {
+	        var props = this.props;
+	        var value = props.value;
+	        var localeData = value.localeData();
+	        var prefixCls = props.prefixCls;
+	        var veryShortWeekdays = [];
+	        var weekDays = [];
+	        var firstDayOfWeek = localeData.firstDayOfWeek();
+	        var showWeekNumberEl = void 0;
+	        var now = (0, _moment2.default)();
+	        for (var dateColIndex = 0; dateColIndex < _DateConstants2.default.DATE_COL_COUNT; dateColIndex++) {
+	          var index = (firstDayOfWeek + dateColIndex) % _DateConstants2.default.DATE_COL_COUNT;
+	          now.day(index);
+	          veryShortWeekdays[dateColIndex] = localeData.weekdaysMin(now);
+	          weekDays[dateColIndex] = localeData.weekdaysShort(now);
+	        }
+
+	        if (props.showWeekNumber) {
+	          showWeekNumberEl = _react2.default.createElement(
+	            'th',
+	            {
+	              role: 'columnheader',
+	              className: prefixCls + '-column-header ' + prefixCls + '-week-number-header'
+	            },
+	            _react2.default.createElement(
+	              'span',
+	              { className: prefixCls + '-column-header-inner' },
+	              'x'
+	            )
+	          );
+	        }
+	        var weekDaysEls = weekDays.map(function (day, xindex) {
+	          return _react2.default.createElement(
+	            'th',
+	            {
+	              key: xindex,
+	              role: 'columnheader',
+	              title: day,
+	              className: prefixCls + '-column-header'
+	            },
+	            _react2.default.createElement(
+	              'span',
+	              { className: prefixCls + '-column-header-inner' },
+	              veryShortWeekdays[xindex]
+	            )
+	          );
+	        });
+	        return _react2.default.createElement(
+	          'thead',
+	          null,
+	          _react2.default.createElement(
+	            'tr',
+	            { role: 'row' },
+	            showWeekNumberEl,
+	            weekDaysEls
+	          )
+	        );
+	      }
+	    }]);
+
+	    return DateTHead;
+	  }(_react2.default.Component);
+
+	  exports.default = DateTHead;
+	  module.exports = exports['default'];
+	});
 
 /***/ },
 /* 22 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (global, factory) {
+	  if (true) {
+	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [module, exports], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	  } else if (typeof exports !== "undefined") {
+	    factory(module, exports);
+	  } else {
+	    var mod = {
+	      exports: {}
+	    };
+	    factory(mod, mod.exports);
+	    global.DateConstants = mod.exports;
+	  }
+	})(this, function (module, exports) {
+	  "use strict";
 
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
+	  Object.defineProperty(exports, "__esModule", {
+	    value: true
+	  });
+	  exports.default = {
+	    DATE_ROW_COUNT: 6,
+	    DATE_COL_COUNT: 7
+	  };
+	  module.exports = exports['default'];
 	});
-	exports.default = {
-	  DATE_ROW_COUNT: 6,
-	  DATE_COL_COUNT: 7
-	};
 
 /***/ },
 /* 23 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {//! moment.js
-	//! version : 2.14.1
+	//! version : 2.13.0
 	//! authors : Tim Wood, Iskren Chernev, Moment.js contributors
 	//! license : MIT
 	//! momentjs.com
@@ -1184,19 +1350,6 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    function isArray(input) {
 	        return input instanceof Array || Object.prototype.toString.call(input) === '[object Array]';
-	    }
-
-	    function isObject(input) {
-	        return Object.prototype.toString.call(input) === '[object Object]';
-	    }
-
-	    function isObjectEmpty(obj) {
-	        var k;
-	        for (k in obj) {
-	            // even if its not own property I'd still call it non-empty
-	            return false;
-	        }
-	        return true;
 	    }
 
 	    function isDate(input) {
@@ -1394,8 +1547,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    function absFloor (number) {
 	        if (number < 0) {
-	            // -0 -> 0
-	            return Math.ceil(number) || 0;
+	            return Math.ceil(number);
 	        } else {
 	            return Math.floor(number);
 	        }
@@ -1468,6 +1620,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return input instanceof Function || Object.prototype.toString.call(input) === '[object Function]';
 	    }
 
+	    function isObject(input) {
+	        return Object.prototype.toString.call(input) === '[object Object]';
+	    }
+
 	    function locale_set__set (config) {
 	        var prop, i;
 	        for (i in config) {
@@ -1499,14 +1655,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	                }
 	            }
 	        }
-	        for (prop in parentConfig) {
-	            if (hasOwnProp(parentConfig, prop) &&
-	                    !hasOwnProp(childConfig, prop) &&
-	                    isObject(parentConfig[prop])) {
-	                // make sure changes to properties don't modify parent config
-	                res[prop] = extend({}, res[prop]);
-	            }
-	        }
 	        return res;
 	    }
 
@@ -1532,83 +1680,161 @@ return /******/ (function(modules) { // webpackBootstrap
 	        };
 	    }
 
-	    var defaultCalendar = {
-	        sameDay : '[Today at] LT',
-	        nextDay : '[Tomorrow at] LT',
-	        nextWeek : 'dddd [at] LT',
-	        lastDay : '[Yesterday at] LT',
-	        lastWeek : '[Last] dddd [at] LT',
-	        sameElse : 'L'
-	    };
+	    // internal storage for locale config files
+	    var locales = {};
+	    var globalLocale;
 
-	    function locale_calendar__calendar (key, mom, now) {
-	        var output = this._calendar[key] || this._calendar['sameElse'];
-	        return isFunction(output) ? output.call(mom, now) : output;
+	    function normalizeLocale(key) {
+	        return key ? key.toLowerCase().replace('_', '-') : key;
 	    }
 
-	    var defaultLongDateFormat = {
-	        LTS  : 'h:mm:ss A',
-	        LT   : 'h:mm A',
-	        L    : 'MM/DD/YYYY',
-	        LL   : 'MMMM D, YYYY',
-	        LLL  : 'MMMM D, YYYY h:mm A',
-	        LLLL : 'dddd, MMMM D, YYYY h:mm A'
-	    };
+	    // pick the locale from the array
+	    // try ['en-au', 'en-gb'] as 'en-au', 'en-gb', 'en', as in move through the list trying each
+	    // substring from most specific to least, but move to the next array item if it's a more specific variant than the current root
+	    function chooseLocale(names) {
+	        var i = 0, j, next, locale, split;
 
-	    function longDateFormat (key) {
-	        var format = this._longDateFormat[key],
-	            formatUpper = this._longDateFormat[key.toUpperCase()];
+	        while (i < names.length) {
+	            split = normalizeLocale(names[i]).split('-');
+	            j = split.length;
+	            next = normalizeLocale(names[i + 1]);
+	            next = next ? next.split('-') : null;
+	            while (j > 0) {
+	                locale = loadLocale(split.slice(0, j).join('-'));
+	                if (locale) {
+	                    return locale;
+	                }
+	                if (next && next.length >= j && compareArrays(split, next, true) >= j - 1) {
+	                    //the next array item is better than a shallower substring of this one
+	                    break;
+	                }
+	                j--;
+	            }
+	            i++;
+	        }
+	        return null;
+	    }
 
-	        if (format || !formatUpper) {
-	            return format;
+	    function loadLocale(name) {
+	        var oldLocale = null;
+	        // TODO: Find a better way to register and load all the locales in Node
+	        if (!locales[name] && (typeof module !== 'undefined') &&
+	                module && module.exports) {
+	            try {
+	                oldLocale = globalLocale._abbr;
+	                __webpack_require__(25)("./" + name);
+	                // because defineLocale currently also sets the global locale, we
+	                // want to undo that for lazy loaded locales
+	                locale_locales__getSetGlobalLocale(oldLocale);
+	            } catch (e) { }
+	        }
+	        return locales[name];
+	    }
+
+	    // This function will load locale and then set the global locale.  If
+	    // no arguments are passed in, it will simply return the current global
+	    // locale key.
+	    function locale_locales__getSetGlobalLocale (key, values) {
+	        var data;
+	        if (key) {
+	            if (isUndefined(values)) {
+	                data = locale_locales__getLocale(key);
+	            }
+	            else {
+	                data = defineLocale(key, values);
+	            }
+
+	            if (data) {
+	                // moment.duration._locale = moment._locale = data;
+	                globalLocale = data;
+	            }
 	        }
 
-	        this._longDateFormat[key] = formatUpper.replace(/MMMM|MM|DD|dddd/g, function (val) {
-	            return val.slice(1);
-	        });
-
-	        return this._longDateFormat[key];
+	        return globalLocale._abbr;
 	    }
 
-	    var defaultInvalidDate = 'Invalid date';
+	    function defineLocale (name, config) {
+	        if (config !== null) {
+	            config.abbr = name;
+	            if (locales[name] != null) {
+	                deprecateSimple('defineLocaleOverride',
+	                        'use moment.updateLocale(localeName, config) to change ' +
+	                        'an existing locale. moment.defineLocale(localeName, ' +
+	                        'config) should only be used for creating a new locale');
+	                config = mergeConfigs(locales[name]._config, config);
+	            } else if (config.parentLocale != null) {
+	                if (locales[config.parentLocale] != null) {
+	                    config = mergeConfigs(locales[config.parentLocale]._config, config);
+	                } else {
+	                    // treat as if there is no base config
+	                    deprecateSimple('parentLocaleUndefined',
+	                            'specified parentLocale is not defined yet');
+	                }
+	            }
+	            locales[name] = new Locale(config);
 
-	    function invalidDate () {
-	        return this._invalidDate;
+	            // backwards compat for now: also set the locale
+	            locale_locales__getSetGlobalLocale(name);
+
+	            return locales[name];
+	        } else {
+	            // useful for testing
+	            delete locales[name];
+	            return null;
+	        }
 	    }
 
-	    var defaultOrdinal = '%d';
-	    var defaultOrdinalParse = /\d{1,2}/;
+	    function updateLocale(name, config) {
+	        if (config != null) {
+	            var locale;
+	            if (locales[name] != null) {
+	                config = mergeConfigs(locales[name]._config, config);
+	            }
+	            locale = new Locale(config);
+	            locale.parentLocale = locales[name];
+	            locales[name] = locale;
 
-	    function ordinal (number) {
-	        return this._ordinal.replace('%d', number);
+	            // backwards compat for now: also set the locale
+	            locale_locales__getSetGlobalLocale(name);
+	        } else {
+	            // pass null for config to unupdate, useful for tests
+	            if (locales[name] != null) {
+	                if (locales[name].parentLocale != null) {
+	                    locales[name] = locales[name].parentLocale;
+	                } else if (locales[name] != null) {
+	                    delete locales[name];
+	                }
+	            }
+	        }
+	        return locales[name];
 	    }
 
-	    var defaultRelativeTime = {
-	        future : 'in %s',
-	        past   : '%s ago',
-	        s  : 'a few seconds',
-	        m  : 'a minute',
-	        mm : '%d minutes',
-	        h  : 'an hour',
-	        hh : '%d hours',
-	        d  : 'a day',
-	        dd : '%d days',
-	        M  : 'a month',
-	        MM : '%d months',
-	        y  : 'a year',
-	        yy : '%d years'
-	    };
+	    // returns locale data
+	    function locale_locales__getLocale (key) {
+	        var locale;
 
-	    function relative__relativeTime (number, withoutSuffix, string, isFuture) {
-	        var output = this._relativeTime[string];
-	        return (isFunction(output)) ?
-	            output(number, withoutSuffix, string, isFuture) :
-	            output.replace(/%d/i, number);
+	        if (key && key._locale && key._locale._abbr) {
+	            key = key._locale._abbr;
+	        }
+
+	        if (!key) {
+	            return globalLocale;
+	        }
+
+	        if (!isArray(key)) {
+	            //short-circuit everything else
+	            locale = loadLocale(key);
+	            if (locale) {
+	                return locale;
+	            }
+	            key = [key];
+	        }
+
+	        return chooseLocale(key);
 	    }
 
-	    function pastFuture (diff, output) {
-	        var format = this._relativeTime[diff > 0 ? 'future' : 'past'];
-	        return isFunction(format) ? format(output) : format.replace(/%s/i, output);
+	    function locale_locales__listLocales() {
+	        return keys(locales);
 	    }
 
 	    var aliases = {};
@@ -1639,23 +1865,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return normalizedInput;
 	    }
 
-	    var priorities = {};
-
-	    function addUnitPriority(unit, priority) {
-	        priorities[unit] = priority;
-	    }
-
-	    function getPrioritizedUnits(unitsObj) {
-	        var units = [];
-	        for (var u in unitsObj) {
-	            units.push({unit: u, priority: priorities[u]});
-	        }
-	        units.sort(function (a, b) {
-	            return a.priority - b.priority;
-	        });
-	        return units;
-	    }
-
 	    function makeGetSet (unit, keepTime) {
 	        return function (value) {
 	            if (value != null) {
@@ -1681,21 +1890,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    // MOMENTS
 
-	    function stringGet (units) {
-	        units = normalizeUnits(units);
-	        if (isFunction(this[units])) {
-	            return this[units]();
-	        }
-	        return this;
-	    }
-
-
-	    function stringSet (units, value) {
+	    function getSet (units, value) {
+	        var unit;
 	        if (typeof units === 'object') {
-	            units = normalizeObjectUnits(units);
-	            var prioritized = getPrioritizedUnits(units);
-	            for (var i = 0; i < prioritized.length; i++) {
-	                this[prioritized[i].unit](units[prioritized[i].unit]);
+	            for (unit in units) {
+	                this.set(unit, units[unit]);
 	            }
 	        } else {
 	            units = normalizeUnits(units);
@@ -1935,10 +2134,6 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    addUnitAlias('month', 'M');
 
-	    // PRIORITY
-
-	    addUnitPriority('month', 8);
-
 	    // PARSING
 
 	    addRegexToken('M',    match1to2);
@@ -1970,7 +2165,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var defaultLocaleMonths = 'January_February_March_April_May_June_July_August_September_October_November_December'.split('_');
 	    function localeMonths (m, format) {
 	        return isArray(this._months) ? this._months[m.month()] :
-	            this._months[(this._months.isFormat || MONTHS_IN_FORMAT).test(format) ? 'format' : 'standalone'][m.month()];
+	            this._months[MONTHS_IN_FORMAT.test(format) ? 'format' : 'standalone'][m.month()];
 	    }
 
 	    var defaultLocaleMonthsShort = 'Jan_Feb_Mar_Apr_May_Jun_Jul_Aug_Sep_Oct_Nov_Dec'.split('_');
@@ -2111,9 +2306,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	                return this._monthsShortRegex;
 	            }
 	        } else {
-	            if (!hasOwnProp(this, '_monthsShortRegex')) {
-	                this._monthsShortRegex = defaultMonthsShortRegex;
-	            }
 	            return this._monthsShortStrictRegex && isStrict ?
 	                this._monthsShortStrictRegex : this._monthsShortRegex;
 	        }
@@ -2131,9 +2323,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	                return this._monthsRegex;
 	            }
 	        } else {
-	            if (!hasOwnProp(this, '_monthsRegex')) {
-	                this._monthsRegex = defaultMonthsRegex;
-	            }
 	            return this._monthsStrictRegex && isStrict ?
 	                this._monthsStrictRegex : this._monthsRegex;
 	        }
@@ -2162,8 +2351,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        for (i = 0; i < 12; i++) {
 	            shortPieces[i] = regexEscape(shortPieces[i]);
 	            longPieces[i] = regexEscape(longPieces[i]);
-	        }
-	        for (i = 0; i < 24; i++) {
 	            mixedPieces[i] = regexEscape(mixedPieces[i]);
 	        }
 
@@ -2171,873 +2358,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this._monthsShortRegex = this._monthsRegex;
 	        this._monthsStrictRegex = new RegExp('^(' + longPieces.join('|') + ')', 'i');
 	        this._monthsShortStrictRegex = new RegExp('^(' + shortPieces.join('|') + ')', 'i');
-	    }
-
-	    // FORMATTING
-
-	    addFormatToken('Y', 0, 0, function () {
-	        var y = this.year();
-	        return y <= 9999 ? '' + y : '+' + y;
-	    });
-
-	    addFormatToken(0, ['YY', 2], 0, function () {
-	        return this.year() % 100;
-	    });
-
-	    addFormatToken(0, ['YYYY',   4],       0, 'year');
-	    addFormatToken(0, ['YYYYY',  5],       0, 'year');
-	    addFormatToken(0, ['YYYYYY', 6, true], 0, 'year');
-
-	    // ALIASES
-
-	    addUnitAlias('year', 'y');
-
-	    // PRIORITIES
-
-	    addUnitPriority('year', 1);
-
-	    // PARSING
-
-	    addRegexToken('Y',      matchSigned);
-	    addRegexToken('YY',     match1to2, match2);
-	    addRegexToken('YYYY',   match1to4, match4);
-	    addRegexToken('YYYYY',  match1to6, match6);
-	    addRegexToken('YYYYYY', match1to6, match6);
-
-	    addParseToken(['YYYYY', 'YYYYYY'], YEAR);
-	    addParseToken('YYYY', function (input, array) {
-	        array[YEAR] = input.length === 2 ? utils_hooks__hooks.parseTwoDigitYear(input) : toInt(input);
-	    });
-	    addParseToken('YY', function (input, array) {
-	        array[YEAR] = utils_hooks__hooks.parseTwoDigitYear(input);
-	    });
-	    addParseToken('Y', function (input, array) {
-	        array[YEAR] = parseInt(input, 10);
-	    });
-
-	    // HELPERS
-
-	    function daysInYear(year) {
-	        return isLeapYear(year) ? 366 : 365;
-	    }
-
-	    function isLeapYear(year) {
-	        return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
-	    }
-
-	    // HOOKS
-
-	    utils_hooks__hooks.parseTwoDigitYear = function (input) {
-	        return toInt(input) + (toInt(input) > 68 ? 1900 : 2000);
-	    };
-
-	    // MOMENTS
-
-	    var getSetYear = makeGetSet('FullYear', true);
-
-	    function getIsLeapYear () {
-	        return isLeapYear(this.year());
-	    }
-
-	    function createDate (y, m, d, h, M, s, ms) {
-	        //can't just apply() to create a date:
-	        //http://stackoverflow.com/questions/181348/instantiating-a-javascript-object-by-calling-prototype-constructor-apply
-	        var date = new Date(y, m, d, h, M, s, ms);
-
-	        //the date constructor remaps years 0-99 to 1900-1999
-	        if (y < 100 && y >= 0 && isFinite(date.getFullYear())) {
-	            date.setFullYear(y);
-	        }
-	        return date;
-	    }
-
-	    function createUTCDate (y) {
-	        var date = new Date(Date.UTC.apply(null, arguments));
-
-	        //the Date.UTC function remaps years 0-99 to 1900-1999
-	        if (y < 100 && y >= 0 && isFinite(date.getUTCFullYear())) {
-	            date.setUTCFullYear(y);
-	        }
-	        return date;
-	    }
-
-	    // start-of-first-week - start-of-year
-	    function firstWeekOffset(year, dow, doy) {
-	        var // first-week day -- which january is always in the first week (4 for iso, 1 for other)
-	            fwd = 7 + dow - doy,
-	            // first-week day local weekday -- which local weekday is fwd
-	            fwdlw = (7 + createUTCDate(year, 0, fwd).getUTCDay() - dow) % 7;
-
-	        return -fwdlw + fwd - 1;
-	    }
-
-	    //http://en.wikipedia.org/wiki/ISO_week_date#Calculating_a_date_given_the_year.2C_week_number_and_weekday
-	    function dayOfYearFromWeeks(year, week, weekday, dow, doy) {
-	        var localWeekday = (7 + weekday - dow) % 7,
-	            weekOffset = firstWeekOffset(year, dow, doy),
-	            dayOfYear = 1 + 7 * (week - 1) + localWeekday + weekOffset,
-	            resYear, resDayOfYear;
-
-	        if (dayOfYear <= 0) {
-	            resYear = year - 1;
-	            resDayOfYear = daysInYear(resYear) + dayOfYear;
-	        } else if (dayOfYear > daysInYear(year)) {
-	            resYear = year + 1;
-	            resDayOfYear = dayOfYear - daysInYear(year);
-	        } else {
-	            resYear = year;
-	            resDayOfYear = dayOfYear;
-	        }
-
-	        return {
-	            year: resYear,
-	            dayOfYear: resDayOfYear
-	        };
-	    }
-
-	    function weekOfYear(mom, dow, doy) {
-	        var weekOffset = firstWeekOffset(mom.year(), dow, doy),
-	            week = Math.floor((mom.dayOfYear() - weekOffset - 1) / 7) + 1,
-	            resWeek, resYear;
-
-	        if (week < 1) {
-	            resYear = mom.year() - 1;
-	            resWeek = week + weeksInYear(resYear, dow, doy);
-	        } else if (week > weeksInYear(mom.year(), dow, doy)) {
-	            resWeek = week - weeksInYear(mom.year(), dow, doy);
-	            resYear = mom.year() + 1;
-	        } else {
-	            resYear = mom.year();
-	            resWeek = week;
-	        }
-
-	        return {
-	            week: resWeek,
-	            year: resYear
-	        };
-	    }
-
-	    function weeksInYear(year, dow, doy) {
-	        var weekOffset = firstWeekOffset(year, dow, doy),
-	            weekOffsetNext = firstWeekOffset(year + 1, dow, doy);
-	        return (daysInYear(year) - weekOffset + weekOffsetNext) / 7;
-	    }
-
-	    // FORMATTING
-
-	    addFormatToken('w', ['ww', 2], 'wo', 'week');
-	    addFormatToken('W', ['WW', 2], 'Wo', 'isoWeek');
-
-	    // ALIASES
-
-	    addUnitAlias('week', 'w');
-	    addUnitAlias('isoWeek', 'W');
-
-	    // PRIORITIES
-
-	    addUnitPriority('week', 5);
-	    addUnitPriority('isoWeek', 5);
-
-	    // PARSING
-
-	    addRegexToken('w',  match1to2);
-	    addRegexToken('ww', match1to2, match2);
-	    addRegexToken('W',  match1to2);
-	    addRegexToken('WW', match1to2, match2);
-
-	    addWeekParseToken(['w', 'ww', 'W', 'WW'], function (input, week, config, token) {
-	        week[token.substr(0, 1)] = toInt(input);
-	    });
-
-	    // HELPERS
-
-	    // LOCALES
-
-	    function localeWeek (mom) {
-	        return weekOfYear(mom, this._week.dow, this._week.doy).week;
-	    }
-
-	    var defaultLocaleWeek = {
-	        dow : 0, // Sunday is the first day of the week.
-	        doy : 6  // The week that contains Jan 1st is the first week of the year.
-	    };
-
-	    function localeFirstDayOfWeek () {
-	        return this._week.dow;
-	    }
-
-	    function localeFirstDayOfYear () {
-	        return this._week.doy;
-	    }
-
-	    // MOMENTS
-
-	    function getSetWeek (input) {
-	        var week = this.localeData().week(this);
-	        return input == null ? week : this.add((input - week) * 7, 'd');
-	    }
-
-	    function getSetISOWeek (input) {
-	        var week = weekOfYear(this, 1, 4).week;
-	        return input == null ? week : this.add((input - week) * 7, 'd');
-	    }
-
-	    // FORMATTING
-
-	    addFormatToken('d', 0, 'do', 'day');
-
-	    addFormatToken('dd', 0, 0, function (format) {
-	        return this.localeData().weekdaysMin(this, format);
-	    });
-
-	    addFormatToken('ddd', 0, 0, function (format) {
-	        return this.localeData().weekdaysShort(this, format);
-	    });
-
-	    addFormatToken('dddd', 0, 0, function (format) {
-	        return this.localeData().weekdays(this, format);
-	    });
-
-	    addFormatToken('e', 0, 0, 'weekday');
-	    addFormatToken('E', 0, 0, 'isoWeekday');
-
-	    // ALIASES
-
-	    addUnitAlias('day', 'd');
-	    addUnitAlias('weekday', 'e');
-	    addUnitAlias('isoWeekday', 'E');
-
-	    // PRIORITY
-	    addUnitPriority('day', 11);
-	    addUnitPriority('weekday', 11);
-	    addUnitPriority('isoWeekday', 11);
-
-	    // PARSING
-
-	    addRegexToken('d',    match1to2);
-	    addRegexToken('e',    match1to2);
-	    addRegexToken('E',    match1to2);
-	    addRegexToken('dd',   function (isStrict, locale) {
-	        return locale.weekdaysMinRegex(isStrict);
-	    });
-	    addRegexToken('ddd',   function (isStrict, locale) {
-	        return locale.weekdaysShortRegex(isStrict);
-	    });
-	    addRegexToken('dddd',   function (isStrict, locale) {
-	        return locale.weekdaysRegex(isStrict);
-	    });
-
-	    addWeekParseToken(['dd', 'ddd', 'dddd'], function (input, week, config, token) {
-	        var weekday = config._locale.weekdaysParse(input, token, config._strict);
-	        // if we didn't get a weekday name, mark the date as invalid
-	        if (weekday != null) {
-	            week.d = weekday;
-	        } else {
-	            getParsingFlags(config).invalidWeekday = input;
-	        }
-	    });
-
-	    addWeekParseToken(['d', 'e', 'E'], function (input, week, config, token) {
-	        week[token] = toInt(input);
-	    });
-
-	    // HELPERS
-
-	    function parseWeekday(input, locale) {
-	        if (typeof input !== 'string') {
-	            return input;
-	        }
-
-	        if (!isNaN(input)) {
-	            return parseInt(input, 10);
-	        }
-
-	        input = locale.weekdaysParse(input);
-	        if (typeof input === 'number') {
-	            return input;
-	        }
-
-	        return null;
-	    }
-
-	    function parseIsoWeekday(input, locale) {
-	        if (typeof input === 'string') {
-	            return locale.weekdaysParse(input) % 7 || 7;
-	        }
-	        return isNaN(input) ? null : input;
-	    }
-
-	    // LOCALES
-
-	    var defaultLocaleWeekdays = 'Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday'.split('_');
-	    function localeWeekdays (m, format) {
-	        return isArray(this._weekdays) ? this._weekdays[m.day()] :
-	            this._weekdays[this._weekdays.isFormat.test(format) ? 'format' : 'standalone'][m.day()];
-	    }
-
-	    var defaultLocaleWeekdaysShort = 'Sun_Mon_Tue_Wed_Thu_Fri_Sat'.split('_');
-	    function localeWeekdaysShort (m) {
-	        return this._weekdaysShort[m.day()];
-	    }
-
-	    var defaultLocaleWeekdaysMin = 'Su_Mo_Tu_We_Th_Fr_Sa'.split('_');
-	    function localeWeekdaysMin (m) {
-	        return this._weekdaysMin[m.day()];
-	    }
-
-	    function day_of_week__handleStrictParse(weekdayName, format, strict) {
-	        var i, ii, mom, llc = weekdayName.toLocaleLowerCase();
-	        if (!this._weekdaysParse) {
-	            this._weekdaysParse = [];
-	            this._shortWeekdaysParse = [];
-	            this._minWeekdaysParse = [];
-
-	            for (i = 0; i < 7; ++i) {
-	                mom = create_utc__createUTC([2000, 1]).day(i);
-	                this._minWeekdaysParse[i] = this.weekdaysMin(mom, '').toLocaleLowerCase();
-	                this._shortWeekdaysParse[i] = this.weekdaysShort(mom, '').toLocaleLowerCase();
-	                this._weekdaysParse[i] = this.weekdays(mom, '').toLocaleLowerCase();
-	            }
-	        }
-
-	        if (strict) {
-	            if (format === 'dddd') {
-	                ii = indexOf.call(this._weekdaysParse, llc);
-	                return ii !== -1 ? ii : null;
-	            } else if (format === 'ddd') {
-	                ii = indexOf.call(this._shortWeekdaysParse, llc);
-	                return ii !== -1 ? ii : null;
-	            } else {
-	                ii = indexOf.call(this._minWeekdaysParse, llc);
-	                return ii !== -1 ? ii : null;
-	            }
-	        } else {
-	            if (format === 'dddd') {
-	                ii = indexOf.call(this._weekdaysParse, llc);
-	                if (ii !== -1) {
-	                    return ii;
-	                }
-	                ii = indexOf.call(this._shortWeekdaysParse, llc);
-	                if (ii !== -1) {
-	                    return ii;
-	                }
-	                ii = indexOf.call(this._minWeekdaysParse, llc);
-	                return ii !== -1 ? ii : null;
-	            } else if (format === 'ddd') {
-	                ii = indexOf.call(this._shortWeekdaysParse, llc);
-	                if (ii !== -1) {
-	                    return ii;
-	                }
-	                ii = indexOf.call(this._weekdaysParse, llc);
-	                if (ii !== -1) {
-	                    return ii;
-	                }
-	                ii = indexOf.call(this._minWeekdaysParse, llc);
-	                return ii !== -1 ? ii : null;
-	            } else {
-	                ii = indexOf.call(this._minWeekdaysParse, llc);
-	                if (ii !== -1) {
-	                    return ii;
-	                }
-	                ii = indexOf.call(this._weekdaysParse, llc);
-	                if (ii !== -1) {
-	                    return ii;
-	                }
-	                ii = indexOf.call(this._shortWeekdaysParse, llc);
-	                return ii !== -1 ? ii : null;
-	            }
-	        }
-	    }
-
-	    function localeWeekdaysParse (weekdayName, format, strict) {
-	        var i, mom, regex;
-
-	        if (this._weekdaysParseExact) {
-	            return day_of_week__handleStrictParse.call(this, weekdayName, format, strict);
-	        }
-
-	        if (!this._weekdaysParse) {
-	            this._weekdaysParse = [];
-	            this._minWeekdaysParse = [];
-	            this._shortWeekdaysParse = [];
-	            this._fullWeekdaysParse = [];
-	        }
-
-	        for (i = 0; i < 7; i++) {
-	            // make the regex if we don't have it already
-
-	            mom = create_utc__createUTC([2000, 1]).day(i);
-	            if (strict && !this._fullWeekdaysParse[i]) {
-	                this._fullWeekdaysParse[i] = new RegExp('^' + this.weekdays(mom, '').replace('.', '\.?') + '$', 'i');
-	                this._shortWeekdaysParse[i] = new RegExp('^' + this.weekdaysShort(mom, '').replace('.', '\.?') + '$', 'i');
-	                this._minWeekdaysParse[i] = new RegExp('^' + this.weekdaysMin(mom, '').replace('.', '\.?') + '$', 'i');
-	            }
-	            if (!this._weekdaysParse[i]) {
-	                regex = '^' + this.weekdays(mom, '') + '|^' + this.weekdaysShort(mom, '') + '|^' + this.weekdaysMin(mom, '');
-	                this._weekdaysParse[i] = new RegExp(regex.replace('.', ''), 'i');
-	            }
-	            // test the regex
-	            if (strict && format === 'dddd' && this._fullWeekdaysParse[i].test(weekdayName)) {
-	                return i;
-	            } else if (strict && format === 'ddd' && this._shortWeekdaysParse[i].test(weekdayName)) {
-	                return i;
-	            } else if (strict && format === 'dd' && this._minWeekdaysParse[i].test(weekdayName)) {
-	                return i;
-	            } else if (!strict && this._weekdaysParse[i].test(weekdayName)) {
-	                return i;
-	            }
-	        }
-	    }
-
-	    // MOMENTS
-
-	    function getSetDayOfWeek (input) {
-	        if (!this.isValid()) {
-	            return input != null ? this : NaN;
-	        }
-	        var day = this._isUTC ? this._d.getUTCDay() : this._d.getDay();
-	        if (input != null) {
-	            input = parseWeekday(input, this.localeData());
-	            return this.add(input - day, 'd');
-	        } else {
-	            return day;
-	        }
-	    }
-
-	    function getSetLocaleDayOfWeek (input) {
-	        if (!this.isValid()) {
-	            return input != null ? this : NaN;
-	        }
-	        var weekday = (this.day() + 7 - this.localeData()._week.dow) % 7;
-	        return input == null ? weekday : this.add(input - weekday, 'd');
-	    }
-
-	    function getSetISODayOfWeek (input) {
-	        if (!this.isValid()) {
-	            return input != null ? this : NaN;
-	        }
-
-	        // behaves the same as moment#day except
-	        // as a getter, returns 7 instead of 0 (1-7 range instead of 0-6)
-	        // as a setter, sunday should belong to the previous week.
-
-	        if (input != null) {
-	            var weekday = parseIsoWeekday(input, this.localeData());
-	            return this.day(this.day() % 7 ? weekday : weekday - 7);
-	        } else {
-	            return this.day() || 7;
-	        }
-	    }
-
-	    var defaultWeekdaysRegex = matchWord;
-	    function weekdaysRegex (isStrict) {
-	        if (this._weekdaysParseExact) {
-	            if (!hasOwnProp(this, '_weekdaysRegex')) {
-	                computeWeekdaysParse.call(this);
-	            }
-	            if (isStrict) {
-	                return this._weekdaysStrictRegex;
-	            } else {
-	                return this._weekdaysRegex;
-	            }
-	        } else {
-	            if (!hasOwnProp(this, '_weekdaysRegex')) {
-	                this._weekdaysRegex = defaultWeekdaysRegex;
-	            }
-	            return this._weekdaysStrictRegex && isStrict ?
-	                this._weekdaysStrictRegex : this._weekdaysRegex;
-	        }
-	    }
-
-	    var defaultWeekdaysShortRegex = matchWord;
-	    function weekdaysShortRegex (isStrict) {
-	        if (this._weekdaysParseExact) {
-	            if (!hasOwnProp(this, '_weekdaysRegex')) {
-	                computeWeekdaysParse.call(this);
-	            }
-	            if (isStrict) {
-	                return this._weekdaysShortStrictRegex;
-	            } else {
-	                return this._weekdaysShortRegex;
-	            }
-	        } else {
-	            if (!hasOwnProp(this, '_weekdaysShortRegex')) {
-	                this._weekdaysShortRegex = defaultWeekdaysShortRegex;
-	            }
-	            return this._weekdaysShortStrictRegex && isStrict ?
-	                this._weekdaysShortStrictRegex : this._weekdaysShortRegex;
-	        }
-	    }
-
-	    var defaultWeekdaysMinRegex = matchWord;
-	    function weekdaysMinRegex (isStrict) {
-	        if (this._weekdaysParseExact) {
-	            if (!hasOwnProp(this, '_weekdaysRegex')) {
-	                computeWeekdaysParse.call(this);
-	            }
-	            if (isStrict) {
-	                return this._weekdaysMinStrictRegex;
-	            } else {
-	                return this._weekdaysMinRegex;
-	            }
-	        } else {
-	            if (!hasOwnProp(this, '_weekdaysMinRegex')) {
-	                this._weekdaysMinRegex = defaultWeekdaysMinRegex;
-	            }
-	            return this._weekdaysMinStrictRegex && isStrict ?
-	                this._weekdaysMinStrictRegex : this._weekdaysMinRegex;
-	        }
-	    }
-
-
-	    function computeWeekdaysParse () {
-	        function cmpLenRev(a, b) {
-	            return b.length - a.length;
-	        }
-
-	        var minPieces = [], shortPieces = [], longPieces = [], mixedPieces = [],
-	            i, mom, minp, shortp, longp;
-	        for (i = 0; i < 7; i++) {
-	            // make the regex if we don't have it already
-	            mom = create_utc__createUTC([2000, 1]).day(i);
-	            minp = this.weekdaysMin(mom, '');
-	            shortp = this.weekdaysShort(mom, '');
-	            longp = this.weekdays(mom, '');
-	            minPieces.push(minp);
-	            shortPieces.push(shortp);
-	            longPieces.push(longp);
-	            mixedPieces.push(minp);
-	            mixedPieces.push(shortp);
-	            mixedPieces.push(longp);
-	        }
-	        // Sorting makes sure if one weekday (or abbr) is a prefix of another it
-	        // will match the longer piece.
-	        minPieces.sort(cmpLenRev);
-	        shortPieces.sort(cmpLenRev);
-	        longPieces.sort(cmpLenRev);
-	        mixedPieces.sort(cmpLenRev);
-	        for (i = 0; i < 7; i++) {
-	            shortPieces[i] = regexEscape(shortPieces[i]);
-	            longPieces[i] = regexEscape(longPieces[i]);
-	            mixedPieces[i] = regexEscape(mixedPieces[i]);
-	        }
-
-	        this._weekdaysRegex = new RegExp('^(' + mixedPieces.join('|') + ')', 'i');
-	        this._weekdaysShortRegex = this._weekdaysRegex;
-	        this._weekdaysMinRegex = this._weekdaysRegex;
-
-	        this._weekdaysStrictRegex = new RegExp('^(' + longPieces.join('|') + ')', 'i');
-	        this._weekdaysShortStrictRegex = new RegExp('^(' + shortPieces.join('|') + ')', 'i');
-	        this._weekdaysMinStrictRegex = new RegExp('^(' + minPieces.join('|') + ')', 'i');
-	    }
-
-	    // FORMATTING
-
-	    function hFormat() {
-	        return this.hours() % 12 || 12;
-	    }
-
-	    function kFormat() {
-	        return this.hours() || 24;
-	    }
-
-	    addFormatToken('H', ['HH', 2], 0, 'hour');
-	    addFormatToken('h', ['hh', 2], 0, hFormat);
-	    addFormatToken('k', ['kk', 2], 0, kFormat);
-
-	    addFormatToken('hmm', 0, 0, function () {
-	        return '' + hFormat.apply(this) + zeroFill(this.minutes(), 2);
-	    });
-
-	    addFormatToken('hmmss', 0, 0, function () {
-	        return '' + hFormat.apply(this) + zeroFill(this.minutes(), 2) +
-	            zeroFill(this.seconds(), 2);
-	    });
-
-	    addFormatToken('Hmm', 0, 0, function () {
-	        return '' + this.hours() + zeroFill(this.minutes(), 2);
-	    });
-
-	    addFormatToken('Hmmss', 0, 0, function () {
-	        return '' + this.hours() + zeroFill(this.minutes(), 2) +
-	            zeroFill(this.seconds(), 2);
-	    });
-
-	    function meridiem (token, lowercase) {
-	        addFormatToken(token, 0, 0, function () {
-	            return this.localeData().meridiem(this.hours(), this.minutes(), lowercase);
-	        });
-	    }
-
-	    meridiem('a', true);
-	    meridiem('A', false);
-
-	    // ALIASES
-
-	    addUnitAlias('hour', 'h');
-
-	    // PRIORITY
-	    addUnitPriority('hour', 13);
-
-	    // PARSING
-
-	    function matchMeridiem (isStrict, locale) {
-	        return locale._meridiemParse;
-	    }
-
-	    addRegexToken('a',  matchMeridiem);
-	    addRegexToken('A',  matchMeridiem);
-	    addRegexToken('H',  match1to2);
-	    addRegexToken('h',  match1to2);
-	    addRegexToken('HH', match1to2, match2);
-	    addRegexToken('hh', match1to2, match2);
-
-	    addRegexToken('hmm', match3to4);
-	    addRegexToken('hmmss', match5to6);
-	    addRegexToken('Hmm', match3to4);
-	    addRegexToken('Hmmss', match5to6);
-
-	    addParseToken(['H', 'HH'], HOUR);
-	    addParseToken(['a', 'A'], function (input, array, config) {
-	        config._isPm = config._locale.isPM(input);
-	        config._meridiem = input;
-	    });
-	    addParseToken(['h', 'hh'], function (input, array, config) {
-	        array[HOUR] = toInt(input);
-	        getParsingFlags(config).bigHour = true;
-	    });
-	    addParseToken('hmm', function (input, array, config) {
-	        var pos = input.length - 2;
-	        array[HOUR] = toInt(input.substr(0, pos));
-	        array[MINUTE] = toInt(input.substr(pos));
-	        getParsingFlags(config).bigHour = true;
-	    });
-	    addParseToken('hmmss', function (input, array, config) {
-	        var pos1 = input.length - 4;
-	        var pos2 = input.length - 2;
-	        array[HOUR] = toInt(input.substr(0, pos1));
-	        array[MINUTE] = toInt(input.substr(pos1, 2));
-	        array[SECOND] = toInt(input.substr(pos2));
-	        getParsingFlags(config).bigHour = true;
-	    });
-	    addParseToken('Hmm', function (input, array, config) {
-	        var pos = input.length - 2;
-	        array[HOUR] = toInt(input.substr(0, pos));
-	        array[MINUTE] = toInt(input.substr(pos));
-	    });
-	    addParseToken('Hmmss', function (input, array, config) {
-	        var pos1 = input.length - 4;
-	        var pos2 = input.length - 2;
-	        array[HOUR] = toInt(input.substr(0, pos1));
-	        array[MINUTE] = toInt(input.substr(pos1, 2));
-	        array[SECOND] = toInt(input.substr(pos2));
-	    });
-
-	    // LOCALES
-
-	    function localeIsPM (input) {
-	        // IE8 Quirks Mode & IE7 Standards Mode do not allow accessing strings like arrays
-	        // Using charAt should be more compatible.
-	        return ((input + '').toLowerCase().charAt(0) === 'p');
-	    }
-
-	    var defaultLocaleMeridiemParse = /[ap]\.?m?\.?/i;
-	    function localeMeridiem (hours, minutes, isLower) {
-	        if (hours > 11) {
-	            return isLower ? 'pm' : 'PM';
-	        } else {
-	            return isLower ? 'am' : 'AM';
-	        }
-	    }
-
-
-	    // MOMENTS
-
-	    // Setting the hour should keep the time, because the user explicitly
-	    // specified which hour he wants. So trying to maintain the same hour (in
-	    // a new timezone) makes sense. Adding/subtracting hours does not follow
-	    // this rule.
-	    var getSetHour = makeGetSet('Hours', true);
-
-	    var baseConfig = {
-	        calendar: defaultCalendar,
-	        longDateFormat: defaultLongDateFormat,
-	        invalidDate: defaultInvalidDate,
-	        ordinal: defaultOrdinal,
-	        ordinalParse: defaultOrdinalParse,
-	        relativeTime: defaultRelativeTime,
-
-	        months: defaultLocaleMonths,
-	        monthsShort: defaultLocaleMonthsShort,
-
-	        week: defaultLocaleWeek,
-
-	        weekdays: defaultLocaleWeekdays,
-	        weekdaysMin: defaultLocaleWeekdaysMin,
-	        weekdaysShort: defaultLocaleWeekdaysShort,
-
-	        meridiemParse: defaultLocaleMeridiemParse
-	    };
-
-	    // internal storage for locale config files
-	    var locales = {};
-	    var globalLocale;
-
-	    function normalizeLocale(key) {
-	        return key ? key.toLowerCase().replace('_', '-') : key;
-	    }
-
-	    // pick the locale from the array
-	    // try ['en-au', 'en-gb'] as 'en-au', 'en-gb', 'en', as in move through the list trying each
-	    // substring from most specific to least, but move to the next array item if it's a more specific variant than the current root
-	    function chooseLocale(names) {
-	        var i = 0, j, next, locale, split;
-
-	        while (i < names.length) {
-	            split = normalizeLocale(names[i]).split('-');
-	            j = split.length;
-	            next = normalizeLocale(names[i + 1]);
-	            next = next ? next.split('-') : null;
-	            while (j > 0) {
-	                locale = loadLocale(split.slice(0, j).join('-'));
-	                if (locale) {
-	                    return locale;
-	                }
-	                if (next && next.length >= j && compareArrays(split, next, true) >= j - 1) {
-	                    //the next array item is better than a shallower substring of this one
-	                    break;
-	                }
-	                j--;
-	            }
-	            i++;
-	        }
-	        return null;
-	    }
-
-	    function loadLocale(name) {
-	        var oldLocale = null;
-	        // TODO: Find a better way to register and load all the locales in Node
-	        if (!locales[name] && (typeof module !== 'undefined') &&
-	                module && module.exports) {
-	            try {
-	                oldLocale = globalLocale._abbr;
-	                __webpack_require__(25)("./" + name);
-	                // because defineLocale currently also sets the global locale, we
-	                // want to undo that for lazy loaded locales
-	                locale_locales__getSetGlobalLocale(oldLocale);
-	            } catch (e) { }
-	        }
-	        return locales[name];
-	    }
-
-	    // This function will load locale and then set the global locale.  If
-	    // no arguments are passed in, it will simply return the current global
-	    // locale key.
-	    function locale_locales__getSetGlobalLocale (key, values) {
-	        var data;
-	        if (key) {
-	            if (isUndefined(values)) {
-	                data = locale_locales__getLocale(key);
-	            }
-	            else {
-	                data = defineLocale(key, values);
-	            }
-
-	            if (data) {
-	                // moment.duration._locale = moment._locale = data;
-	                globalLocale = data;
-	            }
-	        }
-
-	        return globalLocale._abbr;
-	    }
-
-	    function defineLocale (name, config) {
-	        if (config !== null) {
-	            var parentConfig = baseConfig;
-	            config.abbr = name;
-	            if (locales[name] != null) {
-	                deprecateSimple('defineLocaleOverride',
-	                        'use moment.updateLocale(localeName, config) to change ' +
-	                        'an existing locale. moment.defineLocale(localeName, ' +
-	                        'config) should only be used for creating a new locale ' +
-	                        'See http://momentjs.com/guides/#/warnings/define-locale/ for more info.');
-	                parentConfig = locales[name]._config;
-	            } else if (config.parentLocale != null) {
-	                if (locales[config.parentLocale] != null) {
-	                    parentConfig = locales[config.parentLocale]._config;
-	                } else {
-	                    // treat as if there is no base config
-	                    deprecateSimple('parentLocaleUndefined',
-	                            'specified parentLocale is not defined yet. See http://momentjs.com/guides/#/warnings/parent-locale/');
-	                }
-	            }
-	            locales[name] = new Locale(mergeConfigs(parentConfig, config));
-
-	            // backwards compat for now: also set the locale
-	            locale_locales__getSetGlobalLocale(name);
-
-	            return locales[name];
-	        } else {
-	            // useful for testing
-	            delete locales[name];
-	            return null;
-	        }
-	    }
-
-	    function updateLocale(name, config) {
-	        if (config != null) {
-	            var locale, parentConfig = baseConfig;
-	            // MERGE
-	            if (locales[name] != null) {
-	                parentConfig = locales[name]._config;
-	            }
-	            config = mergeConfigs(parentConfig, config);
-	            locale = new Locale(config);
-	            locale.parentLocale = locales[name];
-	            locales[name] = locale;
-
-	            // backwards compat for now: also set the locale
-	            locale_locales__getSetGlobalLocale(name);
-	        } else {
-	            // pass null for config to unupdate, useful for tests
-	            if (locales[name] != null) {
-	                if (locales[name].parentLocale != null) {
-	                    locales[name] = locales[name].parentLocale;
-	                } else if (locales[name] != null) {
-	                    delete locales[name];
-	                }
-	            }
-	        }
-	        return locales[name];
-	    }
-
-	    // returns locale data
-	    function locale_locales__getLocale (key) {
-	        var locale;
-
-	        if (key && key._locale && key._locale._abbr) {
-	            key = key._locale._abbr;
-	        }
-
-	        if (!key) {
-	            return globalLocale;
-	        }
-
-	        if (!isArray(key)) {
-	            //short-circuit everything else
-	            locale = loadLocale(key);
-	            if (locale) {
-	                return locale;
-	            }
-	            key = [key];
-	        }
-
-	        return chooseLocale(key);
-	    }
-
-	    function locale_locales__listLocales() {
-	        return keys(locales);
 	    }
 
 	    function checkOverflow (m) {
@@ -3180,11 +2500,157 @@ return /******/ (function(modules) { // webpackBootstrap
 	        'moment construction falls back to js Date. This is ' +
 	        'discouraged and will be removed in upcoming major ' +
 	        'release. Please refer to ' +
-	        'http://momentjs.com/guides/#/warnings/js-date/ for more info.',
+	        'https://github.com/moment/moment/issues/1407 for more info.',
 	        function (config) {
 	            config._d = new Date(config._i + (config._useUTC ? ' UTC' : ''));
 	        }
 	    );
+
+	    function createDate (y, m, d, h, M, s, ms) {
+	        //can't just apply() to create a date:
+	        //http://stackoverflow.com/questions/181348/instantiating-a-javascript-object-by-calling-prototype-constructor-apply
+	        var date = new Date(y, m, d, h, M, s, ms);
+
+	        //the date constructor remaps years 0-99 to 1900-1999
+	        if (y < 100 && y >= 0 && isFinite(date.getFullYear())) {
+	            date.setFullYear(y);
+	        }
+	        return date;
+	    }
+
+	    function createUTCDate (y) {
+	        var date = new Date(Date.UTC.apply(null, arguments));
+
+	        //the Date.UTC function remaps years 0-99 to 1900-1999
+	        if (y < 100 && y >= 0 && isFinite(date.getUTCFullYear())) {
+	            date.setUTCFullYear(y);
+	        }
+	        return date;
+	    }
+
+	    // FORMATTING
+
+	    addFormatToken('Y', 0, 0, function () {
+	        var y = this.year();
+	        return y <= 9999 ? '' + y : '+' + y;
+	    });
+
+	    addFormatToken(0, ['YY', 2], 0, function () {
+	        return this.year() % 100;
+	    });
+
+	    addFormatToken(0, ['YYYY',   4],       0, 'year');
+	    addFormatToken(0, ['YYYYY',  5],       0, 'year');
+	    addFormatToken(0, ['YYYYYY', 6, true], 0, 'year');
+
+	    // ALIASES
+
+	    addUnitAlias('year', 'y');
+
+	    // PARSING
+
+	    addRegexToken('Y',      matchSigned);
+	    addRegexToken('YY',     match1to2, match2);
+	    addRegexToken('YYYY',   match1to4, match4);
+	    addRegexToken('YYYYY',  match1to6, match6);
+	    addRegexToken('YYYYYY', match1to6, match6);
+
+	    addParseToken(['YYYYY', 'YYYYYY'], YEAR);
+	    addParseToken('YYYY', function (input, array) {
+	        array[YEAR] = input.length === 2 ? utils_hooks__hooks.parseTwoDigitYear(input) : toInt(input);
+	    });
+	    addParseToken('YY', function (input, array) {
+	        array[YEAR] = utils_hooks__hooks.parseTwoDigitYear(input);
+	    });
+	    addParseToken('Y', function (input, array) {
+	        array[YEAR] = parseInt(input, 10);
+	    });
+
+	    // HELPERS
+
+	    function daysInYear(year) {
+	        return isLeapYear(year) ? 366 : 365;
+	    }
+
+	    function isLeapYear(year) {
+	        return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
+	    }
+
+	    // HOOKS
+
+	    utils_hooks__hooks.parseTwoDigitYear = function (input) {
+	        return toInt(input) + (toInt(input) > 68 ? 1900 : 2000);
+	    };
+
+	    // MOMENTS
+
+	    var getSetYear = makeGetSet('FullYear', true);
+
+	    function getIsLeapYear () {
+	        return isLeapYear(this.year());
+	    }
+
+	    // start-of-first-week - start-of-year
+	    function firstWeekOffset(year, dow, doy) {
+	        var // first-week day -- which january is always in the first week (4 for iso, 1 for other)
+	            fwd = 7 + dow - doy,
+	            // first-week day local weekday -- which local weekday is fwd
+	            fwdlw = (7 + createUTCDate(year, 0, fwd).getUTCDay() - dow) % 7;
+
+	        return -fwdlw + fwd - 1;
+	    }
+
+	    //http://en.wikipedia.org/wiki/ISO_week_date#Calculating_a_date_given_the_year.2C_week_number_and_weekday
+	    function dayOfYearFromWeeks(year, week, weekday, dow, doy) {
+	        var localWeekday = (7 + weekday - dow) % 7,
+	            weekOffset = firstWeekOffset(year, dow, doy),
+	            dayOfYear = 1 + 7 * (week - 1) + localWeekday + weekOffset,
+	            resYear, resDayOfYear;
+
+	        if (dayOfYear <= 0) {
+	            resYear = year - 1;
+	            resDayOfYear = daysInYear(resYear) + dayOfYear;
+	        } else if (dayOfYear > daysInYear(year)) {
+	            resYear = year + 1;
+	            resDayOfYear = dayOfYear - daysInYear(year);
+	        } else {
+	            resYear = year;
+	            resDayOfYear = dayOfYear;
+	        }
+
+	        return {
+	            year: resYear,
+	            dayOfYear: resDayOfYear
+	        };
+	    }
+
+	    function weekOfYear(mom, dow, doy) {
+	        var weekOffset = firstWeekOffset(mom.year(), dow, doy),
+	            week = Math.floor((mom.dayOfYear() - weekOffset - 1) / 7) + 1,
+	            resWeek, resYear;
+
+	        if (week < 1) {
+	            resYear = mom.year() - 1;
+	            resWeek = week + weeksInYear(resYear, dow, doy);
+	        } else if (week > weeksInYear(mom.year(), dow, doy)) {
+	            resWeek = week - weeksInYear(mom.year(), dow, doy);
+	            resYear = mom.year() + 1;
+	        } else {
+	            resYear = mom.year();
+	            resWeek = week;
+	        }
+
+	        return {
+	            week: resWeek,
+	            year: resYear
+	        };
+	    }
+
+	    function weeksInYear(year, dow, doy) {
+	        var weekOffset = firstWeekOffset(year, dow, doy),
+	            weekOffsetNext = firstWeekOffset(year + 1, dow, doy);
+	        return (daysInYear(year) - weekOffset + weekOffsetNext) / 7;
+	    }
 
 	    // Pick the first defined of two or three arguments.
 	    function defaults(a, b, c) {
@@ -3382,9 +2848,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 
 	        // clear _12h flag if hour is <= 12
-	        if (config._a[HOUR] <= 12 &&
-	            getParsingFlags(config).bigHour === true &&
-	            config._a[HOUR] > 0) {
+	        if (getParsingFlags(config).bigHour === true &&
+	                config._a[HOUR] <= 12 &&
+	                config._a[HOUR] > 0) {
 	            getParsingFlags(config).bigHour = undefined;
 	        }
 
@@ -3510,11 +2976,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	            return new Moment(checkOverflow(input));
 	        } else if (isArray(format)) {
 	            configFromStringAndArray(config);
-	        } else if (isDate(input)) {
-	            config._d = input;
 	        } else if (format) {
 	            configFromStringAndFormat(config);
-	        }  else {
+	        } else if (isDate(input)) {
+	            config._d = input;
+	        } else {
 	            configFromInput(config);
 	        }
 
@@ -3555,11 +3021,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	            strict = locale;
 	            locale = undefined;
 	        }
-
-	        if ((isObject(input) && isObjectEmpty(input)) ||
-	                (isArray(input) && input.length === 0)) {
-	            input = undefined;
-	        }
 	        // object construction must be done this way.
 	        // https://github.com/moment/moment/issues/1423
 	        c._isAMomentObject = true;
@@ -3577,19 +3038,19 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 
 	    var prototypeMin = deprecate(
-	        'moment().min is deprecated, use moment.max instead. http://momentjs.com/guides/#/warnings/min-max/',
-	        function () {
-	            var other = local__createLocal.apply(null, arguments);
-	            if (this.isValid() && other.isValid()) {
-	                return other < this ? this : other;
-	            } else {
-	                return valid__createInvalid();
-	            }
-	        }
-	    );
+	         'moment().min is deprecated, use moment.max instead. https://github.com/moment/moment/issues/1548',
+	         function () {
+	             var other = local__createLocal.apply(null, arguments);
+	             if (this.isValid() && other.isValid()) {
+	                 return other < this ? this : other;
+	             } else {
+	                 return valid__createInvalid();
+	             }
+	         }
+	     );
 
 	    var prototypeMax = deprecate(
-	        'moment().max is deprecated, use moment.min instead. http://momentjs.com/guides/#/warnings/min-max/',
+	        'moment().max is deprecated, use moment.min instead. https://github.com/moment/moment/issues/1548',
 	        function () {
 	            var other = local__createLocal.apply(null, arguments);
 	            if (this.isValid() && other.isValid()) {
@@ -4008,8 +3469,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            var dur, tmp;
 	            //invert the arguments, but complain about it
 	            if (period !== null && !isNaN(+period)) {
-	                deprecateSimple(name, 'moment().' + name  + '(period, number) is deprecated. Please use moment().' + name + '(number, period). ' +
-	                'See http://momentjs.com/guides/#/warnings/add-inverted-param/ for more info.');
+	                deprecateSimple(name, 'moment().' + name  + '(period, number) is deprecated. Please use moment().' + name + '(number, period).');
 	                tmp = val; val = period; period = tmp;
 	            }
 
@@ -4049,24 +3509,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var add_subtract__add      = createAdder(1, 'add');
 	    var add_subtract__subtract = createAdder(-1, 'subtract');
 
-	    function getCalendarFormat(myMoment, now) {
-	        var diff = myMoment.diff(now, 'days', true);
-	        return diff < -6 ? 'sameElse' :
-	                diff < -1 ? 'lastWeek' :
-	                diff < 0 ? 'lastDay' :
-	                diff < 1 ? 'sameDay' :
-	                diff < 2 ? 'nextDay' :
-	                diff < 7 ? 'nextWeek' : 'sameElse';
-	    }
-
 	    function moment_calendar__calendar (time, formats) {
 	        // We want to compare the start of today, vs this.
 	        // Getting start-of-today depends on whether we're local/utc/offset or not.
 	        var now = time || local__createLocal(),
 	            sod = cloneWithOffset(now, this).startOf('day'),
-	            format = utils_hooks__hooks.calendarFormat(this, sod) || 'sameElse';
+	            diff = this.diff(sod, 'days', true),
+	            format = diff < -6 ? 'sameElse' :
+	                diff < -1 ? 'lastWeek' :
+	                diff < 0 ? 'lastDay' :
+	                diff < 1 ? 'sameDay' :
+	                diff < 2 ? 'nextDay' :
+	                diff < 7 ? 'nextWeek' : 'sameElse';
 
-	        var output = formats && (isFunction(formats[format]) ? formats[format].call(this, now) : formats[format]);
+	        var output = formats && (isFunction(formats[format]) ? formats[format]() : formats[format]);
 
 	        return this.format(output || this.localeData().calendar(format, this, local__createLocal(now)));
 	    }
@@ -4283,27 +3739,27 @@ return /******/ (function(modules) { // webpackBootstrap
 	        // the following switch intentionally omits break keywords
 	        // to utilize falling through the cases.
 	        switch (units) {
-	            case 'year':
-	                this.month(0);
-	                /* falls through */
-	            case 'quarter':
-	            case 'month':
-	                this.date(1);
-	                /* falls through */
-	            case 'week':
-	            case 'isoWeek':
-	            case 'day':
-	            case 'date':
-	                this.hours(0);
-	                /* falls through */
-	            case 'hour':
-	                this.minutes(0);
-	                /* falls through */
-	            case 'minute':
-	                this.seconds(0);
-	                /* falls through */
-	            case 'second':
-	                this.milliseconds(0);
+	        case 'year':
+	            this.month(0);
+	            /* falls through */
+	        case 'quarter':
+	        case 'month':
+	            this.date(1);
+	            /* falls through */
+	        case 'week':
+	        case 'isoWeek':
+	        case 'day':
+	        case 'date':
+	            this.hours(0);
+	            /* falls through */
+	        case 'hour':
+	            this.minutes(0);
+	            /* falls through */
+	        case 'minute':
+	            this.seconds(0);
+	            /* falls through */
+	        case 'second':
+	            this.milliseconds(0);
 	        }
 
 	        // weeks are a special case
@@ -4345,7 +3801,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 
 	    function toDate () {
-	        return new Date(this.valueOf());
+	        return this._offset ? new Date(this.valueOf()) : this._d;
 	    }
 
 	    function toArray () {
@@ -4416,12 +3872,6 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    addUnitAlias('weekYear', 'gg');
 	    addUnitAlias('isoWeekYear', 'GG');
-
-	    // PRIORITY
-
-	    addUnitPriority('weekYear', 1);
-	    addUnitPriority('isoWeekYear', 1);
-
 
 	    // PARSING
 
@@ -4498,10 +3948,6 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    addUnitAlias('quarter', 'Q');
 
-	    // PRIORITY
-
-	    addUnitPriority('quarter', 7);
-
 	    // PARSING
 
 	    addRegexToken('Q', match1);
@@ -4517,14 +3963,65 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    // FORMATTING
 
+	    addFormatToken('w', ['ww', 2], 'wo', 'week');
+	    addFormatToken('W', ['WW', 2], 'Wo', 'isoWeek');
+
+	    // ALIASES
+
+	    addUnitAlias('week', 'w');
+	    addUnitAlias('isoWeek', 'W');
+
+	    // PARSING
+
+	    addRegexToken('w',  match1to2);
+	    addRegexToken('ww', match1to2, match2);
+	    addRegexToken('W',  match1to2);
+	    addRegexToken('WW', match1to2, match2);
+
+	    addWeekParseToken(['w', 'ww', 'W', 'WW'], function (input, week, config, token) {
+	        week[token.substr(0, 1)] = toInt(input);
+	    });
+
+	    // HELPERS
+
+	    // LOCALES
+
+	    function localeWeek (mom) {
+	        return weekOfYear(mom, this._week.dow, this._week.doy).week;
+	    }
+
+	    var defaultLocaleWeek = {
+	        dow : 0, // Sunday is the first day of the week.
+	        doy : 6  // The week that contains Jan 1st is the first week of the year.
+	    };
+
+	    function localeFirstDayOfWeek () {
+	        return this._week.dow;
+	    }
+
+	    function localeFirstDayOfYear () {
+	        return this._week.doy;
+	    }
+
+	    // MOMENTS
+
+	    function getSetWeek (input) {
+	        var week = this.localeData().week(this);
+	        return input == null ? week : this.add((input - week) * 7, 'd');
+	    }
+
+	    function getSetISOWeek (input) {
+	        var week = weekOfYear(this, 1, 4).week;
+	        return input == null ? week : this.add((input - week) * 7, 'd');
+	    }
+
+	    // FORMATTING
+
 	    addFormatToken('D', ['DD', 2], 'Do', 'date');
 
 	    // ALIASES
 
 	    addUnitAlias('date', 'D');
-
-	    // PRIOROITY
-	    addUnitPriority('date', 9);
 
 	    // PARSING
 
@@ -4545,14 +4042,332 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    // FORMATTING
 
+	    addFormatToken('d', 0, 'do', 'day');
+
+	    addFormatToken('dd', 0, 0, function (format) {
+	        return this.localeData().weekdaysMin(this, format);
+	    });
+
+	    addFormatToken('ddd', 0, 0, function (format) {
+	        return this.localeData().weekdaysShort(this, format);
+	    });
+
+	    addFormatToken('dddd', 0, 0, function (format) {
+	        return this.localeData().weekdays(this, format);
+	    });
+
+	    addFormatToken('e', 0, 0, 'weekday');
+	    addFormatToken('E', 0, 0, 'isoWeekday');
+
+	    // ALIASES
+
+	    addUnitAlias('day', 'd');
+	    addUnitAlias('weekday', 'e');
+	    addUnitAlias('isoWeekday', 'E');
+
+	    // PARSING
+
+	    addRegexToken('d',    match1to2);
+	    addRegexToken('e',    match1to2);
+	    addRegexToken('E',    match1to2);
+	    addRegexToken('dd',   function (isStrict, locale) {
+	        return locale.weekdaysMinRegex(isStrict);
+	    });
+	    addRegexToken('ddd',   function (isStrict, locale) {
+	        return locale.weekdaysShortRegex(isStrict);
+	    });
+	    addRegexToken('dddd',   function (isStrict, locale) {
+	        return locale.weekdaysRegex(isStrict);
+	    });
+
+	    addWeekParseToken(['dd', 'ddd', 'dddd'], function (input, week, config, token) {
+	        var weekday = config._locale.weekdaysParse(input, token, config._strict);
+	        // if we didn't get a weekday name, mark the date as invalid
+	        if (weekday != null) {
+	            week.d = weekday;
+	        } else {
+	            getParsingFlags(config).invalidWeekday = input;
+	        }
+	    });
+
+	    addWeekParseToken(['d', 'e', 'E'], function (input, week, config, token) {
+	        week[token] = toInt(input);
+	    });
+
+	    // HELPERS
+
+	    function parseWeekday(input, locale) {
+	        if (typeof input !== 'string') {
+	            return input;
+	        }
+
+	        if (!isNaN(input)) {
+	            return parseInt(input, 10);
+	        }
+
+	        input = locale.weekdaysParse(input);
+	        if (typeof input === 'number') {
+	            return input;
+	        }
+
+	        return null;
+	    }
+
+	    // LOCALES
+
+	    var defaultLocaleWeekdays = 'Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday'.split('_');
+	    function localeWeekdays (m, format) {
+	        return isArray(this._weekdays) ? this._weekdays[m.day()] :
+	            this._weekdays[this._weekdays.isFormat.test(format) ? 'format' : 'standalone'][m.day()];
+	    }
+
+	    var defaultLocaleWeekdaysShort = 'Sun_Mon_Tue_Wed_Thu_Fri_Sat'.split('_');
+	    function localeWeekdaysShort (m) {
+	        return this._weekdaysShort[m.day()];
+	    }
+
+	    var defaultLocaleWeekdaysMin = 'Su_Mo_Tu_We_Th_Fr_Sa'.split('_');
+	    function localeWeekdaysMin (m) {
+	        return this._weekdaysMin[m.day()];
+	    }
+
+	    function day_of_week__handleStrictParse(weekdayName, format, strict) {
+	        var i, ii, mom, llc = weekdayName.toLocaleLowerCase();
+	        if (!this._weekdaysParse) {
+	            this._weekdaysParse = [];
+	            this._shortWeekdaysParse = [];
+	            this._minWeekdaysParse = [];
+
+	            for (i = 0; i < 7; ++i) {
+	                mom = create_utc__createUTC([2000, 1]).day(i);
+	                this._minWeekdaysParse[i] = this.weekdaysMin(mom, '').toLocaleLowerCase();
+	                this._shortWeekdaysParse[i] = this.weekdaysShort(mom, '').toLocaleLowerCase();
+	                this._weekdaysParse[i] = this.weekdays(mom, '').toLocaleLowerCase();
+	            }
+	        }
+
+	        if (strict) {
+	            if (format === 'dddd') {
+	                ii = indexOf.call(this._weekdaysParse, llc);
+	                return ii !== -1 ? ii : null;
+	            } else if (format === 'ddd') {
+	                ii = indexOf.call(this._shortWeekdaysParse, llc);
+	                return ii !== -1 ? ii : null;
+	            } else {
+	                ii = indexOf.call(this._minWeekdaysParse, llc);
+	                return ii !== -1 ? ii : null;
+	            }
+	        } else {
+	            if (format === 'dddd') {
+	                ii = indexOf.call(this._weekdaysParse, llc);
+	                if (ii !== -1) {
+	                    return ii;
+	                }
+	                ii = indexOf.call(this._shortWeekdaysParse, llc);
+	                if (ii !== -1) {
+	                    return ii;
+	                }
+	                ii = indexOf.call(this._minWeekdaysParse, llc);
+	                return ii !== -1 ? ii : null;
+	            } else if (format === 'ddd') {
+	                ii = indexOf.call(this._shortWeekdaysParse, llc);
+	                if (ii !== -1) {
+	                    return ii;
+	                }
+	                ii = indexOf.call(this._weekdaysParse, llc);
+	                if (ii !== -1) {
+	                    return ii;
+	                }
+	                ii = indexOf.call(this._minWeekdaysParse, llc);
+	                return ii !== -1 ? ii : null;
+	            } else {
+	                ii = indexOf.call(this._minWeekdaysParse, llc);
+	                if (ii !== -1) {
+	                    return ii;
+	                }
+	                ii = indexOf.call(this._weekdaysParse, llc);
+	                if (ii !== -1) {
+	                    return ii;
+	                }
+	                ii = indexOf.call(this._shortWeekdaysParse, llc);
+	                return ii !== -1 ? ii : null;
+	            }
+	        }
+	    }
+
+	    function localeWeekdaysParse (weekdayName, format, strict) {
+	        var i, mom, regex;
+
+	        if (this._weekdaysParseExact) {
+	            return day_of_week__handleStrictParse.call(this, weekdayName, format, strict);
+	        }
+
+	        if (!this._weekdaysParse) {
+	            this._weekdaysParse = [];
+	            this._minWeekdaysParse = [];
+	            this._shortWeekdaysParse = [];
+	            this._fullWeekdaysParse = [];
+	        }
+
+	        for (i = 0; i < 7; i++) {
+	            // make the regex if we don't have it already
+
+	            mom = create_utc__createUTC([2000, 1]).day(i);
+	            if (strict && !this._fullWeekdaysParse[i]) {
+	                this._fullWeekdaysParse[i] = new RegExp('^' + this.weekdays(mom, '').replace('.', '\.?') + '$', 'i');
+	                this._shortWeekdaysParse[i] = new RegExp('^' + this.weekdaysShort(mom, '').replace('.', '\.?') + '$', 'i');
+	                this._minWeekdaysParse[i] = new RegExp('^' + this.weekdaysMin(mom, '').replace('.', '\.?') + '$', 'i');
+	            }
+	            if (!this._weekdaysParse[i]) {
+	                regex = '^' + this.weekdays(mom, '') + '|^' + this.weekdaysShort(mom, '') + '|^' + this.weekdaysMin(mom, '');
+	                this._weekdaysParse[i] = new RegExp(regex.replace('.', ''), 'i');
+	            }
+	            // test the regex
+	            if (strict && format === 'dddd' && this._fullWeekdaysParse[i].test(weekdayName)) {
+	                return i;
+	            } else if (strict && format === 'ddd' && this._shortWeekdaysParse[i].test(weekdayName)) {
+	                return i;
+	            } else if (strict && format === 'dd' && this._minWeekdaysParse[i].test(weekdayName)) {
+	                return i;
+	            } else if (!strict && this._weekdaysParse[i].test(weekdayName)) {
+	                return i;
+	            }
+	        }
+	    }
+
+	    // MOMENTS
+
+	    function getSetDayOfWeek (input) {
+	        if (!this.isValid()) {
+	            return input != null ? this : NaN;
+	        }
+	        var day = this._isUTC ? this._d.getUTCDay() : this._d.getDay();
+	        if (input != null) {
+	            input = parseWeekday(input, this.localeData());
+	            return this.add(input - day, 'd');
+	        } else {
+	            return day;
+	        }
+	    }
+
+	    function getSetLocaleDayOfWeek (input) {
+	        if (!this.isValid()) {
+	            return input != null ? this : NaN;
+	        }
+	        var weekday = (this.day() + 7 - this.localeData()._week.dow) % 7;
+	        return input == null ? weekday : this.add(input - weekday, 'd');
+	    }
+
+	    function getSetISODayOfWeek (input) {
+	        if (!this.isValid()) {
+	            return input != null ? this : NaN;
+	        }
+	        // behaves the same as moment#day except
+	        // as a getter, returns 7 instead of 0 (1-7 range instead of 0-6)
+	        // as a setter, sunday should belong to the previous week.
+	        return input == null ? this.day() || 7 : this.day(this.day() % 7 ? input : input - 7);
+	    }
+
+	    var defaultWeekdaysRegex = matchWord;
+	    function weekdaysRegex (isStrict) {
+	        if (this._weekdaysParseExact) {
+	            if (!hasOwnProp(this, '_weekdaysRegex')) {
+	                computeWeekdaysParse.call(this);
+	            }
+	            if (isStrict) {
+	                return this._weekdaysStrictRegex;
+	            } else {
+	                return this._weekdaysRegex;
+	            }
+	        } else {
+	            return this._weekdaysStrictRegex && isStrict ?
+	                this._weekdaysStrictRegex : this._weekdaysRegex;
+	        }
+	    }
+
+	    var defaultWeekdaysShortRegex = matchWord;
+	    function weekdaysShortRegex (isStrict) {
+	        if (this._weekdaysParseExact) {
+	            if (!hasOwnProp(this, '_weekdaysRegex')) {
+	                computeWeekdaysParse.call(this);
+	            }
+	            if (isStrict) {
+	                return this._weekdaysShortStrictRegex;
+	            } else {
+	                return this._weekdaysShortRegex;
+	            }
+	        } else {
+	            return this._weekdaysShortStrictRegex && isStrict ?
+	                this._weekdaysShortStrictRegex : this._weekdaysShortRegex;
+	        }
+	    }
+
+	    var defaultWeekdaysMinRegex = matchWord;
+	    function weekdaysMinRegex (isStrict) {
+	        if (this._weekdaysParseExact) {
+	            if (!hasOwnProp(this, '_weekdaysRegex')) {
+	                computeWeekdaysParse.call(this);
+	            }
+	            if (isStrict) {
+	                return this._weekdaysMinStrictRegex;
+	            } else {
+	                return this._weekdaysMinRegex;
+	            }
+	        } else {
+	            return this._weekdaysMinStrictRegex && isStrict ?
+	                this._weekdaysMinStrictRegex : this._weekdaysMinRegex;
+	        }
+	    }
+
+
+	    function computeWeekdaysParse () {
+	        function cmpLenRev(a, b) {
+	            return b.length - a.length;
+	        }
+
+	        var minPieces = [], shortPieces = [], longPieces = [], mixedPieces = [],
+	            i, mom, minp, shortp, longp;
+	        for (i = 0; i < 7; i++) {
+	            // make the regex if we don't have it already
+	            mom = create_utc__createUTC([2000, 1]).day(i);
+	            minp = this.weekdaysMin(mom, '');
+	            shortp = this.weekdaysShort(mom, '');
+	            longp = this.weekdays(mom, '');
+	            minPieces.push(minp);
+	            shortPieces.push(shortp);
+	            longPieces.push(longp);
+	            mixedPieces.push(minp);
+	            mixedPieces.push(shortp);
+	            mixedPieces.push(longp);
+	        }
+	        // Sorting makes sure if one weekday (or abbr) is a prefix of another it
+	        // will match the longer piece.
+	        minPieces.sort(cmpLenRev);
+	        shortPieces.sort(cmpLenRev);
+	        longPieces.sort(cmpLenRev);
+	        mixedPieces.sort(cmpLenRev);
+	        for (i = 0; i < 7; i++) {
+	            shortPieces[i] = regexEscape(shortPieces[i]);
+	            longPieces[i] = regexEscape(longPieces[i]);
+	            mixedPieces[i] = regexEscape(mixedPieces[i]);
+	        }
+
+	        this._weekdaysRegex = new RegExp('^(' + mixedPieces.join('|') + ')', 'i');
+	        this._weekdaysShortRegex = this._weekdaysRegex;
+	        this._weekdaysMinRegex = this._weekdaysRegex;
+
+	        this._weekdaysStrictRegex = new RegExp('^(' + longPieces.join('|') + ')', 'i');
+	        this._weekdaysShortStrictRegex = new RegExp('^(' + shortPieces.join('|') + ')', 'i');
+	        this._weekdaysMinStrictRegex = new RegExp('^(' + minPieces.join('|') + ')', 'i');
+	    }
+
+	    // FORMATTING
+
 	    addFormatToken('DDD', ['DDDD', 3], 'DDDo', 'dayOfYear');
 
 	    // ALIASES
 
 	    addUnitAlias('dayOfYear', 'DDD');
-
-	    // PRIORITY
-	    addUnitPriority('dayOfYear', 4);
 
 	    // PARSING
 
@@ -4573,15 +4388,136 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    // FORMATTING
 
+	    function hFormat() {
+	        return this.hours() % 12 || 12;
+	    }
+
+	    function kFormat() {
+	        return this.hours() || 24;
+	    }
+
+	    addFormatToken('H', ['HH', 2], 0, 'hour');
+	    addFormatToken('h', ['hh', 2], 0, hFormat);
+	    addFormatToken('k', ['kk', 2], 0, kFormat);
+
+	    addFormatToken('hmm', 0, 0, function () {
+	        return '' + hFormat.apply(this) + zeroFill(this.minutes(), 2);
+	    });
+
+	    addFormatToken('hmmss', 0, 0, function () {
+	        return '' + hFormat.apply(this) + zeroFill(this.minutes(), 2) +
+	            zeroFill(this.seconds(), 2);
+	    });
+
+	    addFormatToken('Hmm', 0, 0, function () {
+	        return '' + this.hours() + zeroFill(this.minutes(), 2);
+	    });
+
+	    addFormatToken('Hmmss', 0, 0, function () {
+	        return '' + this.hours() + zeroFill(this.minutes(), 2) +
+	            zeroFill(this.seconds(), 2);
+	    });
+
+	    function meridiem (token, lowercase) {
+	        addFormatToken(token, 0, 0, function () {
+	            return this.localeData().meridiem(this.hours(), this.minutes(), lowercase);
+	        });
+	    }
+
+	    meridiem('a', true);
+	    meridiem('A', false);
+
+	    // ALIASES
+
+	    addUnitAlias('hour', 'h');
+
+	    // PARSING
+
+	    function matchMeridiem (isStrict, locale) {
+	        return locale._meridiemParse;
+	    }
+
+	    addRegexToken('a',  matchMeridiem);
+	    addRegexToken('A',  matchMeridiem);
+	    addRegexToken('H',  match1to2);
+	    addRegexToken('h',  match1to2);
+	    addRegexToken('HH', match1to2, match2);
+	    addRegexToken('hh', match1to2, match2);
+
+	    addRegexToken('hmm', match3to4);
+	    addRegexToken('hmmss', match5to6);
+	    addRegexToken('Hmm', match3to4);
+	    addRegexToken('Hmmss', match5to6);
+
+	    addParseToken(['H', 'HH'], HOUR);
+	    addParseToken(['a', 'A'], function (input, array, config) {
+	        config._isPm = config._locale.isPM(input);
+	        config._meridiem = input;
+	    });
+	    addParseToken(['h', 'hh'], function (input, array, config) {
+	        array[HOUR] = toInt(input);
+	        getParsingFlags(config).bigHour = true;
+	    });
+	    addParseToken('hmm', function (input, array, config) {
+	        var pos = input.length - 2;
+	        array[HOUR] = toInt(input.substr(0, pos));
+	        array[MINUTE] = toInt(input.substr(pos));
+	        getParsingFlags(config).bigHour = true;
+	    });
+	    addParseToken('hmmss', function (input, array, config) {
+	        var pos1 = input.length - 4;
+	        var pos2 = input.length - 2;
+	        array[HOUR] = toInt(input.substr(0, pos1));
+	        array[MINUTE] = toInt(input.substr(pos1, 2));
+	        array[SECOND] = toInt(input.substr(pos2));
+	        getParsingFlags(config).bigHour = true;
+	    });
+	    addParseToken('Hmm', function (input, array, config) {
+	        var pos = input.length - 2;
+	        array[HOUR] = toInt(input.substr(0, pos));
+	        array[MINUTE] = toInt(input.substr(pos));
+	    });
+	    addParseToken('Hmmss', function (input, array, config) {
+	        var pos1 = input.length - 4;
+	        var pos2 = input.length - 2;
+	        array[HOUR] = toInt(input.substr(0, pos1));
+	        array[MINUTE] = toInt(input.substr(pos1, 2));
+	        array[SECOND] = toInt(input.substr(pos2));
+	    });
+
+	    // LOCALES
+
+	    function localeIsPM (input) {
+	        // IE8 Quirks Mode & IE7 Standards Mode do not allow accessing strings like arrays
+	        // Using charAt should be more compatible.
+	        return ((input + '').toLowerCase().charAt(0) === 'p');
+	    }
+
+	    var defaultLocaleMeridiemParse = /[ap]\.?m?\.?/i;
+	    function localeMeridiem (hours, minutes, isLower) {
+	        if (hours > 11) {
+	            return isLower ? 'pm' : 'PM';
+	        } else {
+	            return isLower ? 'am' : 'AM';
+	        }
+	    }
+
+
+	    // MOMENTS
+
+	    // Setting the hour should keep the time, because the user explicitly
+	    // specified which hour he wants. So trying to maintain the same hour (in
+	    // a new timezone) makes sense. Adding/subtracting hours does not follow
+	    // this rule.
+	    var getSetHour = makeGetSet('Hours', true);
+
+	    // FORMATTING
+
 	    addFormatToken('m', ['mm', 2], 0, 'minute');
 
 	    // ALIASES
 
 	    addUnitAlias('minute', 'm');
-
-	    // PRIORITY
-
-	    addUnitPriority('minute', 14);
 
 	    // PARSING
 
@@ -4600,10 +4536,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	    // ALIASES
 
 	    addUnitAlias('second', 's');
-
-	    // PRIORITY
-
-	    addUnitPriority('second', 15);
 
 	    // PARSING
 
@@ -4649,10 +4581,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	    // ALIASES
 
 	    addUnitAlias('millisecond', 'ms');
-
-	    // PRIORITY
-
-	    addUnitPriority('millisecond', 16);
 
 	    // PARSING
 
@@ -4703,7 +4631,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    momentPrototype__proto.fromNow           = fromNow;
 	    momentPrototype__proto.to                = to;
 	    momentPrototype__proto.toNow             = toNow;
-	    momentPrototype__proto.get               = stringGet;
+	    momentPrototype__proto.get               = getSet;
 	    momentPrototype__proto.invalidAt         = invalidAt;
 	    momentPrototype__proto.isAfter           = isAfter;
 	    momentPrototype__proto.isBefore          = isBefore;
@@ -4718,7 +4646,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    momentPrototype__proto.max               = prototypeMax;
 	    momentPrototype__proto.min               = prototypeMin;
 	    momentPrototype__proto.parsingFlags      = parsingFlags;
-	    momentPrototype__proto.set               = stringSet;
+	    momentPrototype__proto.set               = getSet;
 	    momentPrototype__proto.startOf           = startOf;
 	    momentPrototype__proto.subtract          = add_subtract__subtract;
 	    momentPrototype__proto.toArray           = toArray;
@@ -4778,6 +4706,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    momentPrototype__proto.parseZone            = setOffsetToParsedOffset;
 	    momentPrototype__proto.hasAlignedHourOffset = hasAlignedHourOffset;
 	    momentPrototype__proto.isDST                = isDaylightSavingTime;
+	    momentPrototype__proto.isDSTShifted         = isDaylightSavingTimeShifted;
 	    momentPrototype__proto.isLocal              = isLocal;
 	    momentPrototype__proto.isUtcOffset          = isUtcOffset;
 	    momentPrototype__proto.isUtc                = isUtc;
@@ -4791,8 +4720,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    momentPrototype__proto.dates  = deprecate('dates accessor is deprecated. Use date instead.', getSetDayOfMonth);
 	    momentPrototype__proto.months = deprecate('months accessor is deprecated. Use month instead', getSetMonth);
 	    momentPrototype__proto.years  = deprecate('years accessor is deprecated. Use year instead', getSetYear);
-	    momentPrototype__proto.zone   = deprecate('moment().zone is deprecated, use moment().utcOffset instead. http://momentjs.com/guides/#/warnings/zone/', getSetZone);
-	    momentPrototype__proto.isDSTShifted = deprecate('isDSTShifted is deprecated. See http://momentjs.com/guides/#/warnings/dst-shifted/ for more information', isDaylightSavingTimeShifted);
+	    momentPrototype__proto.zone   = deprecate('moment().zone is deprecated, use moment().utcOffset instead. https://github.com/moment/moment/issues/1779', getSetZone);
 
 	    var momentPrototype = momentPrototype__proto;
 
@@ -4804,46 +4732,143 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return local__createLocal.apply(null, arguments).parseZone();
 	    }
 
+	    var defaultCalendar = {
+	        sameDay : '[Today at] LT',
+	        nextDay : '[Tomorrow at] LT',
+	        nextWeek : 'dddd [at] LT',
+	        lastDay : '[Yesterday at] LT',
+	        lastWeek : '[Last] dddd [at] LT',
+	        sameElse : 'L'
+	    };
+
+	    function locale_calendar__calendar (key, mom, now) {
+	        var output = this._calendar[key];
+	        return isFunction(output) ? output.call(mom, now) : output;
+	    }
+
+	    var defaultLongDateFormat = {
+	        LTS  : 'h:mm:ss A',
+	        LT   : 'h:mm A',
+	        L    : 'MM/DD/YYYY',
+	        LL   : 'MMMM D, YYYY',
+	        LLL  : 'MMMM D, YYYY h:mm A',
+	        LLLL : 'dddd, MMMM D, YYYY h:mm A'
+	    };
+
+	    function longDateFormat (key) {
+	        var format = this._longDateFormat[key],
+	            formatUpper = this._longDateFormat[key.toUpperCase()];
+
+	        if (format || !formatUpper) {
+	            return format;
+	        }
+
+	        this._longDateFormat[key] = formatUpper.replace(/MMMM|MM|DD|dddd/g, function (val) {
+	            return val.slice(1);
+	        });
+
+	        return this._longDateFormat[key];
+	    }
+
+	    var defaultInvalidDate = 'Invalid date';
+
+	    function invalidDate () {
+	        return this._invalidDate;
+	    }
+
+	    var defaultOrdinal = '%d';
+	    var defaultOrdinalParse = /\d{1,2}/;
+
+	    function ordinal (number) {
+	        return this._ordinal.replace('%d', number);
+	    }
+
 	    function preParsePostFormat (string) {
 	        return string;
 	    }
 
+	    var defaultRelativeTime = {
+	        future : 'in %s',
+	        past   : '%s ago',
+	        s  : 'a few seconds',
+	        m  : 'a minute',
+	        mm : '%d minutes',
+	        h  : 'an hour',
+	        hh : '%d hours',
+	        d  : 'a day',
+	        dd : '%d days',
+	        M  : 'a month',
+	        MM : '%d months',
+	        y  : 'a year',
+	        yy : '%d years'
+	    };
+
+	    function relative__relativeTime (number, withoutSuffix, string, isFuture) {
+	        var output = this._relativeTime[string];
+	        return (isFunction(output)) ?
+	            output(number, withoutSuffix, string, isFuture) :
+	            output.replace(/%d/i, number);
+	    }
+
+	    function pastFuture (diff, output) {
+	        var format = this._relativeTime[diff > 0 ? 'future' : 'past'];
+	        return isFunction(format) ? format(output) : format.replace(/%s/i, output);
+	    }
+
 	    var prototype__proto = Locale.prototype;
 
+	    prototype__proto._calendar       = defaultCalendar;
 	    prototype__proto.calendar        = locale_calendar__calendar;
+	    prototype__proto._longDateFormat = defaultLongDateFormat;
 	    prototype__proto.longDateFormat  = longDateFormat;
+	    prototype__proto._invalidDate    = defaultInvalidDate;
 	    prototype__proto.invalidDate     = invalidDate;
+	    prototype__proto._ordinal        = defaultOrdinal;
 	    prototype__proto.ordinal         = ordinal;
+	    prototype__proto._ordinalParse   = defaultOrdinalParse;
 	    prototype__proto.preparse        = preParsePostFormat;
 	    prototype__proto.postformat      = preParsePostFormat;
+	    prototype__proto._relativeTime   = defaultRelativeTime;
 	    prototype__proto.relativeTime    = relative__relativeTime;
 	    prototype__proto.pastFuture      = pastFuture;
 	    prototype__proto.set             = locale_set__set;
 
 	    // Month
 	    prototype__proto.months            =        localeMonths;
+	    prototype__proto._months           = defaultLocaleMonths;
 	    prototype__proto.monthsShort       =        localeMonthsShort;
+	    prototype__proto._monthsShort      = defaultLocaleMonthsShort;
 	    prototype__proto.monthsParse       =        localeMonthsParse;
+	    prototype__proto._monthsRegex      = defaultMonthsRegex;
 	    prototype__proto.monthsRegex       = monthsRegex;
+	    prototype__proto._monthsShortRegex = defaultMonthsShortRegex;
 	    prototype__proto.monthsShortRegex  = monthsShortRegex;
 
 	    // Week
 	    prototype__proto.week = localeWeek;
+	    prototype__proto._week = defaultLocaleWeek;
 	    prototype__proto.firstDayOfYear = localeFirstDayOfYear;
 	    prototype__proto.firstDayOfWeek = localeFirstDayOfWeek;
 
 	    // Day of Week
 	    prototype__proto.weekdays       =        localeWeekdays;
+	    prototype__proto._weekdays      = defaultLocaleWeekdays;
 	    prototype__proto.weekdaysMin    =        localeWeekdaysMin;
+	    prototype__proto._weekdaysMin   = defaultLocaleWeekdaysMin;
 	    prototype__proto.weekdaysShort  =        localeWeekdaysShort;
+	    prototype__proto._weekdaysShort = defaultLocaleWeekdaysShort;
 	    prototype__proto.weekdaysParse  =        localeWeekdaysParse;
 
+	    prototype__proto._weekdaysRegex      = defaultWeekdaysRegex;
 	    prototype__proto.weekdaysRegex       =        weekdaysRegex;
+	    prototype__proto._weekdaysShortRegex = defaultWeekdaysShortRegex;
 	    prototype__proto.weekdaysShortRegex  =        weekdaysShortRegex;
+	    prototype__proto._weekdaysMinRegex   = defaultWeekdaysMinRegex;
 	    prototype__proto.weekdaysMinRegex    =        weekdaysMinRegex;
 
 	    // Hours
 	    prototype__proto.isPM = localeIsPM;
+	    prototype__proto._meridiemParse = defaultLocaleMeridiemParse;
 	    prototype__proto.meridiem = localeMeridiem;
 
 	    function lists__get (format, index, field, setter) {
@@ -5172,18 +5197,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return substituteTimeAgo.apply(null, a);
 	    }
 
-	    // This function allows you to set the rounding function for relative time strings
-	    function duration_humanize__getSetRelativeTimeRounding (roundingFunction) {
-	        if (roundingFunction === undefined) {
-	            return round;
-	        }
-	        if (typeof(roundingFunction) === 'function') {
-	            round = roundingFunction;
-	            return true;
-	        }
-	        return false;
-	    }
-
 	    // This function allows you to set a threshold for relative time strings
 	    function duration_humanize__getSetRelativeTimeThreshold (threshold, limit) {
 	        if (thresholds[threshold] === undefined) {
@@ -5316,7 +5329,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    // Side effect imports
 
 
-	    utils_hooks__hooks.version = '2.14.1';
+	    utils_hooks__hooks.version = '2.13.0';
 
 	    setHookCallback(local__createLocal);
 
@@ -5343,9 +5356,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    utils_hooks__hooks.locales               = locale_locales__listLocales;
 	    utils_hooks__hooks.weekdaysShort         = lists__listWeekdaysShort;
 	    utils_hooks__hooks.normalizeUnits        = normalizeUnits;
-	    utils_hooks__hooks.relativeTimeRounding = duration_humanize__getSetRelativeTimeRounding;
 	    utils_hooks__hooks.relativeTimeThreshold = duration_humanize__getSetRelativeTimeThreshold;
-	    utils_hooks__hooks.calendarFormat        = getCalendarFormat;
 	    utils_hooks__hooks.prototype             = momentPrototype;
 
 	    var _moment = utils_hooks__hooks;
@@ -5431,153 +5442,151 @@ return /******/ (function(modules) { // webpackBootstrap
 		"./eo": 52,
 		"./eo.js": 52,
 		"./es": 53,
-		"./es-do": 54,
-		"./es-do.js": 54,
 		"./es.js": 53,
-		"./et": 55,
-		"./et.js": 55,
-		"./eu": 56,
-		"./eu.js": 56,
-		"./fa": 57,
-		"./fa.js": 57,
-		"./fi": 58,
-		"./fi.js": 58,
-		"./fo": 59,
-		"./fo.js": 59,
-		"./fr": 60,
-		"./fr-ca": 61,
-		"./fr-ca.js": 61,
-		"./fr-ch": 62,
-		"./fr-ch.js": 62,
-		"./fr.js": 60,
-		"./fy": 63,
-		"./fy.js": 63,
-		"./gd": 64,
-		"./gd.js": 64,
-		"./gl": 65,
-		"./gl.js": 65,
-		"./he": 66,
-		"./he.js": 66,
-		"./hi": 67,
-		"./hi.js": 67,
-		"./hr": 68,
-		"./hr.js": 68,
-		"./hu": 69,
-		"./hu.js": 69,
-		"./hy-am": 70,
-		"./hy-am.js": 70,
-		"./id": 71,
-		"./id.js": 71,
-		"./is": 72,
-		"./is.js": 72,
-		"./it": 73,
-		"./it.js": 73,
-		"./ja": 74,
-		"./ja.js": 74,
-		"./jv": 75,
-		"./jv.js": 75,
-		"./ka": 76,
-		"./ka.js": 76,
-		"./kk": 77,
-		"./kk.js": 77,
-		"./km": 78,
-		"./km.js": 78,
-		"./ko": 79,
-		"./ko.js": 79,
-		"./ky": 80,
-		"./ky.js": 80,
-		"./lb": 81,
-		"./lb.js": 81,
-		"./lo": 82,
-		"./lo.js": 82,
-		"./lt": 83,
-		"./lt.js": 83,
-		"./lv": 84,
-		"./lv.js": 84,
-		"./me": 85,
-		"./me.js": 85,
-		"./mk": 86,
-		"./mk.js": 86,
-		"./ml": 87,
-		"./ml.js": 87,
-		"./mr": 88,
-		"./mr.js": 88,
-		"./ms": 89,
-		"./ms-my": 90,
-		"./ms-my.js": 90,
-		"./ms.js": 89,
-		"./my": 91,
-		"./my.js": 91,
-		"./nb": 92,
-		"./nb.js": 92,
-		"./ne": 93,
-		"./ne.js": 93,
-		"./nl": 94,
-		"./nl.js": 94,
-		"./nn": 95,
-		"./nn.js": 95,
-		"./pa-in": 96,
-		"./pa-in.js": 96,
-		"./pl": 97,
-		"./pl.js": 97,
-		"./pt": 98,
-		"./pt-br": 99,
-		"./pt-br.js": 99,
-		"./pt.js": 98,
-		"./ro": 100,
-		"./ro.js": 100,
-		"./ru": 101,
-		"./ru.js": 101,
-		"./se": 102,
-		"./se.js": 102,
-		"./si": 103,
-		"./si.js": 103,
-		"./sk": 104,
-		"./sk.js": 104,
-		"./sl": 105,
-		"./sl.js": 105,
-		"./sq": 106,
-		"./sq.js": 106,
-		"./sr": 107,
-		"./sr-cyrl": 108,
-		"./sr-cyrl.js": 108,
-		"./sr.js": 107,
-		"./ss": 109,
-		"./ss.js": 109,
-		"./sv": 110,
-		"./sv.js": 110,
-		"./sw": 111,
-		"./sw.js": 111,
-		"./ta": 112,
-		"./ta.js": 112,
-		"./te": 113,
-		"./te.js": 113,
-		"./th": 114,
-		"./th.js": 114,
-		"./tl-ph": 115,
-		"./tl-ph.js": 115,
-		"./tlh": 116,
-		"./tlh.js": 116,
-		"./tr": 117,
-		"./tr.js": 117,
-		"./tzl": 118,
-		"./tzl.js": 118,
-		"./tzm": 119,
-		"./tzm-latn": 120,
-		"./tzm-latn.js": 120,
-		"./tzm.js": 119,
-		"./uk": 121,
-		"./uk.js": 121,
-		"./uz": 122,
-		"./uz.js": 122,
-		"./vi": 123,
-		"./vi.js": 123,
-		"./x-pseudo": 124,
-		"./x-pseudo.js": 124,
-		"./zh-cn": 125,
-		"./zh-cn.js": 125,
-		"./zh-tw": 126,
-		"./zh-tw.js": 126
+		"./et": 54,
+		"./et.js": 54,
+		"./eu": 55,
+		"./eu.js": 55,
+		"./fa": 56,
+		"./fa.js": 56,
+		"./fi": 57,
+		"./fi.js": 57,
+		"./fo": 58,
+		"./fo.js": 58,
+		"./fr": 59,
+		"./fr-ca": 60,
+		"./fr-ca.js": 60,
+		"./fr-ch": 61,
+		"./fr-ch.js": 61,
+		"./fr.js": 59,
+		"./fy": 62,
+		"./fy.js": 62,
+		"./gd": 63,
+		"./gd.js": 63,
+		"./gl": 64,
+		"./gl.js": 64,
+		"./he": 65,
+		"./he.js": 65,
+		"./hi": 66,
+		"./hi.js": 66,
+		"./hr": 67,
+		"./hr.js": 67,
+		"./hu": 68,
+		"./hu.js": 68,
+		"./hy-am": 69,
+		"./hy-am.js": 69,
+		"./id": 70,
+		"./id.js": 70,
+		"./is": 71,
+		"./is.js": 71,
+		"./it": 72,
+		"./it.js": 72,
+		"./ja": 73,
+		"./ja.js": 73,
+		"./jv": 74,
+		"./jv.js": 74,
+		"./ka": 75,
+		"./ka.js": 75,
+		"./kk": 76,
+		"./kk.js": 76,
+		"./km": 77,
+		"./km.js": 77,
+		"./ko": 78,
+		"./ko.js": 78,
+		"./ky": 79,
+		"./ky.js": 79,
+		"./lb": 80,
+		"./lb.js": 80,
+		"./lo": 81,
+		"./lo.js": 81,
+		"./lt": 82,
+		"./lt.js": 82,
+		"./lv": 83,
+		"./lv.js": 83,
+		"./me": 84,
+		"./me.js": 84,
+		"./mk": 85,
+		"./mk.js": 85,
+		"./ml": 86,
+		"./ml.js": 86,
+		"./mr": 87,
+		"./mr.js": 87,
+		"./ms": 88,
+		"./ms-my": 89,
+		"./ms-my.js": 89,
+		"./ms.js": 88,
+		"./my": 90,
+		"./my.js": 90,
+		"./nb": 91,
+		"./nb.js": 91,
+		"./ne": 92,
+		"./ne.js": 92,
+		"./nl": 93,
+		"./nl.js": 93,
+		"./nn": 94,
+		"./nn.js": 94,
+		"./pa-in": 95,
+		"./pa-in.js": 95,
+		"./pl": 96,
+		"./pl.js": 96,
+		"./pt": 97,
+		"./pt-br": 98,
+		"./pt-br.js": 98,
+		"./pt.js": 97,
+		"./ro": 99,
+		"./ro.js": 99,
+		"./ru": 100,
+		"./ru.js": 100,
+		"./se": 101,
+		"./se.js": 101,
+		"./si": 102,
+		"./si.js": 102,
+		"./sk": 103,
+		"./sk.js": 103,
+		"./sl": 104,
+		"./sl.js": 104,
+		"./sq": 105,
+		"./sq.js": 105,
+		"./sr": 106,
+		"./sr-cyrl": 107,
+		"./sr-cyrl.js": 107,
+		"./sr.js": 106,
+		"./ss": 108,
+		"./ss.js": 108,
+		"./sv": 109,
+		"./sv.js": 109,
+		"./sw": 110,
+		"./sw.js": 110,
+		"./ta": 111,
+		"./ta.js": 111,
+		"./te": 112,
+		"./te.js": 112,
+		"./th": 113,
+		"./th.js": 113,
+		"./tl-ph": 114,
+		"./tl-ph.js": 114,
+		"./tlh": 115,
+		"./tlh.js": 115,
+		"./tr": 116,
+		"./tr.js": 116,
+		"./tzl": 117,
+		"./tzl.js": 117,
+		"./tzm": 118,
+		"./tzm-latn": 119,
+		"./tzm-latn.js": 119,
+		"./tzm.js": 118,
+		"./uk": 120,
+		"./uk.js": 120,
+		"./uz": 121,
+		"./uz.js": 121,
+		"./vi": 122,
+		"./vi.js": 122,
+		"./x-pseudo": 123,
+		"./x-pseudo.js": 123,
+		"./zh-cn": 124,
+		"./zh-cn.js": 124,
+		"./zh-tw": 125,
+		"./zh-tw.js": 125
 	};
 	function webpackContext(req) {
 		return __webpack_require__(webpackContextResolve(req));
@@ -5598,19 +5607,19 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Afrikaans [af]
+	//! locale : afrikaans (af)
 	//! author : Werner Mollentze : https://github.com/wernerm
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
 
 	    var af = moment.defineLocale('af', {
 	        months : 'Januarie_Februarie_Maart_April_Mei_Junie_Julie_Augustus_September_Oktober_November_Desember'.split('_'),
-	        monthsShort : 'Jan_Feb_Mrt_Apr_Mei_Jun_Jul_Aug_Sep_Okt_Nov_Des'.split('_'),
+	        monthsShort : 'Jan_Feb_Mar_Apr_Mei_Jun_Jul_Aug_Sep_Okt_Nov_Des'.split('_'),
 	        weekdays : 'Sondag_Maandag_Dinsdag_Woensdag_Donderdag_Vrydag_Saterdag'.split('_'),
 	        weekdaysShort : 'Son_Maa_Din_Woe_Don_Vry_Sat'.split('_'),
 	        weekdaysMin : 'So_Ma_Di_Wo_Do_Vr_Sa'.split('_'),
@@ -5675,14 +5684,14 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Arabic [ar]
-	//! author : Abdel Said: https://github.com/abdelsaid
-	//! changes in months, weekdays: Ahmed Elkhatib
+	//! Locale: Arabic (ar)
+	//! Author: Abdel Said: https://github.com/abdelsaid
+	//! Changes in months, weekdays: Ahmed Elkhatib
 	//! Native plural forms: forabi https://github.com/forabi
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -5816,13 +5825,13 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Arabic (Morocco) [ar-ma]
+	//! locale : Moroccan Arabic (ar-ma)
 	//! author : ElFadili Yassine : https://github.com/ElFadiliY
 	//! author : Abdel Said : https://github.com/abdelsaid
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -5880,12 +5889,12 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Arabic (Saudi Arabia) [ar-sa]
+	//! locale : Arabic Saudi Arabia (ar-sa)
 	//! author : Suhail Alkowaileet : https://github.com/xsoh
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -5988,11 +5997,11 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale  :  Arabic (Tunisia) [ar-tn]
+	//! locale  : Tunisian Arabic (ar-tn)
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -6050,12 +6059,12 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Azerbaijani [az]
+	//! locale : azerbaijani (az)
 	//! author : topchiyev : https://github.com/topchiyev
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -6159,14 +6168,14 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Belarusian [be]
+	//! locale : belarusian (be)
 	//! author : Dmitry Demidov : https://github.com/demidov91
 	//! author: Praleska: http://praleska.pro/
 	//! Author : Menelion Elensúle : https://github.com/Oire
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -6224,15 +6233,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	            },
 	            lastWeek: function () {
 	                switch (this.day()) {
-	                    case 0:
-	                    case 3:
-	                    case 5:
-	                    case 6:
-	                        return '[У мінулую] dddd [ў] LT';
-	                    case 1:
-	                    case 2:
-	                    case 4:
-	                        return '[У мінулы] dddd [ў] LT';
+	                case 0:
+	                case 3:
+	                case 5:
+	                case 6:
+	                    return '[У мінулую] dddd [ў] LT';
+	                case 1:
+	                case 2:
+	                case 4:
+	                    return '[У мінулы] dddd [ў] LT';
 	                }
 	            },
 	            sameElse: 'L'
@@ -6270,16 +6279,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	        ordinalParse: /\d{1,2}-(і|ы|га)/,
 	        ordinal: function (number, period) {
 	            switch (period) {
-	                case 'M':
-	                case 'd':
-	                case 'DDD':
-	                case 'w':
-	                case 'W':
-	                    return (number % 10 === 2 || number % 10 === 3) && (number % 100 !== 12 && number % 100 !== 13) ? number + '-і' : number + '-ы';
-	                case 'D':
-	                    return number + '-га';
-	                default:
-	                    return number;
+	            case 'M':
+	            case 'd':
+	            case 'DDD':
+	            case 'w':
+	            case 'W':
+	                return (number % 10 === 2 || number % 10 === 3) && (number % 100 !== 12 && number % 100 !== 13) ? number + '-і' : number + '-ы';
+	            case 'D':
+	                return number + '-га';
+	            default:
+	                return number;
 	            }
 	        },
 	        week : {
@@ -6297,12 +6306,12 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Bulgarian [bg]
+	//! locale : bulgarian (bg)
 	//! author : Krasen Borisov : https://github.com/kraz
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -6328,15 +6337,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	            lastDay : '[Вчера в] LT',
 	            lastWeek : function () {
 	                switch (this.day()) {
-	                    case 0:
-	                    case 3:
-	                    case 6:
-	                        return '[В изминалата] dddd [в] LT';
-	                    case 1:
-	                    case 2:
-	                    case 4:
-	                    case 5:
-	                        return '[В изминалия] dddd [в] LT';
+	                case 0:
+	                case 3:
+	                case 6:
+	                    return '[В изминалата] dddd [в] LT';
+	                case 1:
+	                case 2:
+	                case 4:
+	                case 5:
+	                    return '[В изминалия] dddd [в] LT';
 	                }
 	            },
 	            sameElse : 'L'
@@ -6391,12 +6400,12 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Bengali [bn]
+	//! locale : Bengali (bn)
 	//! author : Kaushik Gandhi : https://github.com/kaushikgandhi
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -6514,12 +6523,12 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Tibetan [bo]
+	//! locale : tibetan (bo)
 	//! author : Thupten N. Chakrishar : https://github.com/vajradog
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -6637,12 +6646,12 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Breton [br]
+	//! locale : breton (br)
 	//! author : Jean-Baptiste Le Duigou : https://github.com/jbleduigou
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -6657,14 +6666,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	    function specialMutationForYears(number) {
 	        switch (lastNumber(number)) {
-	            case 1:
-	            case 3:
-	            case 4:
-	            case 5:
-	            case 9:
-	                return number + ' bloaz';
-	            default:
-	                return number + ' vloaz';
+	        case 1:
+	        case 3:
+	        case 4:
+	        case 5:
+	        case 9:
+	            return number + ' bloaz';
+	        default:
+	            return number + ' vloaz';
 	        }
 	    }
 	    function lastNumber(number) {
@@ -6749,13 +6758,13 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Bosnian [bs]
+	//! locale : bosnian (bs)
 	//! author : Nedim Cholich : https://github.com/frontyard
 	//! based on (hr) translation by Bojan Marković
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -6763,53 +6772,53 @@ return /******/ (function(modules) { // webpackBootstrap
 	    function translate(number, withoutSuffix, key) {
 	        var result = number + ' ';
 	        switch (key) {
-	            case 'm':
-	                return withoutSuffix ? 'jedna minuta' : 'jedne minute';
-	            case 'mm':
-	                if (number === 1) {
-	                    result += 'minuta';
-	                } else if (number === 2 || number === 3 || number === 4) {
-	                    result += 'minute';
-	                } else {
-	                    result += 'minuta';
-	                }
-	                return result;
-	            case 'h':
-	                return withoutSuffix ? 'jedan sat' : 'jednog sata';
-	            case 'hh':
-	                if (number === 1) {
-	                    result += 'sat';
-	                } else if (number === 2 || number === 3 || number === 4) {
-	                    result += 'sata';
-	                } else {
-	                    result += 'sati';
-	                }
-	                return result;
-	            case 'dd':
-	                if (number === 1) {
-	                    result += 'dan';
-	                } else {
-	                    result += 'dana';
-	                }
-	                return result;
-	            case 'MM':
-	                if (number === 1) {
-	                    result += 'mjesec';
-	                } else if (number === 2 || number === 3 || number === 4) {
-	                    result += 'mjeseca';
-	                } else {
-	                    result += 'mjeseci';
-	                }
-	                return result;
-	            case 'yy':
-	                if (number === 1) {
-	                    result += 'godina';
-	                } else if (number === 2 || number === 3 || number === 4) {
-	                    result += 'godine';
-	                } else {
-	                    result += 'godina';
-	                }
-	                return result;
+	        case 'm':
+	            return withoutSuffix ? 'jedna minuta' : 'jedne minute';
+	        case 'mm':
+	            if (number === 1) {
+	                result += 'minuta';
+	            } else if (number === 2 || number === 3 || number === 4) {
+	                result += 'minute';
+	            } else {
+	                result += 'minuta';
+	            }
+	            return result;
+	        case 'h':
+	            return withoutSuffix ? 'jedan sat' : 'jednog sata';
+	        case 'hh':
+	            if (number === 1) {
+	                result += 'sat';
+	            } else if (number === 2 || number === 3 || number === 4) {
+	                result += 'sata';
+	            } else {
+	                result += 'sati';
+	            }
+	            return result;
+	        case 'dd':
+	            if (number === 1) {
+	                result += 'dan';
+	            } else {
+	                result += 'dana';
+	            }
+	            return result;
+	        case 'MM':
+	            if (number === 1) {
+	                result += 'mjesec';
+	            } else if (number === 2 || number === 3 || number === 4) {
+	                result += 'mjeseca';
+	            } else {
+	                result += 'mjeseci';
+	            }
+	            return result;
+	        case 'yy':
+	            if (number === 1) {
+	                result += 'godina';
+	            } else if (number === 2 || number === 3 || number === 4) {
+	                result += 'godine';
+	            } else {
+	                result += 'godina';
+	            }
+	            return result;
 	        }
 	    }
 
@@ -6834,32 +6843,32 @@ return /******/ (function(modules) { // webpackBootstrap
 	            nextDay  : '[sutra u] LT',
 	            nextWeek : function () {
 	                switch (this.day()) {
-	                    case 0:
-	                        return '[u] [nedjelju] [u] LT';
-	                    case 3:
-	                        return '[u] [srijedu] [u] LT';
-	                    case 6:
-	                        return '[u] [subotu] [u] LT';
-	                    case 1:
-	                    case 2:
-	                    case 4:
-	                    case 5:
-	                        return '[u] dddd [u] LT';
+	                case 0:
+	                    return '[u] [nedjelju] [u] LT';
+	                case 3:
+	                    return '[u] [srijedu] [u] LT';
+	                case 6:
+	                    return '[u] [subotu] [u] LT';
+	                case 1:
+	                case 2:
+	                case 4:
+	                case 5:
+	                    return '[u] dddd [u] LT';
 	                }
 	            },
 	            lastDay  : '[jučer u] LT',
 	            lastWeek : function () {
 	                switch (this.day()) {
-	                    case 0:
-	                    case 3:
-	                        return '[prošlu] dddd [u] LT';
-	                    case 6:
-	                        return '[prošle] [subote] [u] LT';
-	                    case 1:
-	                    case 2:
-	                    case 4:
-	                    case 5:
-	                        return '[prošli] dddd [u] LT';
+	                case 0:
+	                case 3:
+	                    return '[prošlu] dddd [u] LT';
+	                case 6:
+	                    return '[prošle] [subote] [u] LT';
+	                case 1:
+	                case 2:
+	                case 4:
+	                case 5:
+	                    return '[prošli] dddd [u] LT';
 	                }
 	            },
 	            sameElse : 'L'
@@ -6896,12 +6905,12 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Catalan [ca]
+	//! locale : catalan (ca)
 	//! author : Juan G. Hurtado : https://github.com/juanghurtado
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -6981,12 +6990,12 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Czech [cs]
+	//! locale : czech (cs)
 	//! author : petrbela : https://github.com/petrbela
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -6999,53 +7008,53 @@ return /******/ (function(modules) { // webpackBootstrap
 	    function translate(number, withoutSuffix, key, isFuture) {
 	        var result = number + ' ';
 	        switch (key) {
-	            case 's':  // a few seconds / in a few seconds / a few seconds ago
-	                return (withoutSuffix || isFuture) ? 'pár sekund' : 'pár sekundami';
-	            case 'm':  // a minute / in a minute / a minute ago
-	                return withoutSuffix ? 'minuta' : (isFuture ? 'minutu' : 'minutou');
-	            case 'mm': // 9 minutes / in 9 minutes / 9 minutes ago
-	                if (withoutSuffix || isFuture) {
-	                    return result + (plural(number) ? 'minuty' : 'minut');
-	                } else {
-	                    return result + 'minutami';
-	                }
-	                break;
-	            case 'h':  // an hour / in an hour / an hour ago
-	                return withoutSuffix ? 'hodina' : (isFuture ? 'hodinu' : 'hodinou');
-	            case 'hh': // 9 hours / in 9 hours / 9 hours ago
-	                if (withoutSuffix || isFuture) {
-	                    return result + (plural(number) ? 'hodiny' : 'hodin');
-	                } else {
-	                    return result + 'hodinami';
-	                }
-	                break;
-	            case 'd':  // a day / in a day / a day ago
-	                return (withoutSuffix || isFuture) ? 'den' : 'dnem';
-	            case 'dd': // 9 days / in 9 days / 9 days ago
-	                if (withoutSuffix || isFuture) {
-	                    return result + (plural(number) ? 'dny' : 'dní');
-	                } else {
-	                    return result + 'dny';
-	                }
-	                break;
-	            case 'M':  // a month / in a month / a month ago
-	                return (withoutSuffix || isFuture) ? 'měsíc' : 'měsícem';
-	            case 'MM': // 9 months / in 9 months / 9 months ago
-	                if (withoutSuffix || isFuture) {
-	                    return result + (plural(number) ? 'měsíce' : 'měsíců');
-	                } else {
-	                    return result + 'měsíci';
-	                }
-	                break;
-	            case 'y':  // a year / in a year / a year ago
-	                return (withoutSuffix || isFuture) ? 'rok' : 'rokem';
-	            case 'yy': // 9 years / in 9 years / 9 years ago
-	                if (withoutSuffix || isFuture) {
-	                    return result + (plural(number) ? 'roky' : 'let');
-	                } else {
-	                    return result + 'lety';
-	                }
-	                break;
+	        case 's':  // a few seconds / in a few seconds / a few seconds ago
+	            return (withoutSuffix || isFuture) ? 'pár sekund' : 'pár sekundami';
+	        case 'm':  // a minute / in a minute / a minute ago
+	            return withoutSuffix ? 'minuta' : (isFuture ? 'minutu' : 'minutou');
+	        case 'mm': // 9 minutes / in 9 minutes / 9 minutes ago
+	            if (withoutSuffix || isFuture) {
+	                return result + (plural(number) ? 'minuty' : 'minut');
+	            } else {
+	                return result + 'minutami';
+	            }
+	            break;
+	        case 'h':  // an hour / in an hour / an hour ago
+	            return withoutSuffix ? 'hodina' : (isFuture ? 'hodinu' : 'hodinou');
+	        case 'hh': // 9 hours / in 9 hours / 9 hours ago
+	            if (withoutSuffix || isFuture) {
+	                return result + (plural(number) ? 'hodiny' : 'hodin');
+	            } else {
+	                return result + 'hodinami';
+	            }
+	            break;
+	        case 'd':  // a day / in a day / a day ago
+	            return (withoutSuffix || isFuture) ? 'den' : 'dnem';
+	        case 'dd': // 9 days / in 9 days / 9 days ago
+	            if (withoutSuffix || isFuture) {
+	                return result + (plural(number) ? 'dny' : 'dní');
+	            } else {
+	                return result + 'dny';
+	            }
+	            break;
+	        case 'M':  // a month / in a month / a month ago
+	            return (withoutSuffix || isFuture) ? 'měsíc' : 'měsícem';
+	        case 'MM': // 9 months / in 9 months / 9 months ago
+	            if (withoutSuffix || isFuture) {
+	                return result + (plural(number) ? 'měsíce' : 'měsíců');
+	            } else {
+	                return result + 'měsíci';
+	            }
+	            break;
+	        case 'y':  // a year / in a year / a year ago
+	            return (withoutSuffix || isFuture) ? 'rok' : 'rokem';
+	        case 'yy': // 9 years / in 9 years / 9 years ago
+	            if (withoutSuffix || isFuture) {
+	                return result + (plural(number) ? 'roky' : 'let');
+	            } else {
+	                return result + 'lety';
+	            }
+	            break;
 	        }
 	    }
 
@@ -7083,44 +7092,43 @@ return /******/ (function(modules) { // webpackBootstrap
 	            L : 'DD.MM.YYYY',
 	            LL : 'D. MMMM YYYY',
 	            LLL : 'D. MMMM YYYY H:mm',
-	            LLLL : 'dddd D. MMMM YYYY H:mm',
-	            l : 'D. M. YYYY'
+	            LLLL : 'dddd D. MMMM YYYY H:mm'
 	        },
 	        calendar : {
 	            sameDay: '[dnes v] LT',
 	            nextDay: '[zítra v] LT',
 	            nextWeek: function () {
 	                switch (this.day()) {
-	                    case 0:
-	                        return '[v neděli v] LT';
-	                    case 1:
-	                    case 2:
-	                        return '[v] dddd [v] LT';
-	                    case 3:
-	                        return '[ve středu v] LT';
-	                    case 4:
-	                        return '[ve čtvrtek v] LT';
-	                    case 5:
-	                        return '[v pátek v] LT';
-	                    case 6:
-	                        return '[v sobotu v] LT';
+	                case 0:
+	                    return '[v neděli v] LT';
+	                case 1:
+	                case 2:
+	                    return '[v] dddd [v] LT';
+	                case 3:
+	                    return '[ve středu v] LT';
+	                case 4:
+	                    return '[ve čtvrtek v] LT';
+	                case 5:
+	                    return '[v pátek v] LT';
+	                case 6:
+	                    return '[v sobotu v] LT';
 	                }
 	            },
 	            lastDay: '[včera v] LT',
 	            lastWeek: function () {
 	                switch (this.day()) {
-	                    case 0:
-	                        return '[minulou neděli v] LT';
-	                    case 1:
-	                    case 2:
-	                        return '[minulé] dddd [v] LT';
-	                    case 3:
-	                        return '[minulou středu v] LT';
-	                    case 4:
-	                    case 5:
-	                        return '[minulý] dddd [v] LT';
-	                    case 6:
-	                        return '[minulou sobotu v] LT';
+	                case 0:
+	                    return '[minulou neděli v] LT';
+	                case 1:
+	                case 2:
+	                    return '[minulé] dddd [v] LT';
+	                case 3:
+	                    return '[minulou středu v] LT';
+	                case 4:
+	                case 5:
+	                    return '[minulý] dddd [v] LT';
+	                case 6:
+	                    return '[minulou sobotu v] LT';
 	                }
 	            },
 	            sameElse: 'L'
@@ -7157,12 +7165,12 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Chuvash [cv]
+	//! locale : chuvash (cv)
 	//! author : Anatoly Mironov : https://github.com/mirontoli
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -7224,12 +7232,12 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Welsh [cy]
+	//! locale : Welsh (cy)
 	//! author : Robert Allen
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -7308,12 +7316,12 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Danish [da]
+	//! locale : danish (da)
 	//! author : Ulrik Nielsen : https://github.com/mrbase
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -7372,14 +7380,14 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : German [de]
+	//! locale : german (de)
 	//! author : lluchs : https://github.com/lluchs
 	//! author: Menelion Elensúle: https://github.com/Oire
 	//! author : Mikolaj Dadela : https://github.com/mik01aj
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -7454,7 +7462,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : German (Austria) [de-at]
+	//! locale : austrian german (de-at)
 	//! author : lluchs : https://github.com/lluchs
 	//! author: Menelion Elensúle: https://github.com/Oire
 	//! author : Martin Groller : https://github.com/MadMG
@@ -7462,7 +7470,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -7537,12 +7545,12 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Maldivian [dv]
+	//! locale : dhivehi (dv)
 	//! author : Jawish Hameed : https://github.com/jawish
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -7640,12 +7648,12 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Greek [el]
+	//! locale : modern greek (el)
 	//! author : Aggelos Karalias : https://github.com/mehiel
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -7742,11 +7750,11 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : English (Australia) [en-au]
+	//! locale : australian english (en-au)
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -7812,12 +7820,12 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : English (Canada) [en-ca]
+	//! locale : canadian english (en-ca)
 	//! author : Jonathan Abourbih : https://github.com/jonbca
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -7879,12 +7887,12 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : English (United Kingdom) [en-gb]
+	//! locale : great britain english (en-gb)
 	//! author : Chris Gedrim : https://github.com/chrisgedrim
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -7950,12 +7958,12 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : English (Ireland) [en-ie]
+	//! locale : Irish english (en-ie)
 	//! author : Chris Cartlidge : https://github.com/chriscartlidge
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -8021,11 +8029,11 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : English (New Zealand) [en-nz]
+	//! locale : New Zealand english (en-nz)
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -8091,14 +8099,14 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Esperanto [eo]
+	//! locale : esperanto (eo)
 	//! author : Colin Dean : https://github.com/colindean
 	//! komento: Mi estas malcerta se mi korekte traktis akuzativojn en tiu traduko.
 	//!          Se ne, bonvolu korekti kaj avizi min por ke mi povas lerni!
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -8168,12 +8176,12 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Spanish [es]
+	//! locale : spanish (es)
 	//! author : Julio Napurí : https://github.com/julionc
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -8253,97 +8261,13 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Spanish (Dominican Republic) [es-do]
-
-	;(function (global, factory) {
-	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-	   factory(global.moment)
-	}(this, function (moment) { 'use strict';
-
-
-	    var monthsShortDot = 'ene._feb._mar._abr._may._jun._jul._ago._sep._oct._nov._dic.'.split('_'),
-	        monthsShort = 'ene_feb_mar_abr_may_jun_jul_ago_sep_oct_nov_dic'.split('_');
-
-	    var es_do = moment.defineLocale('es-do', {
-	        months : 'enero_febrero_marzo_abril_mayo_junio_julio_agosto_septiembre_octubre_noviembre_diciembre'.split('_'),
-	        monthsShort : function (m, format) {
-	            if (/-MMM-/.test(format)) {
-	                return monthsShort[m.month()];
-	            } else {
-	                return monthsShortDot[m.month()];
-	            }
-	        },
-	        monthsParseExact : true,
-	        weekdays : 'domingo_lunes_martes_miércoles_jueves_viernes_sábado'.split('_'),
-	        weekdaysShort : 'dom._lun._mar._mié._jue._vie._sáb.'.split('_'),
-	        weekdaysMin : 'do_lu_ma_mi_ju_vi_sá'.split('_'),
-	        weekdaysParseExact : true,
-	        longDateFormat : {
-	            LT : 'h:mm A',
-	            LTS : 'h:mm:ss A',
-	            L : 'DD/MM/YYYY',
-	            LL : 'D [de] MMMM [de] YYYY',
-	            LLL : 'D [de] MMMM [de] YYYY h:mm A',
-	            LLLL : 'dddd, D [de] MMMM [de] YYYY h:mm A'
-	        },
-	        calendar : {
-	            sameDay : function () {
-	                return '[hoy a la' + ((this.hours() !== 1) ? 's' : '') + '] LT';
-	            },
-	            nextDay : function () {
-	                return '[mañana a la' + ((this.hours() !== 1) ? 's' : '') + '] LT';
-	            },
-	            nextWeek : function () {
-	                return 'dddd [a la' + ((this.hours() !== 1) ? 's' : '') + '] LT';
-	            },
-	            lastDay : function () {
-	                return '[ayer a la' + ((this.hours() !== 1) ? 's' : '') + '] LT';
-	            },
-	            lastWeek : function () {
-	                return '[el] dddd [pasado a la' + ((this.hours() !== 1) ? 's' : '') + '] LT';
-	            },
-	            sameElse : 'L'
-	        },
-	        relativeTime : {
-	            future : 'en %s',
-	            past : 'hace %s',
-	            s : 'unos segundos',
-	            m : 'un minuto',
-	            mm : '%d minutos',
-	            h : 'una hora',
-	            hh : '%d horas',
-	            d : 'un día',
-	            dd : '%d días',
-	            M : 'un mes',
-	            MM : '%d meses',
-	            y : 'un año',
-	            yy : '%d años'
-	        },
-	        ordinalParse : /\d{1,2}º/,
-	        ordinal : '%dº',
-	        week : {
-	            dow : 1, // Monday is the first day of the week.
-	            doy : 4  // The week that contains Jan 4th is the first week of the year.
-	        }
-	    });
-
-	    return es_do;
-
-	}));
-
-/***/ },
-/* 55 */
-/***/ function(module, exports, __webpack_require__) {
-
-	//! moment.js locale configuration
-	//! locale : Estonian [et]
+	//! locale : estonian (et)
 	//! author : Henry Kehlmann : https://github.com/madhenry
 	//! improvements : Illimar Tambek : https://github.com/ragulka
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -8417,16 +8341,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 56 */
+/* 55 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Basque [eu]
+	//! locale : euskara (eu)
 	//! author : Eneko Illarramendi : https://github.com/eillarra
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -8487,16 +8411,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 57 */
+/* 56 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Persian [fa]
+	//! locale : Persian (fa)
 	//! author : Ebrahim Byagowi : https://github.com/ebraminio
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -8597,16 +8521,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 58 */
+/* 57 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Finnish [fi]
+	//! locale : finnish (fi)
 	//! author : Tarmo Aidantausta : https://github.com/bleadof
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -8619,33 +8543,33 @@ return /******/ (function(modules) { // webpackBootstrap
 	    function translate(number, withoutSuffix, key, isFuture) {
 	        var result = '';
 	        switch (key) {
-	            case 's':
-	                return isFuture ? 'muutaman sekunnin' : 'muutama sekunti';
-	            case 'm':
-	                return isFuture ? 'minuutin' : 'minuutti';
-	            case 'mm':
-	                result = isFuture ? 'minuutin' : 'minuuttia';
-	                break;
-	            case 'h':
-	                return isFuture ? 'tunnin' : 'tunti';
-	            case 'hh':
-	                result = isFuture ? 'tunnin' : 'tuntia';
-	                break;
-	            case 'd':
-	                return isFuture ? 'päivän' : 'päivä';
-	            case 'dd':
-	                result = isFuture ? 'päivän' : 'päivää';
-	                break;
-	            case 'M':
-	                return isFuture ? 'kuukauden' : 'kuukausi';
-	            case 'MM':
-	                result = isFuture ? 'kuukauden' : 'kuukautta';
-	                break;
-	            case 'y':
-	                return isFuture ? 'vuoden' : 'vuosi';
-	            case 'yy':
-	                result = isFuture ? 'vuoden' : 'vuotta';
-	                break;
+	        case 's':
+	            return isFuture ? 'muutaman sekunnin' : 'muutama sekunti';
+	        case 'm':
+	            return isFuture ? 'minuutin' : 'minuutti';
+	        case 'mm':
+	            result = isFuture ? 'minuutin' : 'minuuttia';
+	            break;
+	        case 'h':
+	            return isFuture ? 'tunnin' : 'tunti';
+	        case 'hh':
+	            result = isFuture ? 'tunnin' : 'tuntia';
+	            break;
+	        case 'd':
+	            return isFuture ? 'päivän' : 'päivä';
+	        case 'dd':
+	            result = isFuture ? 'päivän' : 'päivää';
+	            break;
+	        case 'M':
+	            return isFuture ? 'kuukauden' : 'kuukausi';
+	        case 'MM':
+	            result = isFuture ? 'kuukauden' : 'kuukautta';
+	            break;
+	        case 'y':
+	            return isFuture ? 'vuoden' : 'vuosi';
+	        case 'yy':
+	            result = isFuture ? 'vuoden' : 'vuotta';
+	            break;
 	        }
 	        result = verbalNumber(number, isFuture) + ' ' + result;
 	        return result;
@@ -8708,16 +8632,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 59 */
+/* 58 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Faroese [fo]
+	//! locale : faroese (fo)
 	//! author : Ragnar Johannesen : https://github.com/ragnar123
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -8772,16 +8696,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 60 */
+/* 59 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : French [fr]
+	//! locale : french (fr)
 	//! author : John Fischer : https://github.com/jfroffice
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -8840,16 +8764,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 61 */
+/* 60 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : French (Canada) [fr-ca]
+	//! locale : canadian french (fr-ca)
 	//! author : Jonathan Abourbih : https://github.com/jonbca
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -8904,16 +8828,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 62 */
+/* 61 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : French (Switzerland) [fr-ch]
+	//! locale : swiss french (fr)
 	//! author : Gaspard Bucher : https://github.com/gaspard
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -8972,16 +8896,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 63 */
+/* 62 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Frisian [fy]
+	//! locale : frisian (fy)
 	//! author : Robin van der Vliet : https://github.com/robin0van0der0v
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -9049,16 +8973,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 64 */
+/* 63 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Scottish Gaelic [gd]
+	//! locale : great britain scottish gealic (gd)
 	//! author : Jon Ashdown : https://github.com/jonashdown
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -9129,16 +9053,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 65 */
+/* 64 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Galician [gl]
+	//! locale : galician (gl)
 	//! author : Juan G. Hurtado : https://github.com/juanghurtado
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -9210,18 +9134,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 66 */
+/* 65 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Hebrew [he]
+	//! locale : Hebrew (he)
 	//! author : Tomer Cohen : https://github.com/tomer
 	//! author : Moshe Simantov : https://github.com/DevelopmentIL
 	//! author : Tal Ater : https://github.com/TalAter
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -9313,16 +9237,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 67 */
+/* 66 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Hindi [hi]
+	//! locale : hindi (hi)
 	//! author : Mayank Singhal : https://github.com/mayanksinghal
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -9441,16 +9365,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 68 */
+/* 67 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Croatian [hr]
+	//! locale : hrvatski (hr)
 	//! author : Bojan Marković : https://github.com/bmarkovic
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -9458,53 +9382,53 @@ return /******/ (function(modules) { // webpackBootstrap
 	    function translate(number, withoutSuffix, key) {
 	        var result = number + ' ';
 	        switch (key) {
-	            case 'm':
-	                return withoutSuffix ? 'jedna minuta' : 'jedne minute';
-	            case 'mm':
-	                if (number === 1) {
-	                    result += 'minuta';
-	                } else if (number === 2 || number === 3 || number === 4) {
-	                    result += 'minute';
-	                } else {
-	                    result += 'minuta';
-	                }
-	                return result;
-	            case 'h':
-	                return withoutSuffix ? 'jedan sat' : 'jednog sata';
-	            case 'hh':
-	                if (number === 1) {
-	                    result += 'sat';
-	                } else if (number === 2 || number === 3 || number === 4) {
-	                    result += 'sata';
-	                } else {
-	                    result += 'sati';
-	                }
-	                return result;
-	            case 'dd':
-	                if (number === 1) {
-	                    result += 'dan';
-	                } else {
-	                    result += 'dana';
-	                }
-	                return result;
-	            case 'MM':
-	                if (number === 1) {
-	                    result += 'mjesec';
-	                } else if (number === 2 || number === 3 || number === 4) {
-	                    result += 'mjeseca';
-	                } else {
-	                    result += 'mjeseci';
-	                }
-	                return result;
-	            case 'yy':
-	                if (number === 1) {
-	                    result += 'godina';
-	                } else if (number === 2 || number === 3 || number === 4) {
-	                    result += 'godine';
-	                } else {
-	                    result += 'godina';
-	                }
-	                return result;
+	        case 'm':
+	            return withoutSuffix ? 'jedna minuta' : 'jedne minute';
+	        case 'mm':
+	            if (number === 1) {
+	                result += 'minuta';
+	            } else if (number === 2 || number === 3 || number === 4) {
+	                result += 'minute';
+	            } else {
+	                result += 'minuta';
+	            }
+	            return result;
+	        case 'h':
+	            return withoutSuffix ? 'jedan sat' : 'jednog sata';
+	        case 'hh':
+	            if (number === 1) {
+	                result += 'sat';
+	            } else if (number === 2 || number === 3 || number === 4) {
+	                result += 'sata';
+	            } else {
+	                result += 'sati';
+	            }
+	            return result;
+	        case 'dd':
+	            if (number === 1) {
+	                result += 'dan';
+	            } else {
+	                result += 'dana';
+	            }
+	            return result;
+	        case 'MM':
+	            if (number === 1) {
+	                result += 'mjesec';
+	            } else if (number === 2 || number === 3 || number === 4) {
+	                result += 'mjeseca';
+	            } else {
+	                result += 'mjeseci';
+	            }
+	            return result;
+	        case 'yy':
+	            if (number === 1) {
+	                result += 'godina';
+	            } else if (number === 2 || number === 3 || number === 4) {
+	                result += 'godine';
+	            } else {
+	                result += 'godina';
+	            }
+	            return result;
 	        }
 	    }
 
@@ -9532,32 +9456,32 @@ return /******/ (function(modules) { // webpackBootstrap
 	            nextDay  : '[sutra u] LT',
 	            nextWeek : function () {
 	                switch (this.day()) {
-	                    case 0:
-	                        return '[u] [nedjelju] [u] LT';
-	                    case 3:
-	                        return '[u] [srijedu] [u] LT';
-	                    case 6:
-	                        return '[u] [subotu] [u] LT';
-	                    case 1:
-	                    case 2:
-	                    case 4:
-	                    case 5:
-	                        return '[u] dddd [u] LT';
+	                case 0:
+	                    return '[u] [nedjelju] [u] LT';
+	                case 3:
+	                    return '[u] [srijedu] [u] LT';
+	                case 6:
+	                    return '[u] [subotu] [u] LT';
+	                case 1:
+	                case 2:
+	                case 4:
+	                case 5:
+	                    return '[u] dddd [u] LT';
 	                }
 	            },
 	            lastDay  : '[jučer u] LT',
 	            lastWeek : function () {
 	                switch (this.day()) {
-	                    case 0:
-	                    case 3:
-	                        return '[prošlu] dddd [u] LT';
-	                    case 6:
-	                        return '[prošle] [subote] [u] LT';
-	                    case 1:
-	                    case 2:
-	                    case 4:
-	                    case 5:
-	                        return '[prošli] dddd [u] LT';
+	                case 0:
+	                case 3:
+	                    return '[prošlu] dddd [u] LT';
+	                case 6:
+	                    return '[prošle] [subote] [u] LT';
+	                case 1:
+	                case 2:
+	                case 4:
+	                case 5:
+	                    return '[prošli] dddd [u] LT';
 	                }
 	            },
 	            sameElse : 'L'
@@ -9590,16 +9514,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 69 */
+/* 68 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Hungarian [hu]
+	//! locale : hungarian (hu)
 	//! author : Adam Brunner : https://github.com/adambrunner
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -9609,28 +9533,28 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var num = number,
 	            suffix;
 	        switch (key) {
-	            case 's':
-	                return (isFuture || withoutSuffix) ? 'néhány másodperc' : 'néhány másodperce';
-	            case 'm':
-	                return 'egy' + (isFuture || withoutSuffix ? ' perc' : ' perce');
-	            case 'mm':
-	                return num + (isFuture || withoutSuffix ? ' perc' : ' perce');
-	            case 'h':
-	                return 'egy' + (isFuture || withoutSuffix ? ' óra' : ' órája');
-	            case 'hh':
-	                return num + (isFuture || withoutSuffix ? ' óra' : ' órája');
-	            case 'd':
-	                return 'egy' + (isFuture || withoutSuffix ? ' nap' : ' napja');
-	            case 'dd':
-	                return num + (isFuture || withoutSuffix ? ' nap' : ' napja');
-	            case 'M':
-	                return 'egy' + (isFuture || withoutSuffix ? ' hónap' : ' hónapja');
-	            case 'MM':
-	                return num + (isFuture || withoutSuffix ? ' hónap' : ' hónapja');
-	            case 'y':
-	                return 'egy' + (isFuture || withoutSuffix ? ' év' : ' éve');
-	            case 'yy':
-	                return num + (isFuture || withoutSuffix ? ' év' : ' éve');
+	        case 's':
+	            return (isFuture || withoutSuffix) ? 'néhány másodperc' : 'néhány másodperce';
+	        case 'm':
+	            return 'egy' + (isFuture || withoutSuffix ? ' perc' : ' perce');
+	        case 'mm':
+	            return num + (isFuture || withoutSuffix ? ' perc' : ' perce');
+	        case 'h':
+	            return 'egy' + (isFuture || withoutSuffix ? ' óra' : ' órája');
+	        case 'hh':
+	            return num + (isFuture || withoutSuffix ? ' óra' : ' órája');
+	        case 'd':
+	            return 'egy' + (isFuture || withoutSuffix ? ' nap' : ' napja');
+	        case 'dd':
+	            return num + (isFuture || withoutSuffix ? ' nap' : ' napja');
+	        case 'M':
+	            return 'egy' + (isFuture || withoutSuffix ? ' hónap' : ' hónapja');
+	        case 'MM':
+	            return num + (isFuture || withoutSuffix ? ' hónap' : ' hónapja');
+	        case 'y':
+	            return 'egy' + (isFuture || withoutSuffix ? ' év' : ' éve');
+	        case 'yy':
+	            return num + (isFuture || withoutSuffix ? ' év' : ' éve');
 	        }
 	        return '';
 	    }
@@ -9703,16 +9627,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 70 */
+/* 69 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Armenian [hy-am]
+	//! locale : Armenian (hy-am)
 	//! author : Armendarabyan : https://github.com/armendarabyan
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -9779,16 +9703,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	        ordinalParse: /\d{1,2}|\d{1,2}-(ին|րդ)/,
 	        ordinal: function (number, period) {
 	            switch (period) {
-	                case 'DDD':
-	                case 'w':
-	                case 'W':
-	                case 'DDDo':
-	                    if (number === 1) {
-	                        return number + '-ին';
-	                    }
-	                    return number + '-րդ';
-	                default:
-	                    return number;
+	            case 'DDD':
+	            case 'w':
+	            case 'W':
+	            case 'DDDo':
+	                if (number === 1) {
+	                    return number + '-ին';
+	                }
+	                return number + '-րդ';
+	            default:
+	                return number;
 	            }
 	        },
 	        week : {
@@ -9802,17 +9726,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 71 */
+/* 70 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Indonesian [id]
+	//! locale : Bahasa Indonesia (id)
 	//! author : Mohammad Satrio Utomo : https://github.com/tyok
 	//! reference: http://id.wikisource.org/wiki/Pedoman_Umum_Ejaan_Bahasa_Indonesia_yang_Disempurnakan
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -9889,16 +9813,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 72 */
+/* 71 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Icelandic [is]
+	//! locale : icelandic (is)
 	//! author : Hinrik Örn Sigurðsson : https://github.com/hinrik
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -9914,59 +9838,59 @@ return /******/ (function(modules) { // webpackBootstrap
 	    function translate(number, withoutSuffix, key, isFuture) {
 	        var result = number + ' ';
 	        switch (key) {
-	            case 's':
-	                return withoutSuffix || isFuture ? 'nokkrar sekúndur' : 'nokkrum sekúndum';
-	            case 'm':
-	                return withoutSuffix ? 'mínúta' : 'mínútu';
-	            case 'mm':
-	                if (plural(number)) {
-	                    return result + (withoutSuffix || isFuture ? 'mínútur' : 'mínútum');
-	                } else if (withoutSuffix) {
-	                    return result + 'mínúta';
-	                }
-	                return result + 'mínútu';
-	            case 'hh':
-	                if (plural(number)) {
-	                    return result + (withoutSuffix || isFuture ? 'klukkustundir' : 'klukkustundum');
-	                }
-	                return result + 'klukkustund';
-	            case 'd':
+	        case 's':
+	            return withoutSuffix || isFuture ? 'nokkrar sekúndur' : 'nokkrum sekúndum';
+	        case 'm':
+	            return withoutSuffix ? 'mínúta' : 'mínútu';
+	        case 'mm':
+	            if (plural(number)) {
+	                return result + (withoutSuffix || isFuture ? 'mínútur' : 'mínútum');
+	            } else if (withoutSuffix) {
+	                return result + 'mínúta';
+	            }
+	            return result + 'mínútu';
+	        case 'hh':
+	            if (plural(number)) {
+	                return result + (withoutSuffix || isFuture ? 'klukkustundir' : 'klukkustundum');
+	            }
+	            return result + 'klukkustund';
+	        case 'd':
+	            if (withoutSuffix) {
+	                return 'dagur';
+	            }
+	            return isFuture ? 'dag' : 'degi';
+	        case 'dd':
+	            if (plural(number)) {
 	                if (withoutSuffix) {
-	                    return 'dagur';
+	                    return result + 'dagar';
 	                }
-	                return isFuture ? 'dag' : 'degi';
-	            case 'dd':
-	                if (plural(number)) {
-	                    if (withoutSuffix) {
-	                        return result + 'dagar';
-	                    }
-	                    return result + (isFuture ? 'daga' : 'dögum');
-	                } else if (withoutSuffix) {
-	                    return result + 'dagur';
-	                }
-	                return result + (isFuture ? 'dag' : 'degi');
-	            case 'M':
+	                return result + (isFuture ? 'daga' : 'dögum');
+	            } else if (withoutSuffix) {
+	                return result + 'dagur';
+	            }
+	            return result + (isFuture ? 'dag' : 'degi');
+	        case 'M':
+	            if (withoutSuffix) {
+	                return 'mánuður';
+	            }
+	            return isFuture ? 'mánuð' : 'mánuði';
+	        case 'MM':
+	            if (plural(number)) {
 	                if (withoutSuffix) {
-	                    return 'mánuður';
+	                    return result + 'mánuðir';
 	                }
-	                return isFuture ? 'mánuð' : 'mánuði';
-	            case 'MM':
-	                if (plural(number)) {
-	                    if (withoutSuffix) {
-	                        return result + 'mánuðir';
-	                    }
-	                    return result + (isFuture ? 'mánuði' : 'mánuðum');
-	                } else if (withoutSuffix) {
-	                    return result + 'mánuður';
-	                }
-	                return result + (isFuture ? 'mánuð' : 'mánuði');
-	            case 'y':
-	                return withoutSuffix || isFuture ? 'ár' : 'ári';
-	            case 'yy':
-	                if (plural(number)) {
-	                    return result + (withoutSuffix || isFuture ? 'ár' : 'árum');
-	                }
-	                return result + (withoutSuffix || isFuture ? 'ár' : 'ári');
+	                return result + (isFuture ? 'mánuði' : 'mánuðum');
+	            } else if (withoutSuffix) {
+	                return result + 'mánuður';
+	            }
+	            return result + (isFuture ? 'mánuð' : 'mánuði');
+	        case 'y':
+	            return withoutSuffix || isFuture ? 'ár' : 'ári';
+	        case 'yy':
+	            if (plural(number)) {
+	                return result + (withoutSuffix || isFuture ? 'ár' : 'árum');
+	            }
+	            return result + (withoutSuffix || isFuture ? 'ár' : 'ári');
 	        }
 	    }
 
@@ -10020,17 +9944,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 73 */
+/* 72 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Italian [it]
+	//! locale : italian (it)
 	//! author : Lorenzo : https://github.com/aliem
 	//! author: Mattia Larentis: https://github.com/nostalgiaz
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -10094,16 +10018,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 74 */
+/* 73 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Japanese [ja]
+	//! locale : japanese (ja)
 	//! author : LI Long : https://github.com/baryon
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -10144,12 +10068,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	        ordinalParse : /\d{1,2}日/,
 	        ordinal : function (number, period) {
 	            switch (period) {
-	                case 'd':
-	                case 'D':
-	                case 'DDD':
-	                    return number + '日';
-	                default:
-	                    return number;
+	            case 'd':
+	            case 'D':
+	            case 'DDD':
+	                return number + '日';
+	            default:
+	                return number;
 	            }
 	        },
 	        relativeTime : {
@@ -10174,17 +10098,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 75 */
+/* 74 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Japanese [jv]
+	//! locale : Boso Jowo (jv)
 	//! author : Rony Lantip : https://github.com/lantip
 	//! reference: http://jv.wikipedia.org/wiki/Basa_Jawa
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -10261,16 +10185,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 76 */
+/* 75 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Georgian [ka]
+	//! locale : Georgian (ka)
 	//! author : Irakli Janiashvili : https://github.com/irakli-janiashvili
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -10354,16 +10278,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 77 */
+/* 76 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Kazakh [kk]
+	//! locale : kazakh (kk)
 	//! authors : Nurlan Rakhimzhanov : https://github.com/nurlan
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -10445,16 +10369,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 78 */
+/* 77 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Cambodian [km]
+	//! locale : khmer (km)
 	//! author : Kruy Vanna : https://github.com/kruyvanna
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -10507,11 +10431,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 79 */
+/* 78 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Korean [ko]
+	//! locale : korean (ko)
 	//!
 	//! authors
 	//!
@@ -10520,7 +10444,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -10579,16 +10503,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 80 */
+/* 79 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Kyrgyz [ky]
+	//! locale : kyrgyz (ky)
 	//! author : Chyngyz Arystan uulu : https://github.com/chyngyz
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -10671,16 +10595,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 81 */
+/* 80 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Luxembourgish [lb]
+	//! locale : Luxembourgish (lb)
 	//! author : mweimerskirch : https://github.com/mweimerskirch, David Raison : https://github.com/kwisatz
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -10811,16 +10735,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 82 */
+/* 81 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Lao [lo]
+	//! locale : lao (lo)
 	//! author : Ryan Hart : https://github.com/ryanhart2
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -10885,16 +10809,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 83 */
+/* 82 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Lithuanian [lt]
+	//! locale : Lithuanian (lt)
 	//! author : Mindaugas Mozūras : https://github.com/mmozuras
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -10944,8 +10868,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var lt = moment.defineLocale('lt', {
 	        months : {
 	            format: 'sausio_vasario_kovo_balandžio_gegužės_birželio_liepos_rugpjūčio_rugsėjo_spalio_lapkričio_gruodžio'.split('_'),
-	            standalone: 'sausis_vasaris_kovas_balandis_gegužė_birželis_liepa_rugpjūtis_rugsėjis_spalis_lapkritis_gruodis'.split('_'),
-	            isFormat: /D[oD]?(\[[^\[\]]*\]|\s+)+MMMM?|MMMM?(\[[^\[\]]*\]|\s+)+D[oD]?/
+	            standalone: 'sausis_vasaris_kovas_balandis_gegužė_birželis_liepa_rugpjūtis_rugsėjis_spalis_lapkritis_gruodis'.split('_')
 	        },
 	        monthsShort : 'sau_vas_kov_bal_geg_bir_lie_rgp_rgs_spa_lap_grd'.split('_'),
 	        weekdays : {
@@ -11006,17 +10929,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 84 */
+/* 83 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Latvian [lv]
+	//! locale : latvian (lv)
 	//! author : Kristaps Karlsons : https://github.com/skakri
 	//! author : Jānis Elmeris : https://github.com/JanisE
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -11039,11 +10962,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	    function format(forms, number, withoutSuffix) {
 	        if (withoutSuffix) {
 	            // E.g. "21 minūte", "3 minūtes".
-	            return number % 10 === 1 && number % 100 !== 11 ? forms[2] : forms[3];
+	            return number % 10 === 1 && number !== 11 ? forms[2] : forms[3];
 	        } else {
 	            // E.g. "21 minūtes" as in "pēc 21 minūtes".
 	            // E.g. "3 minūtēm" as in "pēc 3 minūtēm".
-	            return number % 10 === 1 && number % 100 !== 11 ? forms[0] : forms[1];
+	            return number % 10 === 1 && number !== 11 ? forms[0] : forms[1];
 	        }
 	    }
 	    function relativeTimeWithPlural(number, withoutSuffix, key) {
@@ -11107,16 +11030,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 85 */
+/* 84 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Montenegrin [me]
+	//! locale : Montenegrin (me)
 	//! author : Miodrag Nikač <miodrag@restartit.me> : https://github.com/miodragnikac
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -11166,17 +11089,17 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	            nextWeek: function () {
 	                switch (this.day()) {
-	                    case 0:
-	                        return '[u] [nedjelju] [u] LT';
-	                    case 3:
-	                        return '[u] [srijedu] [u] LT';
-	                    case 6:
-	                        return '[u] [subotu] [u] LT';
-	                    case 1:
-	                    case 2:
-	                    case 4:
-	                    case 5:
-	                        return '[u] dddd [u] LT';
+	                case 0:
+	                    return '[u] [nedjelju] [u] LT';
+	                case 3:
+	                    return '[u] [srijedu] [u] LT';
+	                case 6:
+	                    return '[u] [subotu] [u] LT';
+	                case 1:
+	                case 2:
+	                case 4:
+	                case 5:
+	                    return '[u] dddd [u] LT';
 	                }
 	            },
 	            lastDay  : '[juče u] LT',
@@ -11222,16 +11145,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 86 */
+/* 85 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Macedonian [mk]
+	//! locale : macedonian (mk)
 	//! author : Borislav Mickov : https://github.com/B0k0
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -11257,15 +11180,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	            lastDay : '[Вчера во] LT',
 	            lastWeek : function () {
 	                switch (this.day()) {
-	                    case 0:
-	                    case 3:
-	                    case 6:
-	                        return '[Изминатата] dddd [во] LT';
-	                    case 1:
-	                    case 2:
-	                    case 4:
-	                    case 5:
-	                        return '[Изминатиот] dddd [во] LT';
+	                case 0:
+	                case 3:
+	                case 6:
+	                    return '[Изминатата] dddd [во] LT';
+	                case 1:
+	                case 2:
+	                case 4:
+	                case 5:
+	                    return '[Изминатиот] dddd [во] LT';
 	                }
 	            },
 	            sameElse : 'L'
@@ -11316,16 +11239,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 87 */
+/* 86 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Malayalam [ml]
+	//! locale : malayalam (ml)
 	//! author : Floyd Pink : https://github.com/floydpink
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -11401,17 +11324,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 88 */
+/* 87 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Marathi [mr]
+	//! locale : Marathi (mr)
 	//! author : Harshad Kale : https://github.com/kalehv
 	//! author : Vivek Athalye : https://github.com/vnathalye
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -11564,16 +11487,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 89 */
+/* 88 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Malay [ms]
+	//! locale : Bahasa Malaysia (ms-MY)
 	//! author : Weldan Jamili : https://github.com/weldan
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -11650,17 +11573,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 90 */
+/* 89 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Malay [ms-my]
-	//! note : DEPRECATED, the correct one is [ms]
+	//! locale : Bahasa Malaysia (ms-MY)
 	//! author : Weldan Jamili : https://github.com/weldan
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -11737,16 +11659,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 91 */
+/* 90 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Burmese [my]
+	//! locale : Burmese (my)
 	//! author : Squar team, mysquar.com
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -11834,17 +11756,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 92 */
+/* 91 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Norwegian Bokmål [nb]
+	//! locale : norwegian bokmål (nb)
 	//! authors : Espen Hovlandsdal : https://github.com/rexxars
 	//!           Sigurd Gartmann : https://github.com/sigurdga
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -11901,16 +11823,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 93 */
+/* 92 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Nepalese [ne]
+	//! locale : nepali/nepalese
 	//! author : suvash : https://github.com/suvash
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -12028,16 +11950,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 94 */
+/* 93 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Dutch [nl]
+	//! locale : dutch (nl)
 	//! author : Joris Röling : https://github.com/jjupiter
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -12105,16 +12027,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 95 */
+/* 94 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Nynorsk [nn]
+	//! locale : norwegian nynorsk (nn)
 	//! author : https://github.com/mechuwind
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -12169,16 +12091,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 96 */
+/* 95 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Punjabi (India) [pa-in]
+	//! locale : punjabi india (pa-in)
 	//! author : Harpreet Singh : https://github.com/harpreetkhalsagtbit
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -12297,16 +12219,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 97 */
+/* 96 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Polish [pl]
+	//! locale : polish (pl)
 	//! author : Rafal Hirsz : https://github.com/evoL
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -12319,18 +12241,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	    function translate(number, withoutSuffix, key) {
 	        var result = number + ' ';
 	        switch (key) {
-	            case 'm':
-	                return withoutSuffix ? 'minuta' : 'minutę';
-	            case 'mm':
-	                return result + (plural(number) ? 'minuty' : 'minut');
-	            case 'h':
-	                return withoutSuffix  ? 'godzina'  : 'godzinę';
-	            case 'hh':
-	                return result + (plural(number) ? 'godziny' : 'godzin');
-	            case 'MM':
-	                return result + (plural(number) ? 'miesiące' : 'miesięcy');
-	            case 'yy':
-	                return result + (plural(number) ? 'lata' : 'lat');
+	        case 'm':
+	            return withoutSuffix ? 'minuta' : 'minutę';
+	        case 'mm':
+	            return result + (plural(number) ? 'minuty' : 'minut');
+	        case 'h':
+	            return withoutSuffix  ? 'godzina'  : 'godzinę';
+	        case 'hh':
+	            return result + (plural(number) ? 'godziny' : 'godzin');
+	        case 'MM':
+	            return result + (plural(number) ? 'miesiące' : 'miesięcy');
+	        case 'yy':
+	            return result + (plural(number) ? 'lata' : 'lat');
 	        }
 	    }
 
@@ -12366,14 +12288,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	            lastDay: '[Wczoraj o] LT',
 	            lastWeek: function () {
 	                switch (this.day()) {
-	                    case 0:
-	                        return '[W zeszłą niedzielę o] LT';
-	                    case 3:
-	                        return '[W zeszłą środę o] LT';
-	                    case 6:
-	                        return '[W zeszłą sobotę o] LT';
-	                    default:
-	                        return '[W zeszły] dddd [o] LT';
+	                case 0:
+	                    return '[W zeszłą niedzielę o] LT';
+	                case 3:
+	                    return '[W zeszłą środę o] LT';
+	                case 6:
+	                    return '[W zeszłą sobotę o] LT';
+	                default:
+	                    return '[W zeszły] dddd [o] LT';
 	                }
 	            },
 	            sameElse: 'L'
@@ -12406,16 +12328,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 98 */
+/* 97 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Portuguese [pt]
+	//! locale : portuguese (pt)
 	//! author : Jefferson : https://github.com/jalex79
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -12475,16 +12397,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 99 */
+/* 98 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Portuguese (Brazil) [pt-br]
+	//! locale : brazilian portuguese (pt-br)
 	//! author : Caio Ribeiro Pereira : https://github.com/caio-ribeiro-pereira
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -12540,17 +12462,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 100 */
+/* 99 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Romanian [ro]
+	//! locale : romanian (ro)
 	//! author : Vlad Gurdiga : https://github.com/gurdiga
 	//! author : Valentin Agachi : https://github.com/avaly
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -12619,18 +12541,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 101 */
+/* 100 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Russian [ru]
+	//! locale : russian (ru)
 	//! author : Viktorminator : https://github.com/Viktorminator
 	//! Author : Menelion Elensúle : https://github.com/Oire
 	//! author : Коренберг Марк : https://github.com/socketpair
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -12679,18 +12601,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	        monthsParse : monthsParse,
 	        longMonthsParse : monthsParse,
 	        shortMonthsParse : monthsParse,
-
-	        // полные названия с падежами, по три буквы, для некоторых, по 4 буквы, сокращения с точкой и без точки
-	        monthsRegex: /^(январ[ья]|янв\.?|феврал[ья]|февр?\.?|марта?|мар\.?|апрел[ья]|апр\.?|ма[йя]|июн[ья]|июн\.?|июл[ья]|июл\.?|августа?|авг\.?|сентябр[ья]|сент?\.?|октябр[ья]|окт\.?|ноябр[ья]|нояб?\.?|декабр[ья]|дек\.?)/i,
-
-	        // копия предыдущего
-	        monthsShortRegex: /^(январ[ья]|янв\.?|феврал[ья]|февр?\.?|марта?|мар\.?|апрел[ья]|апр\.?|ма[йя]|июн[ья]|июн\.?|июл[ья]|июл\.?|августа?|авг\.?|сентябр[ья]|сент?\.?|октябр[ья]|окт\.?|ноябр[ья]|нояб?\.?|декабр[ья]|дек\.?)/i,
-
-	        // полные названия с падежами
-	        monthsStrictRegex: /^(январ[яь]|феврал[яь]|марта?|апрел[яь]|ма[яй]|июн[яь]|июл[яь]|августа?|сентябр[яь]|октябр[яь]|ноябр[яь]|декабр[яь])/i,
-
-	        // Выражение, которое соотвествует только сокращённым формам
-	        monthsShortStrictRegex: /^(янв\.|февр?\.|мар[т.]|апр\.|ма[яй]|июн[ья.]|июл[ья.]|авг\.|сент?\.|окт\.|нояб?\.|дек\.)/i,
+	        monthsRegex: /^(сентябр[яь]|октябр[яь]|декабр[яь]|феврал[яь]|январ[яь]|апрел[яь]|августа?|ноябр[яь]|сент\.|февр\.|нояб\.|июнь|янв.|июль|дек.|авг.|апр.|марта|мар[.т]|окт.|июн[яь]|июл[яь]|ма[яй])/i,
+	        monthsShortRegex: /^(сентябр[яь]|октябр[яь]|декабр[яь]|феврал[яь]|январ[яь]|апрел[яь]|августа?|ноябр[яь]|сент\.|февр\.|нояб\.|июнь|янв.|июль|дек.|авг.|апр.|марта|мар[.т]|окт.|июн[яь]|июл[яь]|ма[яй])/i,
+	        monthsStrictRegex: /^(сентябр[яь]|октябр[яь]|декабр[яь]|феврал[яь]|январ[яь]|апрел[яь]|августа?|ноябр[яь]|марта?|июн[яь]|июл[яь]|ма[яй])/i,
+	        monthsShortStrictRegex: /^(нояб\.|февр\.|сент\.|июль|янв\.|июн[яь]|мар[.т]|авг\.|апр\.|окт\.|дек\.|ма[яй])/i,
 	        longDateFormat : {
 	            LT : 'HH:mm',
 	            LTS : 'HH:mm:ss',
@@ -12706,16 +12620,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	            nextWeek: function (now) {
 	                if (now.week() !== this.week()) {
 	                    switch (this.day()) {
-	                        case 0:
-	                            return '[В следующее] dddd [в] LT';
-	                        case 1:
-	                        case 2:
-	                        case 4:
-	                            return '[В следующий] dddd [в] LT';
-	                        case 3:
-	                        case 5:
-	                        case 6:
-	                            return '[В следующую] dddd [в] LT';
+	                    case 0:
+	                        return '[В следующее] dddd [в] LT';
+	                    case 1:
+	                    case 2:
+	                    case 4:
+	                        return '[В следующий] dddd [в] LT';
+	                    case 3:
+	                    case 5:
+	                    case 6:
+	                        return '[В следующую] dddd [в] LT';
 	                    }
 	                } else {
 	                    if (this.day() === 2) {
@@ -12728,16 +12642,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	            lastWeek: function (now) {
 	                if (now.week() !== this.week()) {
 	                    switch (this.day()) {
-	                        case 0:
-	                            return '[В прошлое] dddd [в] LT';
-	                        case 1:
-	                        case 2:
-	                        case 4:
-	                            return '[В прошлый] dddd [в] LT';
-	                        case 3:
-	                        case 5:
-	                        case 6:
-	                            return '[В прошлую] dddd [в] LT';
+	                    case 0:
+	                        return '[В прошлое] dddd [в] LT';
+	                    case 1:
+	                    case 2:
+	                    case 4:
+	                        return '[В прошлый] dddd [в] LT';
+	                    case 3:
+	                    case 5:
+	                    case 6:
+	                        return '[В прошлую] dddd [в] LT';
 	                    }
 	                } else {
 	                    if (this.day() === 2) {
@@ -12782,17 +12696,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	        ordinalParse: /\d{1,2}-(й|го|я)/,
 	        ordinal: function (number, period) {
 	            switch (period) {
-	                case 'M':
-	                case 'd':
-	                case 'DDD':
-	                    return number + '-й';
-	                case 'D':
-	                    return number + '-го';
-	                case 'w':
-	                case 'W':
-	                    return number + '-я';
-	                default:
-	                    return number;
+	            case 'M':
+	            case 'd':
+	            case 'DDD':
+	                return number + '-й';
+	            case 'D':
+	                return number + '-го';
+	            case 'w':
+	            case 'W':
+	                return number + '-я';
+	            default:
+	                return number;
 	            }
 	        },
 	        week : {
@@ -12806,16 +12720,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 102 */
+/* 101 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Northern Sami [se]
+	//! locale : Northern Sami (se)
 	//! authors : Bård Rolstad Henriksen : https://github.com/karamell
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -12871,16 +12785,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 103 */
+/* 102 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Sinhalese [si]
+	//! locale : Sinhalese (si)
 	//! author : Sampath Sitinamaluwa : https://github.com/sampathsris
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -12946,17 +12860,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 104 */
+/* 103 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Slovak [sk]
+	//! locale : slovak (sk)
 	//! author : Martin Minka : https://github.com/k2s
 	//! based on work of petrbela : https://github.com/petrbela
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -12969,53 +12883,53 @@ return /******/ (function(modules) { // webpackBootstrap
 	    function translate(number, withoutSuffix, key, isFuture) {
 	        var result = number + ' ';
 	        switch (key) {
-	            case 's':  // a few seconds / in a few seconds / a few seconds ago
-	                return (withoutSuffix || isFuture) ? 'pár sekúnd' : 'pár sekundami';
-	            case 'm':  // a minute / in a minute / a minute ago
-	                return withoutSuffix ? 'minúta' : (isFuture ? 'minútu' : 'minútou');
-	            case 'mm': // 9 minutes / in 9 minutes / 9 minutes ago
-	                if (withoutSuffix || isFuture) {
-	                    return result + (plural(number) ? 'minúty' : 'minút');
-	                } else {
-	                    return result + 'minútami';
-	                }
-	                break;
-	            case 'h':  // an hour / in an hour / an hour ago
-	                return withoutSuffix ? 'hodina' : (isFuture ? 'hodinu' : 'hodinou');
-	            case 'hh': // 9 hours / in 9 hours / 9 hours ago
-	                if (withoutSuffix || isFuture) {
-	                    return result + (plural(number) ? 'hodiny' : 'hodín');
-	                } else {
-	                    return result + 'hodinami';
-	                }
-	                break;
-	            case 'd':  // a day / in a day / a day ago
-	                return (withoutSuffix || isFuture) ? 'deň' : 'dňom';
-	            case 'dd': // 9 days / in 9 days / 9 days ago
-	                if (withoutSuffix || isFuture) {
-	                    return result + (plural(number) ? 'dni' : 'dní');
-	                } else {
-	                    return result + 'dňami';
-	                }
-	                break;
-	            case 'M':  // a month / in a month / a month ago
-	                return (withoutSuffix || isFuture) ? 'mesiac' : 'mesiacom';
-	            case 'MM': // 9 months / in 9 months / 9 months ago
-	                if (withoutSuffix || isFuture) {
-	                    return result + (plural(number) ? 'mesiace' : 'mesiacov');
-	                } else {
-	                    return result + 'mesiacmi';
-	                }
-	                break;
-	            case 'y':  // a year / in a year / a year ago
-	                return (withoutSuffix || isFuture) ? 'rok' : 'rokom';
-	            case 'yy': // 9 years / in 9 years / 9 years ago
-	                if (withoutSuffix || isFuture) {
-	                    return result + (plural(number) ? 'roky' : 'rokov');
-	                } else {
-	                    return result + 'rokmi';
-	                }
-	                break;
+	        case 's':  // a few seconds / in a few seconds / a few seconds ago
+	            return (withoutSuffix || isFuture) ? 'pár sekúnd' : 'pár sekundami';
+	        case 'm':  // a minute / in a minute / a minute ago
+	            return withoutSuffix ? 'minúta' : (isFuture ? 'minútu' : 'minútou');
+	        case 'mm': // 9 minutes / in 9 minutes / 9 minutes ago
+	            if (withoutSuffix || isFuture) {
+	                return result + (plural(number) ? 'minúty' : 'minút');
+	            } else {
+	                return result + 'minútami';
+	            }
+	            break;
+	        case 'h':  // an hour / in an hour / an hour ago
+	            return withoutSuffix ? 'hodina' : (isFuture ? 'hodinu' : 'hodinou');
+	        case 'hh': // 9 hours / in 9 hours / 9 hours ago
+	            if (withoutSuffix || isFuture) {
+	                return result + (plural(number) ? 'hodiny' : 'hodín');
+	            } else {
+	                return result + 'hodinami';
+	            }
+	            break;
+	        case 'd':  // a day / in a day / a day ago
+	            return (withoutSuffix || isFuture) ? 'deň' : 'dňom';
+	        case 'dd': // 9 days / in 9 days / 9 days ago
+	            if (withoutSuffix || isFuture) {
+	                return result + (plural(number) ? 'dni' : 'dní');
+	            } else {
+	                return result + 'dňami';
+	            }
+	            break;
+	        case 'M':  // a month / in a month / a month ago
+	            return (withoutSuffix || isFuture) ? 'mesiac' : 'mesiacom';
+	        case 'MM': // 9 months / in 9 months / 9 months ago
+	            if (withoutSuffix || isFuture) {
+	                return result + (plural(number) ? 'mesiace' : 'mesiacov');
+	            } else {
+	                return result + 'mesiacmi';
+	            }
+	            break;
+	        case 'y':  // a year / in a year / a year ago
+	            return (withoutSuffix || isFuture) ? 'rok' : 'rokom';
+	        case 'yy': // 9 years / in 9 years / 9 years ago
+	            if (withoutSuffix || isFuture) {
+	                return result + (plural(number) ? 'roky' : 'rokov');
+	            } else {
+	                return result + 'rokmi';
+	            }
+	            break;
 	        }
 	    }
 
@@ -13038,36 +12952,36 @@ return /******/ (function(modules) { // webpackBootstrap
 	            nextDay: '[zajtra o] LT',
 	            nextWeek: function () {
 	                switch (this.day()) {
-	                    case 0:
-	                        return '[v nedeľu o] LT';
-	                    case 1:
-	                    case 2:
-	                        return '[v] dddd [o] LT';
-	                    case 3:
-	                        return '[v stredu o] LT';
-	                    case 4:
-	                        return '[vo štvrtok o] LT';
-	                    case 5:
-	                        return '[v piatok o] LT';
-	                    case 6:
-	                        return '[v sobotu o] LT';
+	                case 0:
+	                    return '[v nedeľu o] LT';
+	                case 1:
+	                case 2:
+	                    return '[v] dddd [o] LT';
+	                case 3:
+	                    return '[v stredu o] LT';
+	                case 4:
+	                    return '[vo štvrtok o] LT';
+	                case 5:
+	                    return '[v piatok o] LT';
+	                case 6:
+	                    return '[v sobotu o] LT';
 	                }
 	            },
 	            lastDay: '[včera o] LT',
 	            lastWeek: function () {
 	                switch (this.day()) {
-	                    case 0:
-	                        return '[minulú nedeľu o] LT';
-	                    case 1:
-	                    case 2:
-	                        return '[minulý] dddd [o] LT';
-	                    case 3:
-	                        return '[minulú stredu o] LT';
-	                    case 4:
-	                    case 5:
-	                        return '[minulý] dddd [o] LT';
-	                    case 6:
-	                        return '[minulú sobotu o] LT';
+	                case 0:
+	                    return '[minulú nedeľu o] LT';
+	                case 1:
+	                case 2:
+	                    return '[minulý] dddd [o] LT';
+	                case 3:
+	                    return '[minulú stredu o] LT';
+	                case 4:
+	                case 5:
+	                    return '[minulý] dddd [o] LT';
+	                case 6:
+	                    return '[minulú sobotu o] LT';
 	                }
 	            },
 	            sameElse: 'L'
@@ -13100,16 +13014,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 105 */
+/* 104 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Slovenian [sl]
+	//! locale : slovenian (sl)
 	//! author : Robert Sedovšek : https://github.com/sedovsek
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -13117,71 +13031,71 @@ return /******/ (function(modules) { // webpackBootstrap
 	    function processRelativeTime(number, withoutSuffix, key, isFuture) {
 	        var result = number + ' ';
 	        switch (key) {
-	            case 's':
-	                return withoutSuffix || isFuture ? 'nekaj sekund' : 'nekaj sekundami';
-	            case 'm':
-	                return withoutSuffix ? 'ena minuta' : 'eno minuto';
-	            case 'mm':
-	                if (number === 1) {
-	                    result += withoutSuffix ? 'minuta' : 'minuto';
-	                } else if (number === 2) {
-	                    result += withoutSuffix || isFuture ? 'minuti' : 'minutama';
-	                } else if (number < 5) {
-	                    result += withoutSuffix || isFuture ? 'minute' : 'minutami';
-	                } else {
-	                    result += withoutSuffix || isFuture ? 'minut' : 'minutami';
-	                }
-	                return result;
-	            case 'h':
-	                return withoutSuffix ? 'ena ura' : 'eno uro';
-	            case 'hh':
-	                if (number === 1) {
-	                    result += withoutSuffix ? 'ura' : 'uro';
-	                } else if (number === 2) {
-	                    result += withoutSuffix || isFuture ? 'uri' : 'urama';
-	                } else if (number < 5) {
-	                    result += withoutSuffix || isFuture ? 'ure' : 'urami';
-	                } else {
-	                    result += withoutSuffix || isFuture ? 'ur' : 'urami';
-	                }
-	                return result;
-	            case 'd':
-	                return withoutSuffix || isFuture ? 'en dan' : 'enim dnem';
-	            case 'dd':
-	                if (number === 1) {
-	                    result += withoutSuffix || isFuture ? 'dan' : 'dnem';
-	                } else if (number === 2) {
-	                    result += withoutSuffix || isFuture ? 'dni' : 'dnevoma';
-	                } else {
-	                    result += withoutSuffix || isFuture ? 'dni' : 'dnevi';
-	                }
-	                return result;
-	            case 'M':
-	                return withoutSuffix || isFuture ? 'en mesec' : 'enim mesecem';
-	            case 'MM':
-	                if (number === 1) {
-	                    result += withoutSuffix || isFuture ? 'mesec' : 'mesecem';
-	                } else if (number === 2) {
-	                    result += withoutSuffix || isFuture ? 'meseca' : 'mesecema';
-	                } else if (number < 5) {
-	                    result += withoutSuffix || isFuture ? 'mesece' : 'meseci';
-	                } else {
-	                    result += withoutSuffix || isFuture ? 'mesecev' : 'meseci';
-	                }
-	                return result;
-	            case 'y':
-	                return withoutSuffix || isFuture ? 'eno leto' : 'enim letom';
-	            case 'yy':
-	                if (number === 1) {
-	                    result += withoutSuffix || isFuture ? 'leto' : 'letom';
-	                } else if (number === 2) {
-	                    result += withoutSuffix || isFuture ? 'leti' : 'letoma';
-	                } else if (number < 5) {
-	                    result += withoutSuffix || isFuture ? 'leta' : 'leti';
-	                } else {
-	                    result += withoutSuffix || isFuture ? 'let' : 'leti';
-	                }
-	                return result;
+	        case 's':
+	            return withoutSuffix || isFuture ? 'nekaj sekund' : 'nekaj sekundami';
+	        case 'm':
+	            return withoutSuffix ? 'ena minuta' : 'eno minuto';
+	        case 'mm':
+	            if (number === 1) {
+	                result += withoutSuffix ? 'minuta' : 'minuto';
+	            } else if (number === 2) {
+	                result += withoutSuffix || isFuture ? 'minuti' : 'minutama';
+	            } else if (number < 5) {
+	                result += withoutSuffix || isFuture ? 'minute' : 'minutami';
+	            } else {
+	                result += withoutSuffix || isFuture ? 'minut' : 'minutami';
+	            }
+	            return result;
+	        case 'h':
+	            return withoutSuffix ? 'ena ura' : 'eno uro';
+	        case 'hh':
+	            if (number === 1) {
+	                result += withoutSuffix ? 'ura' : 'uro';
+	            } else if (number === 2) {
+	                result += withoutSuffix || isFuture ? 'uri' : 'urama';
+	            } else if (number < 5) {
+	                result += withoutSuffix || isFuture ? 'ure' : 'urami';
+	            } else {
+	                result += withoutSuffix || isFuture ? 'ur' : 'urami';
+	            }
+	            return result;
+	        case 'd':
+	            return withoutSuffix || isFuture ? 'en dan' : 'enim dnem';
+	        case 'dd':
+	            if (number === 1) {
+	                result += withoutSuffix || isFuture ? 'dan' : 'dnem';
+	            } else if (number === 2) {
+	                result += withoutSuffix || isFuture ? 'dni' : 'dnevoma';
+	            } else {
+	                result += withoutSuffix || isFuture ? 'dni' : 'dnevi';
+	            }
+	            return result;
+	        case 'M':
+	            return withoutSuffix || isFuture ? 'en mesec' : 'enim mesecem';
+	        case 'MM':
+	            if (number === 1) {
+	                result += withoutSuffix || isFuture ? 'mesec' : 'mesecem';
+	            } else if (number === 2) {
+	                result += withoutSuffix || isFuture ? 'meseca' : 'mesecema';
+	            } else if (number < 5) {
+	                result += withoutSuffix || isFuture ? 'mesece' : 'meseci';
+	            } else {
+	                result += withoutSuffix || isFuture ? 'mesecev' : 'meseci';
+	            }
+	            return result;
+	        case 'y':
+	            return withoutSuffix || isFuture ? 'eno leto' : 'enim letom';
+	        case 'yy':
+	            if (number === 1) {
+	                result += withoutSuffix || isFuture ? 'leto' : 'letom';
+	            } else if (number === 2) {
+	                result += withoutSuffix || isFuture ? 'leti' : 'letoma';
+	            } else if (number < 5) {
+	                result += withoutSuffix || isFuture ? 'leta' : 'leti';
+	            } else {
+	                result += withoutSuffix || isFuture ? 'let' : 'leti';
+	            }
+	            return result;
 	        }
 	    }
 
@@ -13207,33 +13121,33 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	            nextWeek : function () {
 	                switch (this.day()) {
-	                    case 0:
-	                        return '[v] [nedeljo] [ob] LT';
-	                    case 3:
-	                        return '[v] [sredo] [ob] LT';
-	                    case 6:
-	                        return '[v] [soboto] [ob] LT';
-	                    case 1:
-	                    case 2:
-	                    case 4:
-	                    case 5:
-	                        return '[v] dddd [ob] LT';
+	                case 0:
+	                    return '[v] [nedeljo] [ob] LT';
+	                case 3:
+	                    return '[v] [sredo] [ob] LT';
+	                case 6:
+	                    return '[v] [soboto] [ob] LT';
+	                case 1:
+	                case 2:
+	                case 4:
+	                case 5:
+	                    return '[v] dddd [ob] LT';
 	                }
 	            },
 	            lastDay  : '[včeraj ob] LT',
 	            lastWeek : function () {
 	                switch (this.day()) {
-	                    case 0:
-	                        return '[prejšnjo] [nedeljo] [ob] LT';
-	                    case 3:
-	                        return '[prejšnjo] [sredo] [ob] LT';
-	                    case 6:
-	                        return '[prejšnjo] [soboto] [ob] LT';
-	                    case 1:
-	                    case 2:
-	                    case 4:
-	                    case 5:
-	                        return '[prejšnji] dddd [ob] LT';
+	                case 0:
+	                    return '[prejšnjo] [nedeljo] [ob] LT';
+	                case 3:
+	                    return '[prejšnjo] [sredo] [ob] LT';
+	                case 6:
+	                    return '[prejšnjo] [soboto] [ob] LT';
+	                case 1:
+	                case 2:
+	                case 4:
+	                case 5:
+	                    return '[prejšnji] dddd [ob] LT';
 	                }
 	            },
 	            sameElse : 'L'
@@ -13266,18 +13180,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 106 */
+/* 105 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Albanian [sq]
+	//! locale : Albanian (sq)
 	//! author : Flakërim Ismani : https://github.com/flakerimi
 	//! author: Menelion Elensúle: https://github.com/Oire (tests)
 	//! author : Oerd Cukalla : https://github.com/oerd (fixes)
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -13340,16 +13254,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 107 */
+/* 106 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Serbian [sr]
+	//! locale : Serbian-latin (sr)
 	//! author : Milan Janačković<milanjanackovic@gmail.com> : https://github.com/milan-j
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -13398,17 +13312,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	            nextDay: '[sutra u] LT',
 	            nextWeek: function () {
 	                switch (this.day()) {
-	                    case 0:
-	                        return '[u] [nedelju] [u] LT';
-	                    case 3:
-	                        return '[u] [sredu] [u] LT';
-	                    case 6:
-	                        return '[u] [subotu] [u] LT';
-	                    case 1:
-	                    case 2:
-	                    case 4:
-	                    case 5:
-	                        return '[u] dddd [u] LT';
+	                case 0:
+	                    return '[u] [nedelju] [u] LT';
+	                case 3:
+	                    return '[u] [sredu] [u] LT';
+	                case 6:
+	                    return '[u] [subotu] [u] LT';
+	                case 1:
+	                case 2:
+	                case 4:
+	                case 5:
+	                    return '[u] dddd [u] LT';
 	                }
 	            },
 	            lastDay  : '[juče u] LT',
@@ -13454,16 +13368,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 108 */
+/* 107 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Serbian Cyrillic [sr-cyrl]
+	//! locale : Serbian-cyrillic (sr-cyrl)
 	//! author : Milan Janačković<milanjanackovic@gmail.com> : https://github.com/milan-j
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -13512,17 +13426,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	            nextDay: '[сутра у] LT',
 	            nextWeek: function () {
 	                switch (this.day()) {
-	                    case 0:
-	                        return '[у] [недељу] [у] LT';
-	                    case 3:
-	                        return '[у] [среду] [у] LT';
-	                    case 6:
-	                        return '[у] [суботу] [у] LT';
-	                    case 1:
-	                    case 2:
-	                    case 4:
-	                    case 5:
-	                        return '[у] dddd [у] LT';
+	                case 0:
+	                    return '[у] [недељу] [у] LT';
+	                case 3:
+	                    return '[у] [среду] [у] LT';
+	                case 6:
+	                    return '[у] [суботу] [у] LT';
+	                case 1:
+	                case 2:
+	                case 4:
+	                case 5:
+	                    return '[у] dddd [у] LT';
 	                }
 	            },
 	            lastDay  : '[јуче у] LT',
@@ -13568,16 +13482,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 109 */
+/* 108 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Swazi [ss]
+	//! locale : siSwati (ss)
 	//! author : Nicolai Davies<mail@nicolai.io> : https://github.com/nicolaidavies
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -13661,16 +13575,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 110 */
+/* 109 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Swedish [sv]
+	//! locale : swedish (sv)
 	//! author : Jens Alm : https://github.com/ulmus
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -13734,16 +13648,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 111 */
+/* 110 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Swahili [sw]
+	//! locale : swahili (sw)
 	//! author : Fahad Kassim : https://github.com/fadsel
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -13797,16 +13711,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 112 */
+/* 111 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Tamil [ta]
+	//! locale : tamil (ta)
 	//! author : Arjunkumar Krishnamoorthy : https://github.com/tk120404
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -13930,16 +13844,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 113 */
+/* 112 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Telugu [te]
+	//! locale : telugu (te)
 	//! author : Krishna Chaitanya Thota : https://github.com/kcthota
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -14023,23 +13937,23 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 114 */
+/* 113 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Thai [th]
+	//! locale : thai (th)
 	//! author : Kridsada Thanabulpong : https://github.com/sirn
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
 
 	    var th = moment.defineLocale('th', {
 	        months : 'มกราคม_กุมภาพันธ์_มีนาคม_เมษายน_พฤษภาคม_มิถุนายน_กรกฎาคม_สิงหาคม_กันยายน_ตุลาคม_พฤศจิกายน_ธันวาคม'.split('_'),
-	        monthsShort : 'ม.ค._ก.พ._มี.ค._เม.ย._พ.ค._มิ.ย._ก.ค._ส.ค._ก.ย._ต.ค._พ.ย._ธ.ค.'.split('_'),
+	        monthsShort : 'มกรา_กุมภา_มีนา_เมษา_พฤษภา_มิถุนา_กรกฎา_สิงหา_กันยา_ตุลา_พฤศจิกา_ธันวา'.split('_'),
 	        monthsParseExact: true,
 	        weekdays : 'อาทิตย์_จันทร์_อังคาร_พุธ_พฤหัสบดี_ศุกร์_เสาร์'.split('_'),
 	        weekdaysShort : 'อาทิตย์_จันทร์_อังคาร_พุธ_พฤหัส_ศุกร์_เสาร์'.split('_'), // yes, three characters difference
@@ -14094,16 +14008,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 115 */
+/* 114 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Tagalog (Philippines) [tl-ph]
+	//! locale : Tagalog/Filipino (tl-ph)
 	//! author : Dan Hagman
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -14160,16 +14074,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 116 */
+/* 115 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Klingon [tlh]
+	//! locale : Klingon (tlh)
 	//! author : Dominika Kruk : https://github.com/amaranthrose
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -14179,24 +14093,24 @@ return /******/ (function(modules) { // webpackBootstrap
 	    function translateFuture(output) {
 	        var time = output;
 	        time = (output.indexOf('jaj') !== -1) ?
-	        time.slice(0, -3) + 'leS' :
-	        (output.indexOf('jar') !== -1) ?
-	        time.slice(0, -3) + 'waQ' :
-	        (output.indexOf('DIS') !== -1) ?
-	        time.slice(0, -3) + 'nem' :
-	        time + ' pIq';
+	    	time.slice(0, -3) + 'leS' :
+	    	(output.indexOf('jar') !== -1) ?
+	    	time.slice(0, -3) + 'waQ' :
+	    	(output.indexOf('DIS') !== -1) ?
+	    	time.slice(0, -3) + 'nem' :
+	    	time + ' pIq';
 	        return time;
 	    }
 
 	    function translatePast(output) {
 	        var time = output;
 	        time = (output.indexOf('jaj') !== -1) ?
-	        time.slice(0, -3) + 'Hu’' :
-	        (output.indexOf('jar') !== -1) ?
-	        time.slice(0, -3) + 'wen' :
-	        (output.indexOf('DIS') !== -1) ?
-	        time.slice(0, -3) + 'ben' :
-	        time + ' ret';
+	    	time.slice(0, -3) + 'Hu’' :
+	    	(output.indexOf('jar') !== -1) ?
+	    	time.slice(0, -3) + 'wen' :
+	    	(output.indexOf('DIS') !== -1) ?
+	    	time.slice(0, -3) + 'ben' :
+	    	time + ' ret';
 	        return time;
 	    }
 
@@ -14218,9 +14132,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    function numberAsNoun(number) {
 	        var hundred = Math.floor((number % 1000) / 100),
-	        ten = Math.floor((number % 100) / 10),
-	        one = number % 10,
-	        word = '';
+	    	ten = Math.floor((number % 100) / 10),
+	    	one = number % 10,
+	    	word = '';
 	        if (hundred > 0) {
 	            word += numbersNouns[hundred] + 'vatlh';
 	        }
@@ -14284,17 +14198,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 117 */
+/* 116 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Turkish [tr]
+	//! locale : turkish (tr)
 	//! authors : Erhan Gundogan : https://github.com/erhangundogan,
 	//!           Burak Yiğit Kaya: https://github.com/BYK
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -14378,16 +14292,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 118 */
+/* 117 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Talossan [tzl]
+	//! locale : talossan (tzl)
 	//! author : Robin van der Vliet : https://github.com/robin0van0der0v with the help of Iustì Canun
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -14473,16 +14387,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 119 */
+/* 118 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Central Atlas Tamazight [tzm]
+	//! locale : Morocco Central Atlas Tamaziɣt (tzm)
 	//! author : Abdel Said : https://github.com/abdelsaid
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -14535,16 +14449,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 120 */
+/* 119 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Central Atlas Tamazight Latin [tzm-latn]
+	//! locale : Morocco Central Atlas Tamaziɣt in Latin (tzm-latn)
 	//! author : Abdel Said : https://github.com/abdelsaid
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -14597,17 +14511,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 121 */
+/* 120 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Ukrainian [uk]
+	//! locale : ukrainian (uk)
 	//! author : zemlanin : https://github.com/zemlanin
 	//! Author : Menelion Elensúle : https://github.com/Oire
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -14677,15 +14591,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	            nextWeek: processHoursFunction('[У] dddd ['),
 	            lastWeek: function () {
 	                switch (this.day()) {
-	                    case 0:
-	                    case 3:
-	                    case 5:
-	                    case 6:
-	                        return processHoursFunction('[Минулої] dddd [').call(this);
-	                    case 1:
-	                    case 2:
-	                    case 4:
-	                        return processHoursFunction('[Минулого] dddd [').call(this);
+	                case 0:
+	                case 3:
+	                case 5:
+	                case 6:
+	                    return processHoursFunction('[Минулої] dddd [').call(this);
+	                case 1:
+	                case 2:
+	                case 4:
+	                    return processHoursFunction('[Минулого] dddd [').call(this);
 	                }
 	            },
 	            sameElse: 'L'
@@ -14724,16 +14638,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	        ordinalParse: /\d{1,2}-(й|го)/,
 	        ordinal: function (number, period) {
 	            switch (period) {
-	                case 'M':
-	                case 'd':
-	                case 'DDD':
-	                case 'w':
-	                case 'W':
-	                    return number + '-й';
-	                case 'D':
-	                    return number + '-го';
-	                default:
-	                    return number;
+	            case 'M':
+	            case 'd':
+	            case 'DDD':
+	            case 'w':
+	            case 'W':
+	                return number + '-й';
+	            case 'D':
+	                return number + '-го';
+	            default:
+	                return number;
 	            }
 	        },
 	        week : {
@@ -14747,16 +14661,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 122 */
+/* 121 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Uzbek [uz]
+	//! locale : uzbek (uz)
 	//! author : Sardor Muminov : https://github.com/muminoff
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -14809,16 +14723,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 123 */
+/* 122 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Vietnamese [vi]
+	//! locale : vietnamese (vi)
 	//! author : Bang Nguyen : https://github.com/bangnk
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -14892,16 +14806,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 124 */
+/* 123 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Pseudo [x-pseudo]
+	//! locale : pseudo (x-pseudo)
 	//! author : Andrew Hood : https://github.com/andrewhood125
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -14964,17 +14878,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 125 */
+/* 124 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Chinese (China) [zh-cn]
+	//! locale : chinese (zh-cn)
 	//! author : suupic : https://github.com/suupic
 	//! author : Zeno Zeng : https://github.com/zenozeng
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -15055,17 +14969,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	        ordinalParse: /\d{1,2}(日|月|周)/,
 	        ordinal : function (number, period) {
 	            switch (period) {
-	                case 'd':
-	                case 'D':
-	                case 'DDD':
-	                    return number + '日';
-	                case 'M':
-	                    return number + '月';
-	                case 'w':
-	                case 'W':
-	                    return number + '周';
-	                default:
-	                    return number;
+	            case 'd':
+	            case 'D':
+	            case 'DDD':
+	                return number + '日';
+	            case 'M':
+	                return number + '月';
+	            case 'w':
+	            case 'W':
+	                return number + '周';
+	            default:
+	                return number;
 	            }
 	        },
 	        relativeTime : {
@@ -15095,17 +15009,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 126 */
+/* 125 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Chinese (Taiwan) [zh-tw]
+	//! locale : traditional chinese (zh-tw)
 	//! author : Ben : https://github.com/ben-lin
-	//! author : Chris Lam : https://github.com/hehachris
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(23)) :
-	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -15128,12 +15041,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	            lll : 'YYYY年MMMD日Ah點mm分',
 	            llll : 'YYYY年MMMD日ddddAh點mm分'
 	        },
-	        meridiemParse: /凌晨|早上|上午|中午|下午|晚上/,
+	        meridiemParse: /早上|上午|中午|下午|晚上/,
 	        meridiemHour : function (hour, meridiem) {
 	            if (hour === 12) {
 	                hour = 0;
 	            }
-	            if (meridiem === '凌晨' || meridiem === '早上' || meridiem === '上午') {
+	            if (meridiem === '早上' || meridiem === '上午') {
 	                return hour;
 	            } else if (meridiem === '中午') {
 	                return hour >= 11 ? hour : hour + 12;
@@ -15143,9 +15056,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        },
 	        meridiem : function (hour, minute, isLower) {
 	            var hm = hour * 100 + minute;
-	            if (hm < 600) {
-	                return '凌晨';
-	            } else if (hm < 900) {
+	            if (hm < 900) {
 	                return '早上';
 	            } else if (hm < 1130) {
 	                return '上午';
@@ -15168,33 +15079,33 @@ return /******/ (function(modules) { // webpackBootstrap
 	        ordinalParse: /\d{1,2}(日|月|週)/,
 	        ordinal : function (number, period) {
 	            switch (period) {
-	                case 'd' :
-	                case 'D' :
-	                case 'DDD' :
-	                    return number + '日';
-	                case 'M' :
-	                    return number + '月';
-	                case 'w' :
-	                case 'W' :
-	                    return number + '週';
-	                default :
-	                    return number;
+	            case 'd' :
+	            case 'D' :
+	            case 'DDD' :
+	                return number + '日';
+	            case 'M' :
+	                return number + '月';
+	            case 'w' :
+	            case 'W' :
+	                return number + '週';
+	            default :
+	                return number;
 	            }
 	        },
 	        relativeTime : {
 	            future : '%s內',
 	            past : '%s前',
 	            s : '幾秒',
-	            m : '1 分鐘',
-	            mm : '%d 分鐘',
-	            h : '1 小時',
-	            hh : '%d 小時',
-	            d : '1 天',
-	            dd : '%d 天',
-	            M : '1 個月',
-	            MM : '%d 個月',
-	            y : '1 年',
-	            yy : '%d 年'
+	            m : '1分鐘',
+	            mm : '%d分鐘',
+	            h : '1小時',
+	            hh : '%d小時',
+	            d : '1天',
+	            dd : '%d天',
+	            M : '1個月',
+	            MM : '%d個月',
+	            y : '1年',
+	            yy : '%d年'
 	        }
 	    });
 
@@ -15203,1025 +15114,549 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
+/* 126 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (global, factory) {
+	  if (true) {
+	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [module, exports, __webpack_require__(17), __webpack_require__(22), __webpack_require__(127)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	  } else if (typeof exports !== "undefined") {
+	    factory(module, exports, require('react'), require('./DateConstants'), require('../util/'));
+	  } else {
+	    var mod = {
+	      exports: {}
+	    };
+	    factory(mod, mod.exports, global.react, global.DateConstants, global.util);
+	    global.DateTBody = mod.exports;
+	  }
+	})(this, function (module, exports, _react, _DateConstants, _util) {
+	  'use strict';
+
+	  Object.defineProperty(exports, "__esModule", {
+	    value: true
+	  });
+
+	  var _react2 = _interopRequireDefault(_react);
+
+	  var _DateConstants2 = _interopRequireDefault(_DateConstants);
+
+	  function _interopRequireDefault(obj) {
+	    return obj && obj.__esModule ? obj : {
+	      default: obj
+	    };
+	  }
+
+	  function isSameDay(one, two) {
+	    return one && two && one.isSame(two, 'day');
+	  }
+
+	  function beforeCurrentMonthYear(current, today) {
+	    if (current.year() < today.year()) {
+	      return 1;
+	    }
+	    return current.year() === today.year() && current.month() < today.month();
+	  }
+
+	  function afterCurrentMonthYear(current, today) {
+	    if (current.year() > today.year()) {
+	      return 1;
+	    }
+	    return current.year() === today.year() && current.month() > today.month();
+	  }
+
+	  function getIdFromDate(date) {
+	    return 'rc-calendar-' + date.year() + '-' + date.month() + '-' + date.date();
+	  }
+
+	  function noop() {}
+
+	  function handleDayClick(current) {
+	    this.props.onSelect(current);
+	  }
+
+	  function handleCellMouseEnter(current) {
+	    this.props.onDayHover(current);
+	  }
+
+	  var DateTBody = _react2.default.createClass({
+	    displayName: 'DateTBody',
+
+	    propTypes: {
+	      contentRender: _react.PropTypes.func,
+	      dateRender: _react.PropTypes.func,
+	      disabledDate: _react.PropTypes.func,
+	      prefixCls: _react.PropTypes.string,
+	      selectedValue: _react.PropTypes.oneOfType([_react.PropTypes.object, _react.PropTypes.arrayOf(_react.PropTypes.object)]),
+	      value: _react.PropTypes.object,
+	      showWeekNumber: _react.PropTypes.bool
+	    },
+
+	    getDefaultProps: function getDefaultProps() {
+	      return {
+	        onDayHover: noop
+	      };
+	    },
+	    render: function render() {
+	      var props = this.props;
+	      var contentRender = props.contentRender;
+	      var prefixCls = props.prefixCls;
+	      var selectedValue = props.selectedValue;
+	      var value = props.value;
+	      var showWeekNumber = props.showWeekNumber;
+	      var dateRender = props.dateRender;
+	      var disabledDate = props.disabledDate;
+
+	      var iIndex = void 0;
+	      var jIndex = void 0;
+	      var current = void 0;
+	      var dateTable = [];
+	      var today = (0, _util.getTodayTime)(value);
+	      var cellClass = prefixCls + '-cell';
+	      var weekNumberCellClass = prefixCls + '-week-number-cell';
+	      var dateClass = prefixCls + '-date';
+	      var todayClass = prefixCls + '-today';
+	      var selectedClass = prefixCls + '-selected-day';
+	      var inRangeClass = prefixCls + '-in-range-cell';
+	      var lastMonthDayClass = prefixCls + '-last-month-cell';
+	      var nextMonthDayClass = prefixCls + '-next-month-btn-day';
+	      var disabledClass = prefixCls + '-disabled-cell';
+	      var firstDisableClass = prefixCls + '-disabled-cell-first-of-row';
+	      var lastDisableClass = prefixCls + '-disabled-cell-last-of-row';
+	      var month1 = value.clone();
+	      month1.date(1);
+	      var day = month1.day();
+	      var lastMonthDiffDay = (day + 7 - value.localeData().firstDayOfWeek()) % 7;
+	      // calculate last month
+	      var lastMonth1 = month1.clone();
+	      lastMonth1.add(0 - lastMonthDiffDay, 'days');
+	      var passed = 0;
+	      for (iIndex = 0; iIndex < _DateConstants2.default.DATE_ROW_COUNT; iIndex++) {
+	        for (jIndex = 0; jIndex < _DateConstants2.default.DATE_COL_COUNT; jIndex++) {
+	          current = lastMonth1;
+	          if (passed) {
+	            current = current.clone();
+	            current.add(passed, 'days');
+	          }
+	          dateTable.push(current);
+	          passed++;
+	        }
+	      }
+	      var tableHtml = [];
+	      passed = 0;
+	      for (iIndex = 0; iIndex < _DateConstants2.default.DATE_ROW_COUNT; iIndex++) {
+	        var weekNumberCell = void 0;
+	        var dateCells = [];
+	        if (showWeekNumber) {
+	          weekNumberCell = _react2.default.createElement(
+	            'td',
+	            {
+	              key: dateTable[passed].week(),
+	              role: 'gridcell',
+	              className: weekNumberCellClass
+	            },
+	            dateTable[passed].week()
+	          );
+	        }
+	        for (jIndex = 0; jIndex < _DateConstants2.default.DATE_COL_COUNT; jIndex++) {
+	          var next = null;
+	          var last = null;
+	          current = dateTable[passed];
+	          if (jIndex < _DateConstants2.default.DATE_COL_COUNT - 1) {
+	            next = dateTable[passed + 1];
+	          }
+	          if (jIndex > 0) {
+	            last = dateTable[passed - 1];
+	          }
+	          var cls = cellClass;
+	          var disabled = false;
+	          var selected = false;
+
+	          if (isSameDay(current, today)) {
+	            cls += ' ' + todayClass;
+	          }
+
+	          var isBeforeCurrentMonthYear = beforeCurrentMonthYear(current, value);
+	          var isAfterCurrentMonthYear = afterCurrentMonthYear(current, value);
+
+	          if (selectedValue && Array.isArray(selectedValue)) {
+	            if (!isBeforeCurrentMonthYear && !isAfterCurrentMonthYear) {
+	              var startValue = selectedValue[0];
+	              var endValue = selectedValue[1];
+	              if (startValue) {
+	                if (isSameDay(current, startValue)) {
+	                  selected = true;
+	                }
+	              }
+	              if (startValue && endValue) {
+	                if (isSameDay(current, endValue) && !selectedValue.hovering) {
+	                  selected = true;
+	                } else if (current.isAfter(startValue, 'day') && current.isBefore(endValue, 'day')) {
+	                  cls += ' ' + inRangeClass;
+	                }
+	              }
+	            }
+	          } else if (isSameDay(current, value)) {
+	            // keyboard change value, highlight works
+	            selected = true;
+	          }
+	          if (isBeforeCurrentMonthYear) {
+	            cls += ' ' + lastMonthDayClass;
+	          }
+	          if (isAfterCurrentMonthYear) {
+	            cls += ' ' + nextMonthDayClass;
+	          }
+
+	          if (disabledDate) {
+	            if (disabledDate(current, value)) {
+	              disabled = true;
+
+	              if (!last || !disabledDate(last, value)) {
+	                cls += ' ' + firstDisableClass;
+	              }
+
+	              if (!next || !disabledDate(next, value)) {
+	                cls += ' ' + lastDisableClass;
+	              }
+	            }
+	          }
+
+	          if (selected) {
+	            cls += ' ' + selectedClass;
+	          }
+
+	          if (disabled) {
+	            cls += ' ' + disabledClass;
+	          }
+
+	          var dateHtml = void 0;
+	          if (dateRender) {
+	            dateHtml = dateRender(current, value);
+	          } else {
+	            var content = contentRender ? contentRender(current, value) : current.date();
+	            dateHtml = _react2.default.createElement(
+	              'div',
+	              {
+	                key: getIdFromDate(current),
+	                className: dateClass,
+	                'aria-selected': selected,
+	                'aria-disabled': disabled
+	              },
+	              content
+	            );
+	          }
+
+	          dateCells.push(_react2.default.createElement(
+	            'td',
+	            {
+	              key: passed,
+	              onClick: disabled ? noop : handleDayClick.bind(this, current),
+	              onMouseEnter: disabled ? noop : handleCellMouseEnter.bind(this, current),
+	              role: 'gridcell',
+	              title: (0, _util.getTitleString)(current), className: cls
+	            },
+	            dateHtml
+	          ));
+
+	          passed++;
+	        }
+	        tableHtml.push(_react2.default.createElement(
+	          'tr',
+	          {
+	            key: iIndex,
+	            role: 'row'
+	          },
+	          weekNumberCell,
+	          dateCells
+	        ));
+	      }
+	      return _react2.default.createElement(
+	        'tbody',
+	        { className: prefixCls + '-tbody' },
+	        tableHtml
+	      );
+	    }
+	  });
+
+	  exports.default = DateTBody;
+	  module.exports = exports['default'];
+	});
+
+/***/ },
 /* 127 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _react = __webpack_require__(17);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _DateConstants = __webpack_require__(22);
-
-	var _DateConstants2 = _interopRequireDefault(_DateConstants);
-
-	var _util = __webpack_require__(128);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function isSameDay(one, two) {
-	  return one && two && one.isSame(two, 'day');
-	}
-
-	function beforeCurrentMonthYear(current, today) {
-	  if (current.year() < today.year()) {
-	    return 1;
-	  }
-	  return current.year() === today.year() && current.month() < today.month();
-	}
-
-	function afterCurrentMonthYear(current, today) {
-	  if (current.year() > today.year()) {
-	    return 1;
-	  }
-	  return current.year() === today.year() && current.month() > today.month();
-	}
-
-	function getIdFromDate(date) {
-	  return 'rc-calendar-' + date.year() + '-' + date.month() + '-' + date.date();
-	}
-
-	function noop() {}
-
-	function handleDayClick(current) {
-	  this.props.onSelect(current);
-	}
-
-	function handleCellMouseEnter(current) {
-	  this.props.onDayHover(current);
-	}
-
-	var DateTBody = _react2.default.createClass({
-	  displayName: 'DateTBody',
-
-	  propTypes: {
-	    contentRender: _react.PropTypes.func,
-	    dateRender: _react.PropTypes.func,
-	    disabledDate: _react.PropTypes.func,
-	    prefixCls: _react.PropTypes.string,
-	    selectedValue: _react.PropTypes.oneOfType([_react.PropTypes.object, _react.PropTypes.arrayOf(_react.PropTypes.object)]),
-	    value: _react.PropTypes.object,
-	    showWeekNumber: _react.PropTypes.bool
-	  },
-
-	  getDefaultProps: function getDefaultProps() {
-	    return {
-	      onDayHover: noop
+	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (global, factory) {
+	  if (true) {
+	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__(23)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	  } else if (typeof exports !== "undefined") {
+	    factory(exports, require('moment'));
+	  } else {
+	    var mod = {
+	      exports: {}
 	    };
-	  },
-	  render: function render() {
-	    var props = this.props;
-	    var contentRender = props.contentRender;
-	    var prefixCls = props.prefixCls;
-	    var selectedValue = props.selectedValue;
-	    var value = props.value;
-	    var showWeekNumber = props.showWeekNumber;
-	    var dateRender = props.dateRender;
-	    var disabledDate = props.disabledDate;
+	    factory(mod.exports, global.moment);
+	    global.index = mod.exports;
+	  }
+	})(this, function (exports, _moment) {
+	  'use strict';
 
-	    var iIndex = void 0;
-	    var jIndex = void 0;
-	    var current = void 0;
-	    var dateTable = [];
-	    var today = (0, _util.getTodayTime)(value);
-	    var cellClass = prefixCls + '-cell';
-	    var weekNumberCellClass = prefixCls + '-week-number-cell';
-	    var dateClass = prefixCls + '-date';
-	    var todayClass = prefixCls + '-today';
-	    var selectedClass = prefixCls + '-selected-day';
-	    var inRangeClass = prefixCls + '-in-range-cell';
-	    var lastMonthDayClass = prefixCls + '-last-month-cell';
-	    var nextMonthDayClass = prefixCls + '-next-month-btn-day';
-	    var disabledClass = prefixCls + '-disabled-cell';
-	    var firstDisableClass = prefixCls + '-disabled-cell-first-of-row';
-	    var lastDisableClass = prefixCls + '-disabled-cell-last-of-row';
-	    var month1 = value.clone();
-	    month1.date(1);
-	    var day = month1.day();
-	    var lastMonthDiffDay = (day + 7 - value.localeData().firstDayOfWeek()) % 7;
-	    // calculate last month
-	    var lastMonth1 = month1.clone();
-	    lastMonth1.add(0 - lastMonthDiffDay, 'days');
-	    var passed = 0;
-	    for (iIndex = 0; iIndex < _DateConstants2.default.DATE_ROW_COUNT; iIndex++) {
-	      for (jIndex = 0; jIndex < _DateConstants2.default.DATE_COL_COUNT; jIndex++) {
-	        current = lastMonth1;
-	        if (passed) {
-	          current = current.clone();
-	          current.add(passed, 'days');
+	  Object.defineProperty(exports, "__esModule", {
+	    value: true
+	  });
+	  exports.getTodayTime = getTodayTime;
+	  exports.getTitleString = getTitleString;
+	  exports.getTodayTimeStr = getTodayTimeStr;
+	  exports.syncTime = syncTime;
+	  exports.getTimeConfig = getTimeConfig;
+	  exports.isTimeValidByConfig = isTimeValidByConfig;
+	  exports.isTimeValid = isTimeValid;
+	  exports.isAllowedDate = isAllowedDate;
+
+	  var _moment2 = _interopRequireDefault(_moment);
+
+	  function _interopRequireDefault(obj) {
+	    return obj && obj.__esModule ? obj : {
+	      default: obj
+	    };
+	  }
+
+	  var _extends = Object.assign || function (target) {
+	    for (var i = 1; i < arguments.length; i++) {
+	      var source = arguments[i];
+
+	      for (var key in source) {
+	        if (Object.prototype.hasOwnProperty.call(source, key)) {
+	          target[key] = source[key];
 	        }
-	        dateTable.push(current);
-	        passed++;
 	      }
 	    }
-	    var tableHtml = [];
-	    passed = 0;
-	    for (iIndex = 0; iIndex < _DateConstants2.default.DATE_ROW_COUNT; iIndex++) {
-	      var weekNumberCell = void 0;
-	      var dateCells = [];
-	      if (showWeekNumber) {
-	        weekNumberCell = _react2.default.createElement(
-	          'td',
-	          {
-	            key: dateTable[passed].week(),
-	            role: 'gridcell',
-	            className: weekNumberCellClass
-	          },
-	          dateTable[passed].week()
-	        );
-	      }
-	      for (jIndex = 0; jIndex < _DateConstants2.default.DATE_COL_COUNT; jIndex++) {
-	        var next = null;
-	        var last = null;
-	        current = dateTable[passed];
-	        if (jIndex < _DateConstants2.default.DATE_COL_COUNT - 1) {
-	          next = dateTable[passed + 1];
-	        }
-	        if (jIndex > 0) {
-	          last = dateTable[passed - 1];
-	        }
-	        var cls = cellClass;
-	        var disabled = false;
-	        var selected = false;
 
-	        if (isSameDay(current, today)) {
-	          cls += ' ' + todayClass;
-	        }
+	    return target;
+	  };
 
-	        var isBeforeCurrentMonthYear = beforeCurrentMonthYear(current, value);
-	        var isAfterCurrentMonthYear = afterCurrentMonthYear(current, value);
+	  var defaultDisabledTime = {
+	    disabledHours: function disabledHours() {
+	      return [];
+	    },
+	    disabledMinutes: function disabledMinutes() {
+	      return [];
+	    },
+	    disabledSeconds: function disabledSeconds() {
+	      return [];
+	    }
+	  };
 
-	        if (selectedValue && Array.isArray(selectedValue)) {
-	          if (!isBeforeCurrentMonthYear && !isAfterCurrentMonthYear) {
-	            var startValue = selectedValue[0];
-	            var endValue = selectedValue[1];
-	            if (startValue) {
-	              if (isSameDay(current, startValue)) {
-	                selected = true;
-	              }
-	            }
-	            if (startValue && endValue) {
-	              if (isSameDay(current, endValue) && !selectedValue.hovering) {
-	                selected = true;
-	              } else if (current.isAfter(startValue, 'day') && current.isBefore(endValue, 'day')) {
-	                cls += ' ' + inRangeClass;
-	              }
-	            }
-	          }
-	        } else if (isSameDay(current, value)) {
-	          // keyboard change value, highlight works
-	          selected = true;
-	        }
-	        if (isBeforeCurrentMonthYear) {
-	          cls += ' ' + lastMonthDayClass;
-	        }
-	        if (isAfterCurrentMonthYear) {
-	          cls += ' ' + nextMonthDayClass;
-	        }
+	  function getTodayTime(value) {
+	    var today = (0, _moment2.default)();
+	    today.locale(value.locale()).utcOffset(value.utcOffset());
+	    return today;
+	  }
 
-	        if (disabledDate) {
-	          if (disabledDate(current, value)) {
-	            disabled = true;
+	  function getTitleString(value) {
+	    return value.year() + '-' + (value.month() + 1) + '-' + value.date();
+	  }
 
-	            if (!last || !disabledDate(last, value)) {
-	              cls += ' ' + firstDisableClass;
-	            }
+	  function getTodayTimeStr(value) {
+	    var today = getTodayTime(value);
+	    return getTitleString(today);
+	  }
 
-	            if (!next || !disabledDate(next, value)) {
-	              cls += ' ' + lastDisableClass;
-	            }
-	          }
-	        }
+	  function syncTime(from, to) {
+	    to.hour(from.hour());
+	    to.minute(from.minute());
+	    to.second(from.second());
+	  }
 
-	        if (selected) {
-	          cls += ' ' + selectedClass;
-	        }
+	  function getTimeConfig(value, disabledTime) {
+	    var disabledTimeConfig = disabledTime ? disabledTime(value) : {};
+	    disabledTimeConfig = _extends({}, defaultDisabledTime, disabledTimeConfig);
+	    return disabledTimeConfig;
+	  }
 
-	        if (disabled) {
-	          cls += ' ' + disabledClass;
-	        }
-
-	        var dateHtml = void 0;
-	        if (dateRender) {
-	          dateHtml = dateRender(current, value);
+	  function isTimeValidByConfig(value, disabledTimeConfig) {
+	    var invalidTime = false;
+	    if (value) {
+	      var hour = value.hour();
+	      var minutes = value.minute();
+	      var seconds = value.second();
+	      var disabledHours = disabledTimeConfig.disabledHours();
+	      if (disabledHours.indexOf(hour) === -1) {
+	        var disabledMinutes = disabledTimeConfig.disabledMinutes(hour);
+	        if (disabledMinutes.indexOf(minutes) === -1) {
+	          var disabledSeconds = disabledTimeConfig.disabledSeconds(hour, minutes);
+	          invalidTime = disabledSeconds.indexOf(seconds) !== -1;
 	        } else {
-	          var content = contentRender ? contentRender(current, value) : current.date();
-	          dateHtml = _react2.default.createElement(
-	            'div',
-	            {
-	              key: getIdFromDate(current),
-	              className: dateClass,
-	              'aria-selected': selected,
-	              'aria-disabled': disabled
-	            },
-	            content
-	          );
+	          invalidTime = true;
 	        }
-
-	        dateCells.push(_react2.default.createElement(
-	          'td',
-	          {
-	            key: passed,
-	            onClick: disabled ? noop : handleDayClick.bind(this, current),
-	            onMouseEnter: disabled ? noop : handleCellMouseEnter.bind(this, current),
-	            role: 'gridcell',
-	            title: (0, _util.getTitleString)(current), className: cls
-	          },
-	          dateHtml
-	        ));
-
-	        passed++;
+	      } else {
+	        invalidTime = true;
 	      }
-	      tableHtml.push(_react2.default.createElement(
-	        'tr',
-	        {
-	          key: iIndex,
-	          role: 'row'
-	        },
-	        weekNumberCell,
-	        dateCells
-	      ));
 	    }
-	    return _react2.default.createElement(
-	      'tbody',
-	      { className: prefixCls + '-tbody' },
-	      tableHtml
-	    );
+	    return !invalidTime;
+	  }
+
+	  function isTimeValid(value, disabledTime) {
+	    var disabledTimeConfig = getTimeConfig(value, disabledTime);
+	    return isTimeValidByConfig(value, disabledTimeConfig);
+	  }
+
+	  function isAllowedDate(value, disabledDate, disabledTime) {
+	    if (disabledDate) {
+	      if (disabledDate(value)) {
+	        return false;
+	      }
+	    }
+	    if (disabledTime) {
+	      if (!isTimeValid(value, disabledTime)) {
+	        return false;
+	      }
+	    }
+	    return true;
 	  }
 	});
-
-	exports.default = DateTBody;
 
 /***/ },
 /* 128 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-	exports.getTodayTime = getTodayTime;
-	exports.getTitleString = getTitleString;
-	exports.getTodayTimeStr = getTodayTimeStr;
-	exports.syncTime = syncTime;
-	exports.getTimeConfig = getTimeConfig;
-	exports.isTimeValidByConfig = isTimeValidByConfig;
-	exports.isTimeValid = isTimeValid;
-	exports.isAllowedDate = isAllowedDate;
-
-	var _moment = __webpack_require__(23);
-
-	var _moment2 = _interopRequireDefault(_moment);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var defaultDisabledTime = {
-	  disabledHours: function disabledHours() {
-	    return [];
-	  },
-	  disabledMinutes: function disabledMinutes() {
-	    return [];
-	  },
-	  disabledSeconds: function disabledSeconds() {
-	    return [];
+	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (global, factory) {
+	  if (true) {
+	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [module, exports, __webpack_require__(17), __webpack_require__(18), __webpack_require__(133), __webpack_require__(129), __webpack_require__(130), __webpack_require__(131), __webpack_require__(132)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	  } else if (typeof exports !== "undefined") {
+	    factory(module, exports, require('react'), require('react-dom'), require('rc-util/lib/Children/mapSelf'), require('classnames'), require('../calendar/TodayButton'), require('../calendar/OkButton'), require('../calendar/TimePickerButton'));
+	  } else {
+	    var mod = {
+	      exports: {}
+	    };
+	    factory(mod, mod.exports, global.react, global.reactDom, global.mapSelf, global.classnames, global.TodayButton, global.OkButton, global.TimePickerButton);
+	    global.CalendarFooter = mod.exports;
 	  }
-	};
+	})(this, function (module, exports, _react, _reactDom, _mapSelf, _classnames, _TodayButton, _OkButton, _TimePickerButton) {
+	  'use strict';
 
-	function getTodayTime(value) {
-	  var today = (0, _moment2.default)();
-	  today.locale(value.locale()).utcOffset(value.utcOffset());
-	  return today;
-	}
+	  Object.defineProperty(exports, "__esModule", {
+	    value: true
+	  });
 
-	function getTitleString(value) {
-	  return value.year() + '-' + (value.month() + 1) + '-' + value.date();
-	}
+	  var _react2 = _interopRequireDefault(_react);
 
-	function getTodayTimeStr(value) {
-	  var today = getTodayTime(value);
-	  return getTitleString(today);
-	}
+	  var _reactDom2 = _interopRequireDefault(_reactDom);
 
-	function syncTime(from, to) {
-	  to.hour(from.hour());
-	  to.minute(from.minute());
-	  to.second(from.second());
-	}
+	  var _mapSelf2 = _interopRequireDefault(_mapSelf);
 
-	function getTimeConfig(value, disabledTime) {
-	  var disabledTimeConfig = disabledTime ? disabledTime(value) : {};
-	  disabledTimeConfig = _extends({}, defaultDisabledTime, disabledTimeConfig);
-	  return disabledTimeConfig;
-	}
+	  var _classnames2 = _interopRequireDefault(_classnames);
 
-	function isTimeValidByConfig(value, disabledTimeConfig) {
-	  var invalidTime = false;
-	  if (value) {
-	    var hour = value.hour();
-	    var minutes = value.minute();
-	    var seconds = value.second();
-	    var disabledHours = disabledTimeConfig.disabledHours();
-	    if (disabledHours.indexOf(hour) === -1) {
-	      var disabledMinutes = disabledTimeConfig.disabledMinutes(hour);
-	      if (disabledMinutes.indexOf(minutes) === -1) {
-	        var disabledSeconds = disabledTimeConfig.disabledSeconds(hour, minutes);
-	        invalidTime = disabledSeconds.indexOf(seconds) !== -1;
-	      } else {
-	        invalidTime = true;
-	      }
+	  var _TodayButton2 = _interopRequireDefault(_TodayButton);
+
+	  var _OkButton2 = _interopRequireDefault(_OkButton);
+
+	  var _TimePickerButton2 = _interopRequireDefault(_TimePickerButton);
+
+	  function _interopRequireDefault(obj) {
+	    return obj && obj.__esModule ? obj : {
+	      default: obj
+	    };
+	  }
+
+	  function _defineProperty(obj, key, value) {
+	    if (key in obj) {
+	      Object.defineProperty(obj, key, {
+	        value: value,
+	        enumerable: true,
+	        configurable: true,
+	        writable: true
+	      });
 	    } else {
-	      invalidTime = true;
+	      obj[key] = value;
 	    }
-	  }
-	  return !invalidTime;
-	}
 
-	function isTimeValid(value, disabledTime) {
-	  var disabledTimeConfig = getTimeConfig(value, disabledTime);
-	  return isTimeValidByConfig(value, disabledTimeConfig);
-	}
+	    return obj;
+	  }
 
-	function isAllowedDate(value, disabledDate, disabledTime) {
-	  if (disabledDate) {
-	    if (disabledDate(value)) {
-	      return false;
+	  var _extends = Object.assign || function (target) {
+	    for (var i = 1; i < arguments.length; i++) {
+	      var source = arguments[i];
+
+	      for (var key in source) {
+	        if (Object.prototype.hasOwnProperty.call(source, key)) {
+	          target[key] = source[key];
+	        }
+	      }
 	    }
-	  }
-	  if (disabledTime) {
-	    if (!isTimeValid(value, disabledTime)) {
-	      return false;
+
+	    return target;
+	  };
+
+	  var CalendarFooter = _react2.default.createClass({
+	    displayName: 'CalendarFooter',
+
+	    propTypes: {
+	      prefixCls: _react.PropTypes.string,
+	      showDateInput: _react.PropTypes.bool,
+	      disabledTime: _react.PropTypes.any,
+	      timePicker: _react.PropTypes.element,
+	      selectedValue: _react.PropTypes.any,
+	      showOk: _react.PropTypes.bool,
+	      onSelect: _react.PropTypes.func,
+	      value: _react.PropTypes.object,
+	      defaultValue: _react.PropTypes.object
+	    },
+
+	    onSelect: function onSelect(value) {
+	      this.props.onSelect(value);
+	    },
+	    getRootDOMNode: function getRootDOMNode() {
+	      return _reactDom2.default.findDOMNode(this);
+	    },
+	    render: function render() {
+	      var props = this.props;
+	      var value = props.value;
+	      var prefixCls = props.prefixCls;
+	      var showOk = props.showOk;
+	      var timePicker = props.timePicker;
+
+	      var footerEl = null;
+	      if (props.showToday || timePicker) {
+	        var _cx;
+
+	        var nowEl = void 0;
+	        if (props.showToday) {
+	          nowEl = _react2.default.createElement(_TodayButton2.default, _extends({}, props, { value: value }));
+	        }
+	        var okBtn = void 0;
+	        if (showOk === true || showOk !== false && !!props.timePicker) {
+	          okBtn = _react2.default.createElement(_OkButton2.default, props);
+	        }
+	        var timePickerBtn = void 0;
+	        if (!!props.timePicker) {
+	          timePickerBtn = _react2.default.createElement(_TimePickerButton2.default, props);
+	        }
+
+	        var footerBtn = void 0;
+	        if (nowEl || okBtn) {
+	          footerBtn = _react2.default.createElement(
+	            'span',
+	            { className: prefixCls + '-footer-btn' },
+	            (0, _mapSelf2.default)([nowEl, timePickerBtn, okBtn])
+	          );
+	        }
+	        var cls = (0, _classnames2.default)((_cx = {}, _defineProperty(_cx, prefixCls + '-footer', true), _defineProperty(_cx, prefixCls + '-footer-show-ok', okBtn), _cx));
+	        footerEl = _react2.default.createElement(
+	          'div',
+	          { className: cls },
+	          footerBtn
+	        );
+	      }
+	      return footerEl;
 	    }
-	  }
-	  return true;
-	}
+	  });
+
+	  exports.default = CalendarFooter;
+	  module.exports = exports['default'];
+	});
 
 /***/ },
 /* 129 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _react = __webpack_require__(17);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _MonthPanel = __webpack_require__(130);
-
-	var _MonthPanel2 = _interopRequireDefault(_MonthPanel);
-
-	var _YearPanel = __webpack_require__(131);
-
-	var _YearPanel2 = _interopRequireDefault(_YearPanel);
-
-	var _mapSelf = __webpack_require__(135);
-
-	var _mapSelf2 = _interopRequireDefault(_mapSelf);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function goMonth(direction) {
-	  var next = this.props.value.clone();
-	  next.add(direction, 'months');
-	  this.props.onValueChange(next);
-	}
-
-	function goYear(direction) {
-	  var next = this.props.value.clone();
-	  next.add(direction, 'years');
-	  this.props.onValueChange(next);
-	}
-
-	var CalendarHeader = _react2.default.createClass({
-	  displayName: 'CalendarHeader',
-
-	  propTypes: {
-	    enablePrev: _react.PropTypes.any,
-	    enableNext: _react.PropTypes.any,
-	    prefixCls: _react.PropTypes.string,
-	    showTimePicker: _react.PropTypes.bool,
-	    locale: _react.PropTypes.object,
-	    value: _react.PropTypes.object,
-	    onValueChange: _react.PropTypes.func
-	  },
-
-	  getDefaultProps: function getDefaultProps() {
-	    return {
-	      enableNext: 1,
-	      enablePrev: 1
-	    };
-	  },
-	  getInitialState: function getInitialState() {
-	    this.nextMonth = goMonth.bind(this, 1);
-	    this.previousMonth = goMonth.bind(this, -1);
-	    this.nextYear = goYear.bind(this, 1);
-	    this.previousYear = goYear.bind(this, -1);
-	    return {};
-	  },
-	  onSelect: function onSelect(value) {
-	    this.setState({
-	      showMonthPanel: 0,
-	      showYearPanel: 0
-	    });
-	    this.props.onValueChange(value);
-	  },
-	  monthYearElement: function monthYearElement(showTimePicker) {
-	    var props = this.props;
-	    var prefixCls = props.prefixCls;
-	    var locale = props.locale;
-	    var value = props.value;
-	    var monthBeforeYear = locale.monthBeforeYear;
-	    var selectClassName = prefixCls + '-' + (monthBeforeYear ? 'my-select' : 'ym-select');
-	    var year = _react2.default.createElement(
-	      'a',
-	      {
-	        className: prefixCls + '-year-select',
-	        role: 'button',
-	        onClick: showTimePicker ? null : this.showYearPanel,
-	        title: locale.monthSelect
-	      },
-	      value.format(locale.yearFormat)
-	    );
-	    var month = _react2.default.createElement(
-	      'a',
-	      {
-	        className: prefixCls + '-month-select',
-	        role: 'button',
-	        onClick: showTimePicker ? null : this.showMonthPanel,
-	        title: locale.monthSelect
-	      },
-	      value.format(locale.monthFormat)
-	    );
-	    var day = void 0;
-	    if (showTimePicker) {
-	      day = _react2.default.createElement(
-	        'a',
-	        {
-	          className: prefixCls + '-day-select',
-	          role: 'button'
-	        },
-	        value.format(locale.dayFormat)
-	      );
-	    }
-	    var my = [];
-	    if (monthBeforeYear) {
-	      my = [month, day, year];
-	    } else {
-	      my = [year, month, day];
-	    }
-	    return _react2.default.createElement(
-	      'span',
-	      { className: selectClassName },
-	      (0, _mapSelf2.default)(my)
-	    );
-	  },
-	  showIf: function showIf(condition, el) {
-	    return condition ? el : null;
-	  },
-	  showMonthPanel: function showMonthPanel() {
-	    this.setState({
-	      showMonthPanel: 1,
-	      showYearPanel: 0
-	    });
-	  },
-	  showYearPanel: function showYearPanel() {
-	    this.setState({
-	      showMonthPanel: 0,
-	      showYearPanel: 1
-	    });
-	  },
-	  render: function render() {
-	    var props = this.props;
-	    var enableNext = props.enableNext;
-	    var enablePrev = props.enablePrev;
-	    var prefixCls = props.prefixCls;
-	    var locale = props.locale;
-	    var value = props.value;
-	    var showTimePicker = props.showTimePicker;
-
-	    var state = this.state;
-	    var PanelClass = null;
-	    if (state.showMonthPanel) {
-	      PanelClass = _MonthPanel2.default;
-	    } else if (state.showYearPanel) {
-	      PanelClass = _YearPanel2.default;
-	    }
-	    var panel = void 0;
-	    if (PanelClass) {
-	      panel = _react2.default.createElement(PanelClass, {
-	        locale: locale,
-	        defaultValue: value,
-	        rootPrefixCls: prefixCls,
-	        onSelect: this.onSelect
-	      });
-	    }
-	    return _react2.default.createElement(
-	      'div',
-	      { className: prefixCls + '-header' },
-	      _react2.default.createElement(
-	        'div',
-	        { style: { position: 'relative' } },
-	        this.showIf(enablePrev && !showTimePicker, _react2.default.createElement(
-	          'a',
-	          {
-	            className: prefixCls + '-prev-year-btn',
-	            role: 'button',
-	            onClick: this.previousYear,
-	            title: locale.previousYear
-	          },
-	          '«'
-	        )),
-	        this.showIf(enablePrev && !showTimePicker, _react2.default.createElement(
-	          'a',
-	          {
-	            className: prefixCls + '-prev-month-btn',
-	            role: 'button',
-	            onClick: this.previousMonth,
-	            title: locale.previousMonth
-	          },
-	          '‹'
-	        )),
-	        this.monthYearElement(showTimePicker),
-	        this.showIf(enableNext && !showTimePicker, _react2.default.createElement(
-	          'a',
-	          {
-	            className: prefixCls + '-next-month-btn',
-	            onClick: this.nextMonth,
-	            title: locale.nextMonth
-	          },
-	          '›'
-	        )),
-	        this.showIf(enableNext && !showTimePicker, _react2.default.createElement(
-	          'a',
-	          {
-	            className: prefixCls + '-next-year-btn',
-	            onClick: this.nextYear,
-	            title: locale.nextYear
-	          },
-	          '»'
-	        ))
-	      ),
-	      panel
-	    );
-	  }
-	});
-
-	exports.default = CalendarHeader;
-
-/***/ },
-/* 130 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _react = __webpack_require__(17);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _YearPanel = __webpack_require__(131);
-
-	var _YearPanel2 = _interopRequireDefault(_YearPanel);
-
-	var _MonthTable = __webpack_require__(134);
-
-	var _MonthTable2 = _interopRequireDefault(_MonthTable);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function goYear(direction) {
-	  var next = this.state.value.clone();
-	  next.add(direction, 'year');
-	  this.setAndChangeValue(next);
-	}
-
-	function noop() {}
-
-	var MonthPanel = _react2.default.createClass({
-	  displayName: 'MonthPanel',
-
-	  propTypes: {
-	    onChange: _react.PropTypes.func,
-	    disabledDate: _react.PropTypes.func,
-	    onSelect: _react.PropTypes.func
-	  },
-
-	  getDefaultProps: function getDefaultProps() {
-	    return {
-	      onChange: noop,
-	      onSelect: noop
-	    };
-	  },
-	  getInitialState: function getInitialState() {
-	    var props = this.props;
-	    // bind methods
-	    this.nextYear = goYear.bind(this, 1);
-	    this.previousYear = goYear.bind(this, -1);
-	    this.prefixCls = props.rootPrefixCls + '-month-panel';
-	    return {
-	      value: props.value || props.defaultValue
-	    };
-	  },
-	  componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
-	    if ('value' in nextProps) {
-	      this.setState({
-	        value: nextProps.value
-	      });
-	    }
-	  },
-	  onYearPanelSelect: function onYearPanelSelect(current) {
-	    this.setState({
-	      showYearPanel: 0
-	    });
-	    this.setAndChangeValue(current);
-	  },
-	  setAndChangeValue: function setAndChangeValue(value) {
-	    this.setValue(value);
-	    this.props.onChange(value);
-	  },
-	  setAndSelectValue: function setAndSelectValue(value) {
-	    this.setValue(value);
-	    this.props.onSelect(value);
-	  },
-	  setValue: function setValue(value) {
-	    if (!('value' in this.props)) {
-	      this.setState({
-	        value: value
-	      });
-	    }
-	  },
-	  showYearPanel: function showYearPanel() {
-	    this.setState({
-	      showYearPanel: 1
-	    });
-	  },
-	  render: function render() {
-	    var props = this.props;
-	    var value = this.state.value;
-	    var locale = props.locale;
-	    var year = value.year();
-	    var prefixCls = this.prefixCls;
-	    var yearPanel = void 0;
-	    if (this.state.showYearPanel) {
-	      yearPanel = _react2.default.createElement(_YearPanel2.default, {
-	        locale: locale,
-	        value: value,
-	        rootPrefixCls: props.rootPrefixCls,
-	        onSelect: this.onYearPanelSelect
-	      });
-	    }
-	    return _react2.default.createElement(
-	      'div',
-	      { className: prefixCls, style: props.style },
-	      _react2.default.createElement(
-	        'div',
-	        null,
-	        _react2.default.createElement(
-	          'div',
-	          { className: prefixCls + '-header' },
-	          _react2.default.createElement(
-	            'a',
-	            {
-	              className: prefixCls + '-prev-year-btn',
-	              role: 'button',
-	              onClick: this.previousYear,
-	              title: locale.previousYear
-	            },
-	            '«'
-	          ),
-	          _react2.default.createElement(
-	            'a',
-	            {
-	              className: prefixCls + '-year-select',
-	              role: 'button',
-	              onClick: this.showYearPanel,
-	              title: locale.yearSelect
-	            },
-	            _react2.default.createElement(
-	              'span',
-	              { className: prefixCls + '-year-select-content' },
-	              year
-	            ),
-	            _react2.default.createElement(
-	              'span',
-	              { className: prefixCls + '-year-select-arrow' },
-	              'x'
-	            )
-	          ),
-	          _react2.default.createElement(
-	            'a',
-	            {
-	              className: prefixCls + '-next-year-btn',
-	              role: 'button',
-	              onClick: this.nextYear,
-	              title: locale.nextYear
-	            },
-	            '»'
-	          )
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          { className: prefixCls + '-body' },
-	          _react2.default.createElement(_MonthTable2.default, {
-	            disabledDate: props.disabledDate,
-	            onSelect: this.setAndSelectValue,
-	            locale: locale,
-	            value: value,
-	            prefixCls: prefixCls
-	          })
-	        )
-	      ),
-	      yearPanel
-	    );
-	  }
-	});
-
-	exports.default = MonthPanel;
-
-/***/ },
-/* 131 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _react = __webpack_require__(17);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _classnames = __webpack_require__(132);
-
-	var _classnames2 = _interopRequireDefault(_classnames);
-
-	var _DecadePanel = __webpack_require__(133);
-
-	var _DecadePanel2 = _interopRequireDefault(_DecadePanel);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var ROW = 4;
-	var COL = 3;
-
-	function goYear(direction) {
-	  var value = this.state.value.clone();
-	  value.add(direction, 'year');
-	  this.setState({
-	    value: value
-	  });
-	}
-
-	function chooseYear(year) {
-	  var value = this.state.value.clone();
-	  value.year(year);
-	  value.month(this.state.value.month());
-	  this.props.onSelect(value);
-	}
-
-	var YearPanel = function (_React$Component) {
-	  _inherits(YearPanel, _React$Component);
-
-	  function YearPanel(props) {
-	    _classCallCheck(this, YearPanel);
-
-	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(YearPanel).call(this, props));
-
-	    _this.prefixCls = props.rootPrefixCls + '-year-panel';
-	    _this.state = {
-	      value: props.value || props.defaultValue
-	    };
-	    _this.nextDecade = goYear.bind(_this, 10);
-	    _this.previousDecade = goYear.bind(_this, -10);
-	    ['showDecadePanel', 'onDecadePanelSelect'].forEach(function (method) {
-	      _this[method] = _this[method].bind(_this);
-	    });
-	    return _this;
-	  }
-
-	  _createClass(YearPanel, [{
-	    key: 'onDecadePanelSelect',
-	    value: function onDecadePanelSelect(current) {
-	      this.setState({
-	        value: current,
-	        showDecadePanel: 0
-	      });
-	    }
-	  }, {
-	    key: 'years',
-	    value: function years() {
-	      var value = this.state.value;
-	      var currentYear = value.year();
-	      var startYear = parseInt(currentYear / 10, 10) * 10;
-	      var previousYear = startYear - 1;
-	      var endYear = startYear + 9;
-	      var years = [];
-	      var index = 0;
-	      for (var rowIndex = 0; rowIndex < ROW; rowIndex++) {
-	        years[rowIndex] = [];
-	        for (var colIndex = 0; colIndex < COL; colIndex++) {
-	          var year = previousYear + index;
-	          var content = void 0;
-	          if (year < startYear) {
-	            content = '';
-	          } else if (year > endYear) {
-	            content = '';
-	          } else {
-	            content = String(year);
-	          }
-	          years[rowIndex][colIndex] = {
-	            content: content,
-	            year: year,
-	            title: content
-	          };
-	          index++;
-	        }
-	      }
-	      return years;
-	    }
-	  }, {
-	    key: 'showDecadePanel',
-	    value: function showDecadePanel() {
-	      this.setState({
-	        showDecadePanel: 1
-	      });
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      var _this2 = this;
-
-	      var props = this.props;
-	      var value = this.state.value;
-	      var locale = props.locale;
-	      var years = this.years();
-	      var currentYear = value.year();
-	      var startYear = parseInt(currentYear / 10, 10) * 10;
-	      var endYear = startYear + 9;
-	      var prefixCls = this.prefixCls;
-
-	      var yeasEls = years.map(function (row, index) {
-	        var tds = row.map(function (yearData) {
-	          var _classNameMap;
-
-	          var classNameMap = (_classNameMap = {}, _defineProperty(_classNameMap, prefixCls + '-cell', 1), _defineProperty(_classNameMap, prefixCls + '-selected-cell', yearData.year === currentYear), _defineProperty(_classNameMap, prefixCls + '-last-decade-cell', yearData.year < startYear), _defineProperty(_classNameMap, prefixCls + '-next-decade-cell', yearData.year > endYear), _classNameMap);
-	          var clickHandler = void 0;
-	          if (yearData.year < startYear) {
-	            clickHandler = _this2.previousDecade;
-	          } else if (yearData.year > endYear) {
-	            clickHandler = _this2.nextDecade;
-	          } else {
-	            clickHandler = chooseYear.bind(_this2, yearData.year);
-	          }
-	          return _react2.default.createElement(
-	            'td',
-	            {
-	              role: 'gridcell',
-	              title: yearData.title,
-	              key: yearData.content,
-	              onClick: clickHandler,
-	              className: (0, _classnames2.default)(classNameMap)
-	            },
-	            _react2.default.createElement(
-	              'a',
-	              {
-	                className: prefixCls + '-year'
-	              },
-	              yearData.content
-	            )
-	          );
-	        });
-	        return _react2.default.createElement(
-	          'tr',
-	          { key: index, role: 'row' },
-	          tds
-	        );
-	      });
-
-	      var decadePanel = void 0;
-	      if (this.state.showDecadePanel) {
-	        decadePanel = _react2.default.createElement(_DecadePanel2.default, {
-	          locale: locale,
-	          value: value,
-	          rootPrefixCls: props.rootPrefixCls,
-	          onSelect: this.onDecadePanelSelect
-	        });
-	      }
-
-	      return _react2.default.createElement(
-	        'div',
-	        { className: this.prefixCls },
-	        _react2.default.createElement(
-	          'div',
-	          null,
-	          _react2.default.createElement(
-	            'div',
-	            { className: prefixCls + '-header' },
-	            _react2.default.createElement(
-	              'a',
-	              {
-	                className: prefixCls + '-prev-decade-btn',
-	                role: 'button',
-	                onClick: this.previousDecade,
-	                title: locale.previousDecade
-	              },
-	              '«'
-	            ),
-	            _react2.default.createElement(
-	              'a',
-	              {
-	                className: prefixCls + '-decade-select',
-	                role: 'button',
-	                onClick: this.showDecadePanel,
-	                title: locale.decadeSelect
-	              },
-	              _react2.default.createElement(
-	                'span',
-	                { className: prefixCls + '-decade-select-content' },
-	                startYear,
-	                '-',
-	                endYear
-	              ),
-	              _react2.default.createElement(
-	                'span',
-	                { className: prefixCls + '-decade-select-arrow' },
-	                'x'
-	              )
-	            ),
-	            _react2.default.createElement(
-	              'a',
-	              {
-	                className: prefixCls + '-next-decade-btn',
-	                role: 'button',
-	                onClick: this.nextDecade,
-	                title: locale.nextDecade
-	              },
-	              '»'
-	            )
-	          ),
-	          _react2.default.createElement(
-	            'div',
-	            { className: prefixCls + '-body' },
-	            _react2.default.createElement(
-	              'table',
-	              { className: prefixCls + '-table', cellSpacing: '0', role: 'grid' },
-	              _react2.default.createElement(
-	                'tbody',
-	                { className: prefixCls + '-tbody' },
-	                yeasEls
-	              )
-	            )
-	          )
-	        ),
-	        decadePanel
-	      );
-	    }
-	  }]);
-
-	  return YearPanel;
-	}(_react2.default.Component);
-
-	exports.default = YearPanel;
-
-
-	YearPanel.propTypes = {
-	  rootPrefixCls: _react.PropTypes.string,
-	  value: _react.PropTypes.object,
-	  defaultValue: _react.PropTypes.object
-	};
-
-	YearPanel.defaultProps = {
-	  onSelect: function onSelect() {}
-	};
-
-/***/ },
-/* 132 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -16275,403 +15710,208 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 133 */
+/* 130 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (global, factory) {
+	  if (true) {
+	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [module, exports, __webpack_require__(17), __webpack_require__(127)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	  } else if (typeof exports !== "undefined") {
+	    factory(module, exports, require('react'), require('../util/'));
+	  } else {
+	    var mod = {
+	      exports: {}
+	    };
+	    factory(mod, mod.exports, global.react, global.util);
+	    global.TodayButton = mod.exports;
+	  }
+	})(this, function (module, exports, _react, _util) {
+	  'use strict';
 
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _react = __webpack_require__(17);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _classnames = __webpack_require__(132);
-
-	var _classnames2 = _interopRequireDefault(_classnames);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var ROW = 4;
-	var COL = 3;
-
-
-	function goYear(direction) {
-	  var next = this.state.value.clone();
-	  next.add(direction, 'years');
-	  this.setState({
-	    value: next
+	  Object.defineProperty(exports, "__esModule", {
+	    value: true
 	  });
-	}
+	  exports.default = TodayButton;
 
-	function chooseDecade(year, event) {
-	  var next = this.state.value.clone();
-	  next.year(year);
-	  next.month(this.state.value.month());
-	  this.props.onSelect(next);
-	  event.preventDefault();
-	}
+	  var _react2 = _interopRequireDefault(_react);
 
-	var DecadePanel = function (_React$Component) {
-	  _inherits(DecadePanel, _React$Component);
-
-	  function DecadePanel(props) {
-	    _classCallCheck(this, DecadePanel);
-
-	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(DecadePanel).call(this, props));
-
-	    _this.state = {
-	      value: props.value || props.defaultValue
+	  function _interopRequireDefault(obj) {
+	    return obj && obj.__esModule ? obj : {
+	      default: obj
 	    };
-
-	    // bind methods
-	    _this.prefixCls = props.rootPrefixCls + '-decade-panel';
-	    _this.nextCentury = goYear.bind(_this, 100);
-	    _this.previousCentury = goYear.bind(_this, -100);
-	    return _this;
 	  }
 
-	  _createClass(DecadePanel, [{
-	    key: 'render',
-	    value: function render() {
-	      var _this2 = this;
+	  function TodayButton(_ref) {
+	    var prefixCls = _ref.prefixCls;
+	    var locale = _ref.locale;
+	    var value = _ref.value;
+	    var timePicker = _ref.timePicker;
+	    var disabledDate = _ref.disabledDate;
+	    var disabledTime = _ref.disabledTime;
+	    var onToday = _ref.onToday;
+	    var text = _ref.text;
 
-	      var value = this.state.value;
-	      var locale = this.props.locale;
-	      var currentYear = value.year();
-	      var startYear = parseInt(currentYear / 100, 10) * 100;
-	      var preYear = startYear - 10;
-	      var endYear = startYear + 99;
-	      var decades = [];
-	      var index = 0;
-	      var prefixCls = this.prefixCls;
-
-	      for (var rowIndex = 0; rowIndex < ROW; rowIndex++) {
-	        decades[rowIndex] = [];
-	        for (var colIndex = 0; colIndex < COL; colIndex++) {
-	          var startDecade = preYear + index * 10;
-	          var endDecade = preYear + index * 10 + 9;
-	          decades[rowIndex][colIndex] = {
-	            startDecade: startDecade,
-	            endDecade: endDecade
-	          };
-	          index++;
-	        }
-	      }
-
-	      var decadesEls = decades.map(function (row, decadeIndex) {
-	        var tds = row.map(function (decadeData) {
-	          var _classNameMap;
-
-	          var dStartDecade = decadeData.startDecade;
-	          var dEndDecade = decadeData.endDecade;
-	          var isLast = dStartDecade < startYear;
-	          var isNext = dEndDecade > endYear;
-	          var classNameMap = (_classNameMap = {}, _defineProperty(_classNameMap, prefixCls + '-cell', 1), _defineProperty(_classNameMap, prefixCls + '-selected-cell', dStartDecade <= currentYear && currentYear <= dEndDecade), _defineProperty(_classNameMap, prefixCls + '-last-century-cell', isLast), _defineProperty(_classNameMap, prefixCls + '-next-century-cell', isNext), _classNameMap);
-	          var content = void 0;
-	          var clickHandler = void 0;
-	          if (isLast) {
-	            clickHandler = _this2.previousCentury;
-	          } else if (isNext) {
-	            clickHandler = _this2.nextCentury;
-	          } else {
-	            content = dStartDecade + '-' + dEndDecade;
-	            clickHandler = chooseDecade.bind(_this2, dStartDecade);
-	          }
-	          return _react2.default.createElement(
-	            'td',
-	            {
-	              key: dStartDecade,
-	              onClick: clickHandler,
-	              role: 'gridcell',
-	              className: (0, _classnames2.default)(classNameMap)
-	            },
-	            _react2.default.createElement(
-	              'a',
-	              {
-	                className: prefixCls + '-decade'
-	              },
-	              content
-	            )
-	          );
-	        });
-	        return _react2.default.createElement(
-	          'tr',
-	          { key: decadeIndex, role: 'row' },
-	          tds
-	        );
-	      });
-
-	      return _react2.default.createElement(
-	        'div',
-	        { className: this.prefixCls },
-	        _react2.default.createElement(
-	          'div',
-	          { className: prefixCls + '-header' },
-	          _react2.default.createElement(
-	            'a',
-	            {
-	              className: prefixCls + '-prev-century-btn',
-	              role: 'button',
-	              onClick: this.previousCentury,
-	              title: locale.previousCentury
-	            },
-	            '«'
-	          ),
-	          _react2.default.createElement(
-	            'div',
-	            { className: prefixCls + '-century' },
-	            startYear,
-	            '-',
-	            endYear
-	          ),
-	          _react2.default.createElement(
-	            'a',
-	            {
-	              className: prefixCls + '-next-century-btn',
-	              role: 'button',
-	              onClick: this.nextCentury,
-	              title: locale.nextCentury
-	            },
-	            '»'
-	          )
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          { className: prefixCls + '-body' },
-	          _react2.default.createElement(
-	            'table',
-	            { className: prefixCls + '-table', cellSpacing: '0', role: 'grid' },
-	            _react2.default.createElement(
-	              'tbody',
-	              { className: prefixCls + '-tbody' },
-	              decadesEls
-	            )
-	          )
-	        )
-	      );
+	    var disabledToday = false;
+	    var localeNow = text;
+	    if (!localeNow && timePicker) {
+	      localeNow = locale.now;
 	    }
-	  }]);
-
-	  return DecadePanel;
-	}(_react2.default.Component);
-
-	exports.default = DecadePanel;
-
-
-	DecadePanel.propTypes = {
-	  locale: _react.PropTypes.object,
-	  value: _react.PropTypes.object,
-	  defaultValue: _react.PropTypes.object,
-	  rootPrefixCls: _react.PropTypes.string
-	};
-
-	DecadePanel.defaultProps = {
-	  onSelect: function onSelect() {}
-	};
-
-/***/ },
-/* 134 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
+	    localeNow = localeNow || locale.today;
+	    var disabledTodayClass = '';
+	    if (disabledDate) {
+	      disabledToday = !(0, _util.isAllowedDate)((0, _util.getTodayTime)(value), disabledDate, disabledTime);
+	      if (disabledToday) {
+	        disabledTodayClass = prefixCls + '-today-btn-disabled';
+	      }
+	    }
+	    return _react2.default.createElement(
+	      'a',
+	      {
+	        className: prefixCls + '-today-btn ' + disabledTodayClass,
+	        role: 'button',
+	        onClick: disabledToday ? null : onToday,
+	        title: (0, _util.getTodayTimeStr)(value)
+	      },
+	      localeNow
+	    );
+	  }
+	  module.exports = exports['default'];
 	});
 
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+/***/ },
+/* 131 */
+/***/ function(module, exports, __webpack_require__) {
 
-	var _react = __webpack_require__(17);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _classnames = __webpack_require__(132);
-
-	var _classnames2 = _interopRequireDefault(_classnames);
-
-	var _index = __webpack_require__(128);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var ROW = 4;
-	var COL = 3;
-
-	function chooseMonth(month) {
-	  var next = this.state.value.clone();
-	  next.month(month);
-	  this.setAndSelectValue(next);
-	}
-
-	function noop() {}
-
-	var MonthTable = function (_Component) {
-	  _inherits(MonthTable, _Component);
-
-	  function MonthTable(props) {
-	    _classCallCheck(this, MonthTable);
-
-	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(MonthTable).call(this, props));
-
-	    _this.state = {
-	      value: props.value
+	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (global, factory) {
+	  if (true) {
+	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [module, exports, __webpack_require__(17)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	  } else if (typeof exports !== "undefined") {
+	    factory(module, exports, require("react"));
+	  } else {
+	    var mod = {
+	      exports: {}
 	    };
-	    return _this;
+	    factory(mod, mod.exports, global.react);
+	    global.OkButton = mod.exports;
+	  }
+	})(this, function (module, exports, _react) {
+	  "use strict";
+
+	  Object.defineProperty(exports, "__esModule", {
+	    value: true
+	  });
+	  exports.default = OkButton;
+
+	  var _react2 = _interopRequireDefault(_react);
+
+	  function _interopRequireDefault(obj) {
+	    return obj && obj.__esModule ? obj : {
+	      default: obj
+	    };
 	  }
 
-	  _createClass(MonthTable, [{
-	    key: 'componentWillReceiveProps',
-	    value: function componentWillReceiveProps(nextProps) {
-	      if ('value' in nextProps) {
-	        this.setState({
-	          value: nextProps.value
-	        });
-	      }
+	  function OkButton(_ref) {
+	    var prefixCls = _ref.prefixCls;
+	    var locale = _ref.locale;
+	    var okDisabled = _ref.okDisabled;
+	    var onOk = _ref.onOk;
+
+	    var className = prefixCls + "-ok-btn";
+	    if (okDisabled) {
+	      className += " " + prefixCls + "-ok-btn-disabled";
 	    }
-	  }, {
-	    key: 'setAndSelectValue',
-	    value: function setAndSelectValue(value) {
-	      this.setState({
-	        value: value
-	      });
-	      this.props.onSelect(value);
-	    }
-	  }, {
-	    key: 'months',
-	    value: function months() {
-	      var value = this.state.value;
-	      var current = value.clone();
-	      var months = [];
-	      var localeData = value.localeData();
-	      var index = 0;
-	      for (var rowIndex = 0; rowIndex < ROW; rowIndex++) {
-	        months[rowIndex] = [];
-	        for (var colIndex = 0; colIndex < COL; colIndex++) {
-	          current.month(index);
-	          var content = localeData.monthsShort(current);
-	          months[rowIndex][colIndex] = {
-	            value: index,
-	            content: content,
-	            title: content
-	          };
-	          index++;
-	        }
-	      }
-	      return months;
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      var _this2 = this;
-
-	      var props = this.props;
-	      var value = this.state.value;
-	      var today = (0, _index.getTodayTime)(value);
-	      var months = this.months();
-	      var currentMonth = value.month();
-	      var prefixCls = props.prefixCls;
-	      var locale = props.locale;
-	      var contentRender = props.contentRender;
-	      var cellRender = props.cellRender;
-
-	      var monthsEls = months.map(function (month, index) {
-	        var tds = month.map(function (monthData) {
-	          var _classNameMap;
-
-	          var disabled = false;
-	          if (props.disabledDate) {
-	            var testValue = value.clone();
-	            testValue.month(monthData.value);
-	            disabled = props.disabledDate(testValue);
-	          }
-	          var classNameMap = (_classNameMap = {}, _defineProperty(_classNameMap, prefixCls + '-cell', 1), _defineProperty(_classNameMap, prefixCls + '-cell-disabled', disabled), _defineProperty(_classNameMap, prefixCls + '-selected-cell', monthData.value === currentMonth), _defineProperty(_classNameMap, prefixCls + '-current-cell', today.year() === value.year() && monthData.value === today.month()), _classNameMap);
-	          var cellEl = void 0;
-	          if (cellRender) {
-	            var currentValue = value.clone();
-	            currentValue.month(monthData.value);
-	            cellEl = cellRender(currentValue, locale);
-	          } else {
-	            var content = void 0;
-	            if (contentRender) {
-	              var _currentValue = value.clone();
-	              _currentValue.month(monthData.value);
-	              content = contentRender(_currentValue, locale);
-	            } else {
-	              content = monthData.content;
-	            }
-	            cellEl = _react2.default.createElement(
-	              'div',
-	              { className: prefixCls + '-month' },
-	              content
-	            );
-	          }
-	          return _react2.default.createElement(
-	            'td',
-	            {
-	              role: 'gridcell',
-	              key: monthData.value,
-	              onClick: disabled ? null : chooseMonth.bind(_this2, monthData.value),
-	              title: monthData.title,
-	              className: (0, _classnames2.default)(classNameMap)
-	            },
-	            cellEl
-	          );
-	        });
-	        return _react2.default.createElement(
-	          'tr',
-	          { key: index, role: 'row' },
-	          tds
-	        );
-	      });
-
-	      return _react2.default.createElement(
-	        'table',
-	        { className: prefixCls + '-table', cellSpacing: '0', role: 'grid' },
-	        _react2.default.createElement(
-	          'tbody',
-	          { className: prefixCls + '-tbody' },
-	          monthsEls
-	        )
-	      );
-	    }
-	  }]);
-
-	  return MonthTable;
-	}(_react.Component);
-
-	MonthTable.defaultProps = {
-	  onSelect: noop
-	};
-	MonthTable.propTypes = {
-	  onSelect: _react.PropTypes.func,
-	  cellRender: _react.PropTypes.func,
-	  prefixCls: _react.PropTypes.string,
-	  value: _react.PropTypes.object
-	};
-	exports.default = MonthTable;
+	    return _react2.default.createElement(
+	      "a",
+	      {
+	        className: className,
+	        role: "button",
+	        onClick: okDisabled ? null : onOk
+	      },
+	      locale.ok
+	    );
+	  }
+	  module.exports = exports['default'];
+	});
 
 /***/ },
-/* 135 */
+/* 132 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (global, factory) {
+	  if (true) {
+	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [module, exports, __webpack_require__(17), __webpack_require__(129)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	  } else if (typeof exports !== "undefined") {
+	    factory(module, exports, require('react'), require('classnames'));
+	  } else {
+	    var mod = {
+	      exports: {}
+	    };
+	    factory(mod, mod.exports, global.react, global.classnames);
+	    global.TimePickerButton = mod.exports;
+	  }
+	})(this, function (module, exports, _react, _classnames2) {
+	  'use strict';
+
+	  Object.defineProperty(exports, "__esModule", {
+	    value: true
+	  });
+	  exports.default = TimePickerButton;
+
+	  var _react2 = _interopRequireDefault(_react);
+
+	  var _classnames3 = _interopRequireDefault(_classnames2);
+
+	  function _interopRequireDefault(obj) {
+	    return obj && obj.__esModule ? obj : {
+	      default: obj
+	    };
+	  }
+
+	  function _defineProperty(obj, key, value) {
+	    if (key in obj) {
+	      Object.defineProperty(obj, key, {
+	        value: value,
+	        enumerable: true,
+	        configurable: true,
+	        writable: true
+	      });
+	    } else {
+	      obj[key] = value;
+	    }
+
+	    return obj;
+	  }
+
+	  function TimePickerButton(_ref) {
+	    var _classnames;
+
+	    var prefixCls = _ref.prefixCls;
+	    var locale = _ref.locale;
+	    var showTimePicker = _ref.showTimePicker;
+	    var onOpenTimePicker = _ref.onOpenTimePicker;
+	    var onCloseTimePicker = _ref.onCloseTimePicker;
+	    var timePickerDisabled = _ref.timePickerDisabled;
+
+	    var className = (0, _classnames3.default)((_classnames = {}, _defineProperty(_classnames, prefixCls + '-time-picker-btn', true), _defineProperty(_classnames, prefixCls + '-time-picker-btn-disabled', timePickerDisabled), _classnames));
+	    var onClick = null;
+	    if (!timePickerDisabled) {
+	      onClick = showTimePicker ? onCloseTimePicker : onOpenTimePicker;
+	    }
+	    return _react2.default.createElement(
+	      'a',
+	      {
+	        className: className,
+	        role: 'button',
+	        onClick: onClick
+	      },
+	      showTimePicker ? locale.dateSelect : locale.timeSelect
+	    );
+	  }
+	  module.exports = exports['default'];
+	});
+
+/***/ },
+/* 133 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -16688,647 +15928,1739 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
+/* 134 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (global, factory) {
+	  if (true) {
+	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [module, exports, __webpack_require__(17), __webpack_require__(129), __webpack_require__(23), __webpack_require__(127)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	  } else if (typeof exports !== "undefined") {
+	    factory(module, exports, require('react'), require('classnames'), require('moment'), require('../util/index'));
+	  } else {
+	    var mod = {
+	      exports: {}
+	    };
+	    factory(mod, mod.exports, global.react, global.classnames, global.moment, global.index);
+	    global.CalendarMixin = mod.exports;
+	  }
+	})(this, function (module, exports, _react, _classnames, _moment, _index) {
+	  'use strict';
+
+	  Object.defineProperty(exports, "__esModule", {
+	    value: true
+	  });
+
+	  var _react2 = _interopRequireDefault(_react);
+
+	  var _classnames2 = _interopRequireDefault(_classnames);
+
+	  var _moment2 = _interopRequireDefault(_moment);
+
+	  function _interopRequireDefault(obj) {
+	    return obj && obj.__esModule ? obj : {
+	      default: obj
+	    };
+	  }
+
+	  function _defineProperty(obj, key, value) {
+	    if (key in obj) {
+	      Object.defineProperty(obj, key, {
+	        value: value,
+	        enumerable: true,
+	        configurable: true,
+	        writable: true
+	      });
+	    } else {
+	      obj[key] = value;
+	    }
+
+	    return obj;
+	  }
+
+	  function noop() {}
+
+	  function getNow() {
+	    return (0, _moment2.default)();
+	  }
+
+	  function getNowByCurrentStateValue(value) {
+	    var ret = void 0;
+	    if (value) {
+	      ret = (0, _index.getTodayTime)(value);
+	    } else {
+	      ret = getNow();
+	    }
+	    return ret;
+	  }
+
+	  var CalendarMixin = {
+	    propTypes: {
+	      value: _react.PropTypes.object,
+	      defaultValue: _react.PropTypes.object,
+	      onKeyDown: _react.PropTypes.func
+	    },
+
+	    getDefaultProps: function getDefaultProps() {
+	      return {
+	        onKeyDown: noop
+	      };
+	    },
+	    getInitialState: function getInitialState() {
+	      var props = this.props;
+	      var value = props.value || props.defaultValue || getNow();
+	      return {
+	        value: value,
+	        selectedValue: props.selectedValue || props.defaultSelectedValue
+	      };
+	    },
+	    componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
+	      var value = nextProps.value;
+	      var selectedValue = nextProps.selectedValue;
+
+	      if ('value' in nextProps) {
+	        value = value || nextProps.defaultValue || getNowByCurrentStateValue(this.state.value);
+	        this.setState({
+	          value: value
+	        });
+	      }
+	      if ('selectedValue' in nextProps) {
+	        this.setState({
+	          selectedValue: selectedValue
+	        });
+	      }
+	    },
+	    onSelect: function onSelect(value, cause) {
+	      if (value) {
+	        this.setValue(value);
+	      }
+	      this.setSelectedValue(value, cause);
+	    },
+	    renderRoot: function renderRoot(newProps) {
+	      var _className;
+
+	      var props = this.props;
+	      var prefixCls = props.prefixCls;
+
+	      var className = (_className = {}, _defineProperty(_className, prefixCls, 1), _defineProperty(_className, prefixCls + '-hidden', !props.visible), _defineProperty(_className, props.className, !!props.className), _defineProperty(_className, newProps.className, !!newProps.className), _className);
+
+	      return _react2.default.createElement(
+	        'div',
+	        {
+	          ref: 'root',
+	          className: '' + (0, _classnames2.default)(className),
+	          style: this.props.style,
+	          tabIndex: '0',
+	          onKeyDown: this.onKeyDown
+	        },
+	        newProps.children
+	      );
+	    },
+	    setSelectedValue: function setSelectedValue(selectedValue, cause) {
+	      if (this.isAllowedDate(selectedValue)) {
+	        if (!('selectedValue' in this.props)) {
+	          this.setState({
+	            selectedValue: selectedValue
+	          });
+	        }
+	        this.props.onSelect(selectedValue, cause);
+	      }
+	    },
+	    setValue: function setValue(value) {
+	      var originalValue = this.state.value;
+	      if (!('value' in this.props)) {
+	        this.setState({
+	          value: value
+	        });
+	      }
+	      if (originalValue && value && !originalValue.isSame(value) || !originalValue && value || originalValue && !value) {
+	        this.props.onChange(value);
+	      }
+	    },
+	    isAllowedDate: function isAllowedDate(value) {
+	      var disabledDate = this.props.disabledDate;
+	      var disabledTime = this.props.disabledTime;
+	      return (0, _index.isAllowedDate)(value, disabledDate, disabledTime);
+	    }
+	  };
+
+	  exports.default = CalendarMixin;
+	  module.exports = exports['default'];
+	});
+
+/***/ },
+/* 135 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (global, factory) {
+	  if (true) {
+	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [module, exports, __webpack_require__(17), __webpack_require__(136)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	  } else if (typeof exports !== "undefined") {
+	    factory(module, exports, require('react'), require('../locale/en_US'));
+	  } else {
+	    var mod = {
+	      exports: {}
+	    };
+	    factory(mod, mod.exports, global.react, global.en_US);
+	    global.CommonMixin = mod.exports;
+	  }
+	})(this, function (module, exports, _react, _en_US) {
+	  'use strict';
+
+	  Object.defineProperty(exports, "__esModule", {
+	    value: true
+	  });
+
+	  var _en_US2 = _interopRequireDefault(_en_US);
+
+	  function _interopRequireDefault(obj) {
+	    return obj && obj.__esModule ? obj : {
+	      default: obj
+	    };
+	  }
+
+	  function noop() {}
+
+	  exports.default = {
+	    propTypes: {
+	      className: _react.PropTypes.string,
+	      locale: _react.PropTypes.object,
+	      style: _react.PropTypes.object,
+	      visible: _react.PropTypes.bool,
+	      onSelect: _react.PropTypes.func,
+	      prefixCls: _react.PropTypes.string,
+	      onChange: _react.PropTypes.func,
+	      onOk: _react.PropTypes.func
+	    },
+
+	    getDefaultProps: function getDefaultProps() {
+	      return {
+	        locale: _en_US2.default,
+	        style: {},
+	        visible: true,
+	        prefixCls: 'rc-calendar',
+	        className: '',
+	        onSelect: noop,
+	        onChange: noop,
+	        onClear: noop
+	      };
+	    },
+	    shouldComponentUpdate: function shouldComponentUpdate(nextProps) {
+	      return this.props.visible || nextProps.visible;
+	    },
+	    getFormat: function getFormat() {
+	      var format = this.props.format;
+	      var _props = this.props;
+	      var locale = _props.locale;
+	      var timePicker = _props.timePicker;
+
+	      if (!format) {
+	        if (timePicker) {
+	          format = locale.dateTimeFormat;
+	        } else {
+	          format = locale.dateFormat;
+	        }
+	      }
+	      return format;
+	    },
+	    focus: function focus() {
+	      if (this.refs.root) {
+	        this.refs.root.focus();
+	      }
+	    }
+	  };
+	  module.exports = exports['default'];
+	});
+
+/***/ },
 /* 136 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-	var _react = __webpack_require__(17);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _reactDom = __webpack_require__(18);
-
-	var _reactDom2 = _interopRequireDefault(_reactDom);
-
-	var _mapSelf = __webpack_require__(135);
-
-	var _mapSelf2 = _interopRequireDefault(_mapSelf);
-
-	var _classnames = __webpack_require__(132);
-
-	var _classnames2 = _interopRequireDefault(_classnames);
-
-	var _TodayButton = __webpack_require__(137);
-
-	var _TodayButton2 = _interopRequireDefault(_TodayButton);
-
-	var _OkButton = __webpack_require__(138);
-
-	var _OkButton2 = _interopRequireDefault(_OkButton);
-
-	var _TimePickerButton = __webpack_require__(139);
-
-	var _TimePickerButton2 = _interopRequireDefault(_TimePickerButton);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-	var CalendarFooter = _react2.default.createClass({
-	  displayName: 'CalendarFooter',
-
-	  propTypes: {
-	    prefixCls: _react.PropTypes.string,
-	    showDateInput: _react.PropTypes.bool,
-	    disabledTime: _react.PropTypes.any,
-	    timePicker: _react.PropTypes.element,
-	    selectedValue: _react.PropTypes.any,
-	    showOk: _react.PropTypes.bool,
-	    onSelect: _react.PropTypes.func,
-	    value: _react.PropTypes.object,
-	    defaultValue: _react.PropTypes.object
-	  },
-
-	  onSelect: function onSelect(value) {
-	    this.props.onSelect(value);
-	  },
-	  getRootDOMNode: function getRootDOMNode() {
-	    return _reactDom2.default.findDOMNode(this);
-	  },
-	  render: function render() {
-	    var props = this.props;
-	    var value = props.value;
-	    var prefixCls = props.prefixCls;
-	    var showOk = props.showOk;
-	    var timePicker = props.timePicker;
-
-	    var footerEl = null;
-	    if (props.showToday || timePicker) {
-	      var _cx;
-
-	      var nowEl = void 0;
-	      if (props.showToday) {
-	        nowEl = _react2.default.createElement(_TodayButton2.default, _extends({}, props, { value: value }));
-	      }
-	      var okBtn = void 0;
-	      if (showOk === true || showOk !== false && !!props.timePicker) {
-	        okBtn = _react2.default.createElement(_OkButton2.default, props);
-	      }
-	      var timePickerBtn = void 0;
-	      if (!!props.timePicker) {
-	        timePickerBtn = _react2.default.createElement(_TimePickerButton2.default, props);
-	      }
-
-	      var footerBtn = void 0;
-	      if (nowEl || okBtn) {
-	        footerBtn = _react2.default.createElement(
-	          'span',
-	          { className: prefixCls + '-footer-btn' },
-	          (0, _mapSelf2.default)([nowEl, timePickerBtn, okBtn])
-	        );
-	      }
-	      var cls = (0, _classnames2.default)((_cx = {}, _defineProperty(_cx, prefixCls + '-footer', true), _defineProperty(_cx, prefixCls + '-footer-show-ok', okBtn), _cx));
-	      footerEl = _react2.default.createElement(
-	        'div',
-	        { className: cls },
-	        footerBtn
-	      );
-	    }
-	    return footerEl;
+	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (global, factory) {
+	  if (true) {
+	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [module, exports], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	  } else if (typeof exports !== "undefined") {
+	    factory(module, exports);
+	  } else {
+	    var mod = {
+	      exports: {}
+	    };
+	    factory(mod, mod.exports);
+	    global.en_US = mod.exports;
 	  }
-	});
+	})(this, function (module, exports) {
+	  'use strict';
 
-	exports.default = CalendarFooter;
+	  Object.defineProperty(exports, "__esModule", {
+	    value: true
+	  });
+	  exports.default = {
+	    today: 'Today',
+	    now: 'Now',
+	    backToToday: 'Back to today',
+	    ok: 'Ok',
+	    clear: 'Clear',
+	    month: 'Month',
+	    year: 'Year',
+	    timeSelect: 'Select time',
+	    dateSelect: 'Select date',
+	    monthSelect: 'Choose a month',
+	    yearSelect: 'Choose a year',
+	    decadeSelect: 'Choose a decade',
+	    yearFormat: 'YYYY',
+	    dateFormat: 'M/D/YYYY',
+	    dayFormat: 'D',
+	    dateTimeFormat: 'M/D/YYYY HH:mm:ss',
+	    monthFormat: 'MMMM',
+	    monthBeforeYear: true,
+	    previousMonth: 'Previous month (PageUp)',
+	    nextMonth: 'Next month (PageDown)',
+	    previousYear: 'Last year (Control + left)',
+	    nextYear: 'Next year (Control + right)',
+	    previousDecade: 'Last decade',
+	    nextDecade: 'Next decade',
+	    previousCentury: 'Last century',
+	    nextCentury: 'Next century'
+	  };
+	  module.exports = exports['default'];
+	});
 
 /***/ },
 /* 137 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = TodayButton;
-
-	var _react = __webpack_require__(17);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _util = __webpack_require__(128);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function TodayButton(_ref) {
-	  var prefixCls = _ref.prefixCls;
-	  var locale = _ref.locale;
-	  var value = _ref.value;
-	  var timePicker = _ref.timePicker;
-	  var disabledDate = _ref.disabledDate;
-	  var disabledTime = _ref.disabledTime;
-	  var onToday = _ref.onToday;
-	  var text = _ref.text;
-
-	  var disabledToday = false;
-	  var localeNow = text;
-	  if (!localeNow && timePicker) {
-	    localeNow = locale.now;
+	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (global, factory) {
+	  if (true) {
+	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [module, exports, __webpack_require__(17), __webpack_require__(18), __webpack_require__(23)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	  } else if (typeof exports !== "undefined") {
+	    factory(module, exports, require('react'), require('react-dom'), require('moment'));
+	  } else {
+	    var mod = {
+	      exports: {}
+	    };
+	    factory(mod, mod.exports, global.react, global.reactDom, global.moment);
+	    global.DateInput = mod.exports;
 	  }
-	  localeNow = localeNow || locale.today;
-	  var disabledTodayClass = '';
-	  if (disabledDate) {
-	    disabledToday = !(0, _util.isAllowedDate)((0, _util.getTodayTime)(value), disabledDate, disabledTime);
-	    if (disabledToday) {
-	      disabledTodayClass = prefixCls + '-today-btn-disabled';
-	    }
+	})(this, function (module, exports, _react, _reactDom, _moment) {
+	  'use strict';
+
+	  Object.defineProperty(exports, "__esModule", {
+	    value: true
+	  });
+
+	  var _react2 = _interopRequireDefault(_react);
+
+	  var _reactDom2 = _interopRequireDefault(_reactDom);
+
+	  var _moment2 = _interopRequireDefault(_moment);
+
+	  function _interopRequireDefault(obj) {
+	    return obj && obj.__esModule ? obj : {
+	      default: obj
+	    };
 	  }
-	  return _react2.default.createElement(
-	    'a',
-	    {
-	      className: prefixCls + '-today-btn ' + disabledTodayClass,
-	      role: 'button',
-	      onClick: disabledToday ? null : onToday,
-	      title: (0, _util.getTodayTimeStr)(value)
+
+	  var DateInput = _react2.default.createClass({
+	    displayName: 'DateInput',
+
+	    propTypes: {
+	      prefixCls: _react.PropTypes.string,
+	      timePicker: _react.PropTypes.object,
+	      value: _react.PropTypes.object,
+	      disabledTime: _react.PropTypes.any,
+	      format: _react.PropTypes.string,
+	      locale: _react.PropTypes.object,
+	      disabledDate: _react.PropTypes.func,
+	      onChange: _react.PropTypes.func,
+	      onClear: _react.PropTypes.func,
+	      placeholder: _react.PropTypes.string,
+	      onSelect: _react.PropTypes.func,
+	      selectedValue: _react.PropTypes.object
 	    },
-	    localeNow
-	  );
-	}
+
+	    getInitialState: function getInitialState() {
+	      var selectedValue = this.props.selectedValue;
+	      return {
+	        str: selectedValue && selectedValue.format(this.props.format) || '',
+	        invalid: false
+	      };
+	    },
+	    componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
+	      // when popup show, click body will call this, bug!
+	      var selectedValue = nextProps.selectedValue;
+	      this.setState({
+	        str: selectedValue && selectedValue.format(nextProps.format) || '',
+	        invalid: false
+	      });
+	    },
+	    onInputChange: function onInputChange(event) {
+	      var str = event.target.value;
+	      this.setState({
+	        str: str
+	      });
+	      var value = void 0;
+	      var _props = this.props;
+	      var disabledDate = _props.disabledDate;
+	      var format = _props.format;
+	      var onChange = _props.onChange;
+
+	      if (str) {
+	        var parsed = (0, _moment2.default)(str, format, true);
+	        if (!parsed.isValid()) {
+	          this.setState({
+	            invalid: true
+	          });
+	          return;
+	        }
+	        value = this.props.value.clone();
+	        value.year(parsed.year()).month(parsed.month()).date(parsed.date()).hour(parsed.hour()).minute(parsed.minute()).second(parsed.second());
+
+	        if (value && (!disabledDate || !disabledDate(value))) {
+	          var originalValue = this.props.selectedValue;
+	          if (originalValue && value) {
+	            if (!originalValue.isSame(value)) {
+	              onChange(value);
+	            }
+	          } else if (originalValue !== value) {
+	            onChange(value);
+	          }
+	        } else {
+	          this.setState({
+	            invalid: true
+	          });
+	          return;
+	        }
+	      } else {
+	        onChange(null);
+	      }
+	      this.setState({
+	        invalid: false
+	      });
+	    },
+	    onClear: function onClear() {
+	      this.setState({
+	        str: ''
+	      });
+	      this.props.onClear(null);
+	    },
+	    getRootDOMNode: function getRootDOMNode() {
+	      return _reactDom2.default.findDOMNode(this);
+	    },
+	    focus: function focus() {
+	      this.refs.dateInput.focus();
+	    },
+	    render: function render() {
+	      var props = this.props;
+	      var _state = this.state;
+	      var invalid = _state.invalid;
+	      var str = _state.str;
+	      var locale = props.locale;
+	      var prefixCls = props.prefixCls;
+	      var placeholder = props.placeholder;
+
+	      var invalidClass = invalid ? prefixCls + '-input-invalid' : '';
+	      return _react2.default.createElement(
+	        'div',
+	        { className: prefixCls + '-input-wrap' },
+	        _react2.default.createElement(
+	          'div',
+	          { className: prefixCls + '-date-input-wrap' },
+	          _react2.default.createElement('input', {
+	            ref: 'dateInput',
+	            className: prefixCls + '-input  ' + invalidClass,
+	            value: str,
+	            placeholder: placeholder,
+	            onChange: this.onInputChange
+	          })
+	        ),
+	        props.showClear ? _react2.default.createElement('a', {
+	          className: prefixCls + '-clear-btn',
+	          role: 'button',
+	          title: locale.clear,
+	          onClick: this.onClear
+	        }) : null
+	      );
+	    }
+	  });
+
+	  exports.default = DateInput;
+	  module.exports = exports['default'];
+	});
 
 /***/ },
 /* 138 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = OkButton;
-
-	var _react = __webpack_require__(17);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function OkButton(_ref) {
-	  var prefixCls = _ref.prefixCls;
-	  var locale = _ref.locale;
-	  var okDisabled = _ref.okDisabled;
-	  var onOk = _ref.onOk;
-
-	  var className = prefixCls + "-ok-btn";
-	  if (okDisabled) {
-	    className += " " + prefixCls + "-ok-btn-disabled";
+	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (global, factory) {
+	  if (true) {
+	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [module, exports, __webpack_require__(17), __webpack_require__(139), __webpack_require__(140), __webpack_require__(133)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	  } else if (typeof exports !== "undefined") {
+	    factory(module, exports, require('react'), require('../month/MonthPanel'), require('../year/YearPanel'), require('rc-util/lib/Children/mapSelf'));
+	  } else {
+	    var mod = {
+	      exports: {}
+	    };
+	    factory(mod, mod.exports, global.react, global.MonthPanel, global.YearPanel, global.mapSelf);
+	    global.CalendarHeader = mod.exports;
 	  }
-	  return _react2.default.createElement(
-	    "a",
-	    {
-	      className: className,
-	      role: "button",
-	      onClick: okDisabled ? null : onOk
+	})(this, function (module, exports, _react, _MonthPanel, _YearPanel, _mapSelf) {
+	  'use strict';
+
+	  Object.defineProperty(exports, "__esModule", {
+	    value: true
+	  });
+
+	  var _react2 = _interopRequireDefault(_react);
+
+	  var _MonthPanel2 = _interopRequireDefault(_MonthPanel);
+
+	  var _YearPanel2 = _interopRequireDefault(_YearPanel);
+
+	  var _mapSelf2 = _interopRequireDefault(_mapSelf);
+
+	  function _interopRequireDefault(obj) {
+	    return obj && obj.__esModule ? obj : {
+	      default: obj
+	    };
+	  }
+
+	  function goMonth(direction) {
+	    var next = this.props.value.clone();
+	    next.add(direction, 'months');
+	    this.props.onValueChange(next);
+	  }
+
+	  function goYear(direction) {
+	    var next = this.props.value.clone();
+	    next.add(direction, 'years');
+	    this.props.onValueChange(next);
+	  }
+
+	  var CalendarHeader = _react2.default.createClass({
+	    displayName: 'CalendarHeader',
+
+	    propTypes: {
+	      enablePrev: _react.PropTypes.any,
+	      enableNext: _react.PropTypes.any,
+	      prefixCls: _react.PropTypes.string,
+	      showTimePicker: _react.PropTypes.bool,
+	      locale: _react.PropTypes.object,
+	      value: _react.PropTypes.object,
+	      onValueChange: _react.PropTypes.func
 	    },
-	    locale.ok
-	  );
-	}
+
+	    getDefaultProps: function getDefaultProps() {
+	      return {
+	        enableNext: 1,
+	        enablePrev: 1
+	      };
+	    },
+	    getInitialState: function getInitialState() {
+	      this.nextMonth = goMonth.bind(this, 1);
+	      this.previousMonth = goMonth.bind(this, -1);
+	      this.nextYear = goYear.bind(this, 1);
+	      this.previousYear = goYear.bind(this, -1);
+	      return {};
+	    },
+	    onSelect: function onSelect(value) {
+	      this.setState({
+	        showMonthPanel: 0,
+	        showYearPanel: 0
+	      });
+	      this.props.onValueChange(value);
+	    },
+	    monthYearElement: function monthYearElement(showTimePicker) {
+	      var props = this.props;
+	      var prefixCls = props.prefixCls;
+	      var locale = props.locale;
+	      var value = props.value;
+	      var monthBeforeYear = locale.monthBeforeYear;
+	      var selectClassName = prefixCls + '-' + (monthBeforeYear ? 'my-select' : 'ym-select');
+	      var year = _react2.default.createElement(
+	        'a',
+	        {
+	          className: prefixCls + '-year-select',
+	          role: 'button',
+	          onClick: showTimePicker ? null : this.showYearPanel,
+	          title: locale.monthSelect
+	        },
+	        value.format(locale.yearFormat)
+	      );
+	      var month = _react2.default.createElement(
+	        'a',
+	        {
+	          className: prefixCls + '-month-select',
+	          role: 'button',
+	          onClick: showTimePicker ? null : this.showMonthPanel,
+	          title: locale.monthSelect
+	        },
+	        value.format(locale.monthFormat)
+	      );
+	      var day = void 0;
+	      if (showTimePicker) {
+	        day = _react2.default.createElement(
+	          'a',
+	          {
+	            className: prefixCls + '-day-select',
+	            role: 'button'
+	          },
+	          value.format(locale.dayFormat)
+	        );
+	      }
+	      var my = [];
+	      if (monthBeforeYear) {
+	        my = [month, day, year];
+	      } else {
+	        my = [year, month, day];
+	      }
+	      return _react2.default.createElement(
+	        'span',
+	        { className: selectClassName },
+	        (0, _mapSelf2.default)(my)
+	      );
+	    },
+	    showIf: function showIf(condition, el) {
+	      return condition ? el : null;
+	    },
+	    showMonthPanel: function showMonthPanel() {
+	      this.setState({
+	        showMonthPanel: 1,
+	        showYearPanel: 0
+	      });
+	    },
+	    showYearPanel: function showYearPanel() {
+	      this.setState({
+	        showMonthPanel: 0,
+	        showYearPanel: 1
+	      });
+	    },
+	    render: function render() {
+	      var props = this.props;
+	      var enableNext = props.enableNext;
+	      var enablePrev = props.enablePrev;
+	      var prefixCls = props.prefixCls;
+	      var locale = props.locale;
+	      var value = props.value;
+	      var showTimePicker = props.showTimePicker;
+
+	      var state = this.state;
+	      var PanelClass = null;
+	      if (state.showMonthPanel) {
+	        PanelClass = _MonthPanel2.default;
+	      } else if (state.showYearPanel) {
+	        PanelClass = _YearPanel2.default;
+	      }
+	      var panel = void 0;
+	      if (PanelClass) {
+	        panel = _react2.default.createElement(PanelClass, {
+	          locale: locale,
+	          defaultValue: value,
+	          rootPrefixCls: prefixCls,
+	          onSelect: this.onSelect
+	        });
+	      }
+	      return _react2.default.createElement(
+	        'div',
+	        { className: prefixCls + '-header' },
+	        _react2.default.createElement(
+	          'div',
+	          { style: { position: 'relative' } },
+	          this.showIf(enablePrev && !showTimePicker, _react2.default.createElement(
+	            'a',
+	            {
+	              className: prefixCls + '-prev-year-btn',
+	              role: 'button',
+	              onClick: this.previousYear,
+	              title: locale.previousYear
+	            },
+	            '«'
+	          )),
+	          this.showIf(enablePrev && !showTimePicker, _react2.default.createElement(
+	            'a',
+	            {
+	              className: prefixCls + '-prev-month-btn',
+	              role: 'button',
+	              onClick: this.previousMonth,
+	              title: locale.previousMonth
+	            },
+	            '‹'
+	          )),
+	          this.monthYearElement(showTimePicker),
+	          this.showIf(enableNext && !showTimePicker, _react2.default.createElement(
+	            'a',
+	            {
+	              className: prefixCls + '-next-month-btn',
+	              onClick: this.nextMonth,
+	              title: locale.nextMonth
+	            },
+	            '›'
+	          )),
+	          this.showIf(enableNext && !showTimePicker, _react2.default.createElement(
+	            'a',
+	            {
+	              className: prefixCls + '-next-year-btn',
+	              onClick: this.nextYear,
+	              title: locale.nextYear
+	            },
+	            '»'
+	          ))
+	        ),
+	        panel
+	      );
+	    }
+	  });
+
+	  exports.default = CalendarHeader;
+	  module.exports = exports['default'];
+	});
 
 /***/ },
 /* 139 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = TimePickerButton;
-
-	var _react = __webpack_require__(17);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _classnames2 = __webpack_require__(132);
-
-	var _classnames3 = _interopRequireDefault(_classnames2);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-	function TimePickerButton(_ref) {
-	  var _classnames;
-
-	  var prefixCls = _ref.prefixCls;
-	  var locale = _ref.locale;
-	  var showTimePicker = _ref.showTimePicker;
-	  var onOpenTimePicker = _ref.onOpenTimePicker;
-	  var onCloseTimePicker = _ref.onCloseTimePicker;
-	  var timePickerDisabled = _ref.timePickerDisabled;
-
-	  var className = (0, _classnames3.default)((_classnames = {}, _defineProperty(_classnames, prefixCls + '-time-picker-btn', true), _defineProperty(_classnames, prefixCls + '-time-picker-btn-disabled', timePickerDisabled), _classnames));
-	  var onClick = null;
-	  if (!timePickerDisabled) {
-	    onClick = showTimePicker ? onCloseTimePicker : onOpenTimePicker;
+	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (global, factory) {
+	  if (true) {
+	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [module, exports, __webpack_require__(17), __webpack_require__(140), __webpack_require__(142)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	  } else if (typeof exports !== "undefined") {
+	    factory(module, exports, require('react'), require('../year/YearPanel'), require('./MonthTable'));
+	  } else {
+	    var mod = {
+	      exports: {}
+	    };
+	    factory(mod, mod.exports, global.react, global.YearPanel, global.MonthTable);
+	    global.MonthPanel = mod.exports;
 	  }
-	  return _react2.default.createElement(
-	    'a',
-	    {
-	      className: className,
-	      role: 'button',
-	      onClick: onClick
+	})(this, function (module, exports, _react, _YearPanel, _MonthTable) {
+	  'use strict';
+
+	  Object.defineProperty(exports, "__esModule", {
+	    value: true
+	  });
+
+	  var _react2 = _interopRequireDefault(_react);
+
+	  var _YearPanel2 = _interopRequireDefault(_YearPanel);
+
+	  var _MonthTable2 = _interopRequireDefault(_MonthTable);
+
+	  function _interopRequireDefault(obj) {
+	    return obj && obj.__esModule ? obj : {
+	      default: obj
+	    };
+	  }
+
+	  function goYear(direction) {
+	    var next = this.state.value.clone();
+	    next.add(direction, 'year');
+	    this.setAndChangeValue(next);
+	  }
+
+	  function noop() {}
+
+	  var MonthPanel = _react2.default.createClass({
+	    displayName: 'MonthPanel',
+
+	    propTypes: {
+	      onChange: _react.PropTypes.func,
+	      disabledDate: _react.PropTypes.func,
+	      onSelect: _react.PropTypes.func
 	    },
-	    showTimePicker ? locale.dateSelect : locale.timeSelect
-	  );
-	}
+
+	    getDefaultProps: function getDefaultProps() {
+	      return {
+	        onChange: noop,
+	        onSelect: noop
+	      };
+	    },
+	    getInitialState: function getInitialState() {
+	      var props = this.props;
+	      // bind methods
+	      this.nextYear = goYear.bind(this, 1);
+	      this.previousYear = goYear.bind(this, -1);
+	      this.prefixCls = props.rootPrefixCls + '-month-panel';
+	      return {
+	        value: props.value || props.defaultValue
+	      };
+	    },
+	    componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
+	      if ('value' in nextProps) {
+	        this.setState({
+	          value: nextProps.value
+	        });
+	      }
+	    },
+	    onYearPanelSelect: function onYearPanelSelect(current) {
+	      this.setState({
+	        showYearPanel: 0
+	      });
+	      this.setAndChangeValue(current);
+	    },
+	    setAndChangeValue: function setAndChangeValue(value) {
+	      this.setValue(value);
+	      this.props.onChange(value);
+	    },
+	    setAndSelectValue: function setAndSelectValue(value) {
+	      this.setValue(value);
+	      this.props.onSelect(value);
+	    },
+	    setValue: function setValue(value) {
+	      if (!('value' in this.props)) {
+	        this.setState({
+	          value: value
+	        });
+	      }
+	    },
+	    showYearPanel: function showYearPanel() {
+	      this.setState({
+	        showYearPanel: 1
+	      });
+	    },
+	    render: function render() {
+	      var props = this.props;
+	      var value = this.state.value;
+	      var locale = props.locale;
+	      var year = value.year();
+	      var prefixCls = this.prefixCls;
+	      var yearPanel = void 0;
+	      if (this.state.showYearPanel) {
+	        yearPanel = _react2.default.createElement(_YearPanel2.default, {
+	          locale: locale,
+	          value: value,
+	          rootPrefixCls: props.rootPrefixCls,
+	          onSelect: this.onYearPanelSelect
+	        });
+	      }
+	      return _react2.default.createElement(
+	        'div',
+	        { className: prefixCls, style: props.style },
+	        _react2.default.createElement(
+	          'div',
+	          null,
+	          _react2.default.createElement(
+	            'div',
+	            { className: prefixCls + '-header' },
+	            _react2.default.createElement(
+	              'a',
+	              {
+	                className: prefixCls + '-prev-year-btn',
+	                role: 'button',
+	                onClick: this.previousYear,
+	                title: locale.previousYear
+	              },
+	              '«'
+	            ),
+	            _react2.default.createElement(
+	              'a',
+	              {
+	                className: prefixCls + '-year-select',
+	                role: 'button',
+	                onClick: this.showYearPanel,
+	                title: locale.yearSelect
+	              },
+	              _react2.default.createElement(
+	                'span',
+	                { className: prefixCls + '-year-select-content' },
+	                year
+	              ),
+	              _react2.default.createElement(
+	                'span',
+	                { className: prefixCls + '-year-select-arrow' },
+	                'x'
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'a',
+	              {
+	                className: prefixCls + '-next-year-btn',
+	                role: 'button',
+	                onClick: this.nextYear,
+	                title: locale.nextYear
+	              },
+	              '»'
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: prefixCls + '-body' },
+	            _react2.default.createElement(_MonthTable2.default, {
+	              disabledDate: props.disabledDate,
+	              onSelect: this.setAndSelectValue,
+	              locale: locale,
+	              value: value,
+	              prefixCls: prefixCls
+	            })
+	          )
+	        ),
+	        yearPanel
+	      );
+	    }
+	  });
+
+	  exports.default = MonthPanel;
+	  module.exports = exports['default'];
+	});
 
 /***/ },
 /* 140 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _react = __webpack_require__(17);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _classnames = __webpack_require__(132);
-
-	var _classnames2 = _interopRequireDefault(_classnames);
-
-	var _moment = __webpack_require__(23);
-
-	var _moment2 = _interopRequireDefault(_moment);
-
-	var _index = __webpack_require__(128);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-	function noop() {}
-
-	function getNow() {
-	  return (0, _moment2.default)();
-	}
-
-	function getNowByCurrentStateValue(value) {
-	  var ret = void 0;
-	  if (value) {
-	    ret = (0, _index.getTodayTime)(value);
+	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (global, factory) {
+	  if (true) {
+	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [module, exports, __webpack_require__(17), __webpack_require__(129), __webpack_require__(141)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	  } else if (typeof exports !== "undefined") {
+	    factory(module, exports, require('react'), require('classnames'), require('../decade/DecadePanel'));
 	  } else {
-	    ret = getNow();
+	    var mod = {
+	      exports: {}
+	    };
+	    factory(mod, mod.exports, global.react, global.classnames, global.DecadePanel);
+	    global.YearPanel = mod.exports;
 	  }
-	  return ret;
-	}
+	})(this, function (module, exports, _react, _classnames, _DecadePanel) {
+	  'use strict';
 
-	var CalendarMixin = {
-	  propTypes: {
-	    value: _react.PropTypes.object,
-	    defaultValue: _react.PropTypes.object,
-	    onKeyDown: _react.PropTypes.func
-	  },
+	  Object.defineProperty(exports, "__esModule", {
+	    value: true
+	  });
 
-	  getDefaultProps: function getDefaultProps() {
-	    return {
-	      onKeyDown: noop
+	  var _react2 = _interopRequireDefault(_react);
+
+	  var _classnames2 = _interopRequireDefault(_classnames);
+
+	  var _DecadePanel2 = _interopRequireDefault(_DecadePanel);
+
+	  function _interopRequireDefault(obj) {
+	    return obj && obj.__esModule ? obj : {
+	      default: obj
 	    };
-	  },
-	  getInitialState: function getInitialState() {
-	    var props = this.props;
-	    var value = props.value || props.defaultValue || getNow();
-	    return {
-	      value: value,
-	      selectedValue: props.selectedValue || props.defaultSelectedValue
+	  }
+
+	  function _defineProperty(obj, key, value) {
+	    if (key in obj) {
+	      Object.defineProperty(obj, key, {
+	        value: value,
+	        enumerable: true,
+	        configurable: true,
+	        writable: true
+	      });
+	    } else {
+	      obj[key] = value;
+	    }
+
+	    return obj;
+	  }
+
+	  function _classCallCheck(instance, Constructor) {
+	    if (!(instance instanceof Constructor)) {
+	      throw new TypeError("Cannot call a class as a function");
+	    }
+	  }
+
+	  var _createClass = function () {
+	    function defineProperties(target, props) {
+	      for (var i = 0; i < props.length; i++) {
+	        var descriptor = props[i];
+	        descriptor.enumerable = descriptor.enumerable || false;
+	        descriptor.configurable = true;
+	        if ("value" in descriptor) descriptor.writable = true;
+	        Object.defineProperty(target, descriptor.key, descriptor);
+	      }
+	    }
+
+	    return function (Constructor, protoProps, staticProps) {
+	      if (protoProps) defineProperties(Constructor.prototype, protoProps);
+	      if (staticProps) defineProperties(Constructor, staticProps);
+	      return Constructor;
 	    };
-	  },
-	  componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
-	    var value = nextProps.value;
-	    var selectedValue = nextProps.selectedValue;
+	  }();
 
-	    if ('value' in nextProps) {
-	      value = value || nextProps.defaultValue || getNowByCurrentStateValue(this.state.value);
-	      this.setState({
-	        value: value
+	  function _possibleConstructorReturn(self, call) {
+	    if (!self) {
+	      throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+	    }
+
+	    return call && (typeof call === "object" || typeof call === "function") ? call : self;
+	  }
+
+	  function _inherits(subClass, superClass) {
+	    if (typeof superClass !== "function" && superClass !== null) {
+	      throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
+	    }
+
+	    subClass.prototype = Object.create(superClass && superClass.prototype, {
+	      constructor: {
+	        value: subClass,
+	        enumerable: false,
+	        writable: true,
+	        configurable: true
+	      }
+	    });
+	    if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
+	  }
+
+	  var ROW = 4;
+	  var COL = 3;
+
+	  function goYear(direction) {
+	    var value = this.state.value.clone();
+	    value.add(direction, 'year');
+	    this.setState({
+	      value: value
+	    });
+	  }
+
+	  function chooseYear(year) {
+	    var value = this.state.value.clone();
+	    value.year(year);
+	    value.month(this.state.value.month());
+	    this.props.onSelect(value);
+	  }
+
+	  var YearPanel = function (_React$Component) {
+	    _inherits(YearPanel, _React$Component);
+
+	    function YearPanel(props) {
+	      _classCallCheck(this, YearPanel);
+
+	      var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(YearPanel).call(this, props));
+
+	      _this.prefixCls = props.rootPrefixCls + '-year-panel';
+	      _this.state = {
+	        value: props.value || props.defaultValue
+	      };
+	      _this.nextDecade = goYear.bind(_this, 10);
+	      _this.previousDecade = goYear.bind(_this, -10);
+	      ['showDecadePanel', 'onDecadePanelSelect'].forEach(function (method) {
+	        _this[method] = _this[method].bind(_this);
 	      });
+	      return _this;
 	    }
-	    if ('selectedValue' in nextProps) {
-	      this.setState({
-	        selectedValue: selectedValue
-	      });
-	    }
-	  },
-	  onSelect: function onSelect(value, cause) {
-	    if (value) {
-	      this.setValue(value);
-	    }
-	    this.setSelectedValue(value, cause);
-	  },
-	  renderRoot: function renderRoot(newProps) {
-	    var _className;
 
-	    var props = this.props;
-	    var prefixCls = props.prefixCls;
-
-	    var className = (_className = {}, _defineProperty(_className, prefixCls, 1), _defineProperty(_className, prefixCls + '-hidden', !props.visible), _defineProperty(_className, props.className, !!props.className), _defineProperty(_className, newProps.className, !!newProps.className), _className);
-
-	    return _react2.default.createElement(
-	      'div',
-	      {
-	        ref: 'root',
-	        className: '' + (0, _classnames2.default)(className),
-	        style: this.props.style,
-	        tabIndex: '0',
-	        onKeyDown: this.onKeyDown
-	      },
-	      newProps.children
-	    );
-	  },
-	  setSelectedValue: function setSelectedValue(selectedValue, cause) {
-	    if (this.isAllowedDate(selectedValue)) {
-	      if (!('selectedValue' in this.props)) {
+	    _createClass(YearPanel, [{
+	      key: 'onDecadePanelSelect',
+	      value: function onDecadePanelSelect(current) {
 	        this.setState({
-	          selectedValue: selectedValue
+	          value: current,
+	          showDecadePanel: 0
 	        });
 	      }
-	      this.props.onSelect(selectedValue, cause);
-	    }
-	  },
-	  setValue: function setValue(value) {
-	    var originalValue = this.state.value;
-	    if (!('value' in this.props)) {
-	      this.setState({
-	        value: value
-	      });
-	    }
-	    if (originalValue && value && !originalValue.isSame(value) || !originalValue && value || originalValue && !value) {
-	      this.props.onChange(value);
-	    }
-	  },
-	  isAllowedDate: function isAllowedDate(value) {
-	    var disabledDate = this.props.disabledDate;
-	    var disabledTime = this.props.disabledTime;
-	    return (0, _index.isAllowedDate)(value, disabledDate, disabledTime);
-	  }
-	};
+	    }, {
+	      key: 'years',
+	      value: function years() {
+	        var value = this.state.value;
+	        var currentYear = value.year();
+	        var startYear = parseInt(currentYear / 10, 10) * 10;
+	        var previousYear = startYear - 1;
+	        var endYear = startYear + 9;
+	        var years = [];
+	        var index = 0;
+	        for (var rowIndex = 0; rowIndex < ROW; rowIndex++) {
+	          years[rowIndex] = [];
+	          for (var colIndex = 0; colIndex < COL; colIndex++) {
+	            var year = previousYear + index;
+	            var content = void 0;
+	            if (year < startYear) {
+	              content = '';
+	            } else if (year > endYear) {
+	              content = '';
+	            } else {
+	              content = String(year);
+	            }
+	            years[rowIndex][colIndex] = {
+	              content: content,
+	              year: year,
+	              title: content
+	            };
+	            index++;
+	          }
+	        }
+	        return years;
+	      }
+	    }, {
+	      key: 'showDecadePanel',
+	      value: function showDecadePanel() {
+	        this.setState({
+	          showDecadePanel: 1
+	        });
+	      }
+	    }, {
+	      key: 'render',
+	      value: function render() {
+	        var _this2 = this;
 
-	exports.default = CalendarMixin;
+	        var props = this.props;
+	        var value = this.state.value;
+	        var locale = props.locale;
+	        var years = this.years();
+	        var currentYear = value.year();
+	        var startYear = parseInt(currentYear / 10, 10) * 10;
+	        var endYear = startYear + 9;
+	        var prefixCls = this.prefixCls;
+
+	        var yeasEls = years.map(function (row, index) {
+	          var tds = row.map(function (yearData) {
+	            var _classNameMap;
+
+	            var classNameMap = (_classNameMap = {}, _defineProperty(_classNameMap, prefixCls + '-cell', 1), _defineProperty(_classNameMap, prefixCls + '-selected-cell', yearData.year === currentYear), _defineProperty(_classNameMap, prefixCls + '-last-decade-cell', yearData.year < startYear), _defineProperty(_classNameMap, prefixCls + '-next-decade-cell', yearData.year > endYear), _classNameMap);
+	            var clickHandler = void 0;
+	            if (yearData.year < startYear) {
+	              clickHandler = _this2.previousDecade;
+	            } else if (yearData.year > endYear) {
+	              clickHandler = _this2.nextDecade;
+	            } else {
+	              clickHandler = chooseYear.bind(_this2, yearData.year);
+	            }
+	            return _react2.default.createElement(
+	              'td',
+	              {
+	                role: 'gridcell',
+	                title: yearData.title,
+	                key: yearData.content,
+	                onClick: clickHandler,
+	                className: (0, _classnames2.default)(classNameMap)
+	              },
+	              _react2.default.createElement(
+	                'a',
+	                {
+	                  className: prefixCls + '-year'
+	                },
+	                yearData.content
+	              )
+	            );
+	          });
+	          return _react2.default.createElement(
+	            'tr',
+	            { key: index, role: 'row' },
+	            tds
+	          );
+	        });
+
+	        var decadePanel = void 0;
+	        if (this.state.showDecadePanel) {
+	          decadePanel = _react2.default.createElement(_DecadePanel2.default, {
+	            locale: locale,
+	            value: value,
+	            rootPrefixCls: props.rootPrefixCls,
+	            onSelect: this.onDecadePanelSelect
+	          });
+	        }
+
+	        return _react2.default.createElement(
+	          'div',
+	          { className: this.prefixCls },
+	          _react2.default.createElement(
+	            'div',
+	            null,
+	            _react2.default.createElement(
+	              'div',
+	              { className: prefixCls + '-header' },
+	              _react2.default.createElement(
+	                'a',
+	                {
+	                  className: prefixCls + '-prev-decade-btn',
+	                  role: 'button',
+	                  onClick: this.previousDecade,
+	                  title: locale.previousDecade
+	                },
+	                '«'
+	              ),
+	              _react2.default.createElement(
+	                'a',
+	                {
+	                  className: prefixCls + '-decade-select',
+	                  role: 'button',
+	                  onClick: this.showDecadePanel,
+	                  title: locale.decadeSelect
+	                },
+	                _react2.default.createElement(
+	                  'span',
+	                  { className: prefixCls + '-decade-select-content' },
+	                  startYear,
+	                  '-',
+	                  endYear
+	                ),
+	                _react2.default.createElement(
+	                  'span',
+	                  { className: prefixCls + '-decade-select-arrow' },
+	                  'x'
+	                )
+	              ),
+	              _react2.default.createElement(
+	                'a',
+	                {
+	                  className: prefixCls + '-next-decade-btn',
+	                  role: 'button',
+	                  onClick: this.nextDecade,
+	                  title: locale.nextDecade
+	                },
+	                '»'
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { className: prefixCls + '-body' },
+	              _react2.default.createElement(
+	                'table',
+	                { className: prefixCls + '-table', cellSpacing: '0', role: 'grid' },
+	                _react2.default.createElement(
+	                  'tbody',
+	                  { className: prefixCls + '-tbody' },
+	                  yeasEls
+	                )
+	              )
+	            )
+	          ),
+	          decadePanel
+	        );
+	      }
+	    }]);
+
+	    return YearPanel;
+	  }(_react2.default.Component);
+
+	  exports.default = YearPanel;
+
+
+	  YearPanel.propTypes = {
+	    rootPrefixCls: _react.PropTypes.string,
+	    value: _react.PropTypes.object,
+	    defaultValue: _react.PropTypes.object
+	  };
+
+	  YearPanel.defaultProps = {
+	    onSelect: function onSelect() {}
+	  };
+	  module.exports = exports['default'];
+	});
 
 /***/ },
 /* 141 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _react = __webpack_require__(17);
-
-	var _en_US = __webpack_require__(142);
-
-	var _en_US2 = _interopRequireDefault(_en_US);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function noop() {}
-
-	exports.default = {
-	  propTypes: {
-	    className: _react.PropTypes.string,
-	    locale: _react.PropTypes.object,
-	    style: _react.PropTypes.object,
-	    visible: _react.PropTypes.bool,
-	    onSelect: _react.PropTypes.func,
-	    prefixCls: _react.PropTypes.string,
-	    onChange: _react.PropTypes.func,
-	    onOk: _react.PropTypes.func
-	  },
-
-	  getDefaultProps: function getDefaultProps() {
-	    return {
-	      locale: _en_US2.default,
-	      style: {},
-	      visible: true,
-	      prefixCls: 'rc-calendar',
-	      className: '',
-	      onSelect: noop,
-	      onChange: noop,
-	      onClear: noop
+	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (global, factory) {
+	  if (true) {
+	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [module, exports, __webpack_require__(17), __webpack_require__(129)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	  } else if (typeof exports !== "undefined") {
+	    factory(module, exports, require('react'), require('classnames'));
+	  } else {
+	    var mod = {
+	      exports: {}
 	    };
-	  },
-	  shouldComponentUpdate: function shouldComponentUpdate(nextProps) {
-	    return this.props.visible || nextProps.visible;
-	  },
-	  getFormat: function getFormat() {
-	    var format = this.props.format;
-	    var _props = this.props;
-	    var locale = _props.locale;
-	    var timePicker = _props.timePicker;
+	    factory(mod, mod.exports, global.react, global.classnames);
+	    global.DecadePanel = mod.exports;
+	  }
+	})(this, function (module, exports, _react, _classnames) {
+	  'use strict';
 
-	    if (!format) {
-	      if (timePicker) {
-	        format = locale.dateTimeFormat;
-	      } else {
-	        format = locale.dateFormat;
-	      }
+	  Object.defineProperty(exports, "__esModule", {
+	    value: true
+	  });
+
+	  var _react2 = _interopRequireDefault(_react);
+
+	  var _classnames2 = _interopRequireDefault(_classnames);
+
+	  function _interopRequireDefault(obj) {
+	    return obj && obj.__esModule ? obj : {
+	      default: obj
+	    };
+	  }
+
+	  function _defineProperty(obj, key, value) {
+	    if (key in obj) {
+	      Object.defineProperty(obj, key, {
+	        value: value,
+	        enumerable: true,
+	        configurable: true,
+	        writable: true
+	      });
+	    } else {
+	      obj[key] = value;
 	    }
-	    return format;
-	  },
-	  focus: function focus() {
-	    if (this.refs.root) {
-	      this.refs.root.focus();
+
+	    return obj;
+	  }
+
+	  function _classCallCheck(instance, Constructor) {
+	    if (!(instance instanceof Constructor)) {
+	      throw new TypeError("Cannot call a class as a function");
 	    }
 	  }
-	};
+
+	  var _createClass = function () {
+	    function defineProperties(target, props) {
+	      for (var i = 0; i < props.length; i++) {
+	        var descriptor = props[i];
+	        descriptor.enumerable = descriptor.enumerable || false;
+	        descriptor.configurable = true;
+	        if ("value" in descriptor) descriptor.writable = true;
+	        Object.defineProperty(target, descriptor.key, descriptor);
+	      }
+	    }
+
+	    return function (Constructor, protoProps, staticProps) {
+	      if (protoProps) defineProperties(Constructor.prototype, protoProps);
+	      if (staticProps) defineProperties(Constructor, staticProps);
+	      return Constructor;
+	    };
+	  }();
+
+	  function _possibleConstructorReturn(self, call) {
+	    if (!self) {
+	      throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+	    }
+
+	    return call && (typeof call === "object" || typeof call === "function") ? call : self;
+	  }
+
+	  function _inherits(subClass, superClass) {
+	    if (typeof superClass !== "function" && superClass !== null) {
+	      throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
+	    }
+
+	    subClass.prototype = Object.create(superClass && superClass.prototype, {
+	      constructor: {
+	        value: subClass,
+	        enumerable: false,
+	        writable: true,
+	        configurable: true
+	      }
+	    });
+	    if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
+	  }
+
+	  var ROW = 4;
+	  var COL = 3;
+
+
+	  function goYear(direction) {
+	    var next = this.state.value.clone();
+	    next.add(direction, 'years');
+	    this.setState({
+	      value: next
+	    });
+	  }
+
+	  function chooseDecade(year, event) {
+	    var next = this.state.value.clone();
+	    next.year(year);
+	    next.month(this.state.value.month());
+	    this.props.onSelect(next);
+	    event.preventDefault();
+	  }
+
+	  var DecadePanel = function (_React$Component) {
+	    _inherits(DecadePanel, _React$Component);
+
+	    function DecadePanel(props) {
+	      _classCallCheck(this, DecadePanel);
+
+	      var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(DecadePanel).call(this, props));
+
+	      _this.state = {
+	        value: props.value || props.defaultValue
+	      };
+
+	      // bind methods
+	      _this.prefixCls = props.rootPrefixCls + '-decade-panel';
+	      _this.nextCentury = goYear.bind(_this, 100);
+	      _this.previousCentury = goYear.bind(_this, -100);
+	      return _this;
+	    }
+
+	    _createClass(DecadePanel, [{
+	      key: 'render',
+	      value: function render() {
+	        var _this2 = this;
+
+	        var value = this.state.value;
+	        var locale = this.props.locale;
+	        var currentYear = value.year();
+	        var startYear = parseInt(currentYear / 100, 10) * 100;
+	        var preYear = startYear - 10;
+	        var endYear = startYear + 99;
+	        var decades = [];
+	        var index = 0;
+	        var prefixCls = this.prefixCls;
+
+	        for (var rowIndex = 0; rowIndex < ROW; rowIndex++) {
+	          decades[rowIndex] = [];
+	          for (var colIndex = 0; colIndex < COL; colIndex++) {
+	            var startDecade = preYear + index * 10;
+	            var endDecade = preYear + index * 10 + 9;
+	            decades[rowIndex][colIndex] = {
+	              startDecade: startDecade,
+	              endDecade: endDecade
+	            };
+	            index++;
+	          }
+	        }
+
+	        var decadesEls = decades.map(function (row, decadeIndex) {
+	          var tds = row.map(function (decadeData) {
+	            var _classNameMap;
+
+	            var dStartDecade = decadeData.startDecade;
+	            var dEndDecade = decadeData.endDecade;
+	            var isLast = dStartDecade < startYear;
+	            var isNext = dEndDecade > endYear;
+	            var classNameMap = (_classNameMap = {}, _defineProperty(_classNameMap, prefixCls + '-cell', 1), _defineProperty(_classNameMap, prefixCls + '-selected-cell', dStartDecade <= currentYear && currentYear <= dEndDecade), _defineProperty(_classNameMap, prefixCls + '-last-century-cell', isLast), _defineProperty(_classNameMap, prefixCls + '-next-century-cell', isNext), _classNameMap);
+	            var content = void 0;
+	            var clickHandler = void 0;
+	            if (isLast) {
+	              clickHandler = _this2.previousCentury;
+	            } else if (isNext) {
+	              clickHandler = _this2.nextCentury;
+	            } else {
+	              content = dStartDecade + '-' + dEndDecade;
+	              clickHandler = chooseDecade.bind(_this2, dStartDecade);
+	            }
+	            return _react2.default.createElement(
+	              'td',
+	              {
+	                key: dStartDecade,
+	                onClick: clickHandler,
+	                role: 'gridcell',
+	                className: (0, _classnames2.default)(classNameMap)
+	              },
+	              _react2.default.createElement(
+	                'a',
+	                {
+	                  className: prefixCls + '-decade'
+	                },
+	                content
+	              )
+	            );
+	          });
+	          return _react2.default.createElement(
+	            'tr',
+	            { key: decadeIndex, role: 'row' },
+	            tds
+	          );
+	        });
+
+	        return _react2.default.createElement(
+	          'div',
+	          { className: this.prefixCls },
+	          _react2.default.createElement(
+	            'div',
+	            { className: prefixCls + '-header' },
+	            _react2.default.createElement(
+	              'a',
+	              {
+	                className: prefixCls + '-prev-century-btn',
+	                role: 'button',
+	                onClick: this.previousCentury,
+	                title: locale.previousCentury
+	              },
+	              '«'
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { className: prefixCls + '-century' },
+	              startYear,
+	              '-',
+	              endYear
+	            ),
+	            _react2.default.createElement(
+	              'a',
+	              {
+	                className: prefixCls + '-next-century-btn',
+	                role: 'button',
+	                onClick: this.nextCentury,
+	                title: locale.nextCentury
+	              },
+	              '»'
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: prefixCls + '-body' },
+	            _react2.default.createElement(
+	              'table',
+	              { className: prefixCls + '-table', cellSpacing: '0', role: 'grid' },
+	              _react2.default.createElement(
+	                'tbody',
+	                { className: prefixCls + '-tbody' },
+	                decadesEls
+	              )
+	            )
+	          )
+	        );
+	      }
+	    }]);
+
+	    return DecadePanel;
+	  }(_react2.default.Component);
+
+	  exports.default = DecadePanel;
+
+
+	  DecadePanel.propTypes = {
+	    locale: _react.PropTypes.object,
+	    value: _react.PropTypes.object,
+	    defaultValue: _react.PropTypes.object,
+	    rootPrefixCls: _react.PropTypes.string
+	  };
+
+	  DecadePanel.defaultProps = {
+	    onSelect: function onSelect() {}
+	  };
+	  module.exports = exports['default'];
+	});
 
 /***/ },
 /* 142 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = {
-	  today: 'Today',
-	  now: 'Now',
-	  backToToday: 'Back to today',
-	  ok: 'Ok',
-	  clear: 'Clear',
-	  month: 'Month',
-	  year: 'Year',
-	  timeSelect: 'Select time',
-	  dateSelect: 'Select date',
-	  monthSelect: 'Choose a month',
-	  yearSelect: 'Choose a year',
-	  decadeSelect: 'Choose a decade',
-	  yearFormat: 'YYYY',
-	  dateFormat: 'M/D/YYYY',
-	  dayFormat: 'D',
-	  dateTimeFormat: 'M/D/YYYY HH:mm:ss',
-	  monthFormat: 'MMMM',
-	  monthBeforeYear: true,
-	  previousMonth: 'Previous month (PageUp)',
-	  nextMonth: 'Next month (PageDown)',
-	  previousYear: 'Last year (Control + left)',
-	  nextYear: 'Next year (Control + right)',
-	  previousDecade: 'Last decade',
-	  nextDecade: 'Next decade',
-	  previousCentury: 'Last century',
-	  nextCentury: 'Next century'
-	};
-
-/***/ },
-/* 143 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _react = __webpack_require__(17);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _reactDom = __webpack_require__(18);
-
-	var _reactDom2 = _interopRequireDefault(_reactDom);
-
-	var _moment = __webpack_require__(23);
-
-	var _moment2 = _interopRequireDefault(_moment);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var DateInput = _react2.default.createClass({
-	  displayName: 'DateInput',
-
-	  propTypes: {
-	    prefixCls: _react.PropTypes.string,
-	    timePicker: _react.PropTypes.object,
-	    value: _react.PropTypes.object,
-	    disabledTime: _react.PropTypes.any,
-	    format: _react.PropTypes.string,
-	    locale: _react.PropTypes.object,
-	    disabledDate: _react.PropTypes.func,
-	    onChange: _react.PropTypes.func,
-	    onClear: _react.PropTypes.func,
-	    placeholder: _react.PropTypes.string,
-	    onSelect: _react.PropTypes.func,
-	    selectedValue: _react.PropTypes.object
-	  },
-
-	  getInitialState: function getInitialState() {
-	    var selectedValue = this.props.selectedValue;
-	    return {
-	      str: selectedValue && selectedValue.format(this.props.format) || '',
-	      invalid: false
+	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (global, factory) {
+	  if (true) {
+	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [module, exports, __webpack_require__(17), __webpack_require__(129), __webpack_require__(127)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	  } else if (typeof exports !== "undefined") {
+	    factory(module, exports, require('react'), require('classnames'), require('../util/index'));
+	  } else {
+	    var mod = {
+	      exports: {}
 	    };
-	  },
-	  componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
-	    // when popup show, click body will call this, bug!
-	    var selectedValue = nextProps.selectedValue;
-	    this.setState({
-	      str: selectedValue && selectedValue.format(nextProps.format) || '',
-	      invalid: false
-	    });
-	  },
-	  onInputChange: function onInputChange(event) {
-	    var str = event.target.value;
-	    this.setState({
-	      str: str
-	    });
-	    var value = void 0;
-	    var _props = this.props;
-	    var disabledDate = _props.disabledDate;
-	    var format = _props.format;
-	    var onChange = _props.onChange;
-
-	    if (str) {
-	      var parsed = (0, _moment2.default)(str, format, true);
-	      if (!parsed.isValid()) {
-	        this.setState({
-	          invalid: true
-	        });
-	        return;
-	      }
-	      value = this.props.value.clone();
-	      value.year(parsed.year()).month(parsed.month()).date(parsed.date()).hour(parsed.hour()).minute(parsed.minute()).second(parsed.second());
-
-	      if (value && (!disabledDate || !disabledDate(value))) {
-	        var originalValue = this.props.selectedValue;
-	        if (originalValue && value) {
-	          if (!originalValue.isSame(value)) {
-	            onChange(value);
-	          }
-	        } else if (originalValue !== value) {
-	          onChange(value);
-	        }
-	      } else {
-	        this.setState({
-	          invalid: true
-	        });
-	        return;
-	      }
-	    } else {
-	      onChange(null);
-	    }
-	    this.setState({
-	      invalid: false
-	    });
-	  },
-	  onClear: function onClear() {
-	    this.setState({
-	      str: ''
-	    });
-	    this.props.onClear(null);
-	  },
-	  getRootDOMNode: function getRootDOMNode() {
-	    return _reactDom2.default.findDOMNode(this);
-	  },
-	  focus: function focus() {
-	    this.refs.dateInput.focus();
-	  },
-	  render: function render() {
-	    var props = this.props;
-	    var _state = this.state;
-	    var invalid = _state.invalid;
-	    var str = _state.str;
-	    var locale = props.locale;
-	    var prefixCls = props.prefixCls;
-	    var placeholder = props.placeholder;
-
-	    var invalidClass = invalid ? prefixCls + '-input-invalid' : '';
-	    return _react2.default.createElement(
-	      'div',
-	      { className: prefixCls + '-input-wrap' },
-	      _react2.default.createElement(
-	        'div',
-	        { className: prefixCls + '-date-input-wrap' },
-	        _react2.default.createElement('input', {
-	          ref: 'dateInput',
-	          className: prefixCls + '-input  ' + invalidClass,
-	          value: str,
-	          placeholder: placeholder,
-	          onChange: this.onInputChange
-	        })
-	      ),
-	      props.showClear ? _react2.default.createElement('a', {
-	        className: prefixCls + '-clear-btn',
-	        role: 'button',
-	        title: locale.clear,
-	        onClick: this.onClear
-	      }) : null
-	    );
+	    factory(mod, mod.exports, global.react, global.classnames, global.index);
+	    global.MonthTable = mod.exports;
 	  }
-	});
+	})(this, function (module, exports, _react, _classnames, _index) {
+	  'use strict';
 
-	exports.default = DateInput;
+	  Object.defineProperty(exports, "__esModule", {
+	    value: true
+	  });
+
+	  var _react2 = _interopRequireDefault(_react);
+
+	  var _classnames2 = _interopRequireDefault(_classnames);
+
+	  function _interopRequireDefault(obj) {
+	    return obj && obj.__esModule ? obj : {
+	      default: obj
+	    };
+	  }
+
+	  function _defineProperty(obj, key, value) {
+	    if (key in obj) {
+	      Object.defineProperty(obj, key, {
+	        value: value,
+	        enumerable: true,
+	        configurable: true,
+	        writable: true
+	      });
+	    } else {
+	      obj[key] = value;
+	    }
+
+	    return obj;
+	  }
+
+	  function _classCallCheck(instance, Constructor) {
+	    if (!(instance instanceof Constructor)) {
+	      throw new TypeError("Cannot call a class as a function");
+	    }
+	  }
+
+	  var _createClass = function () {
+	    function defineProperties(target, props) {
+	      for (var i = 0; i < props.length; i++) {
+	        var descriptor = props[i];
+	        descriptor.enumerable = descriptor.enumerable || false;
+	        descriptor.configurable = true;
+	        if ("value" in descriptor) descriptor.writable = true;
+	        Object.defineProperty(target, descriptor.key, descriptor);
+	      }
+	    }
+
+	    return function (Constructor, protoProps, staticProps) {
+	      if (protoProps) defineProperties(Constructor.prototype, protoProps);
+	      if (staticProps) defineProperties(Constructor, staticProps);
+	      return Constructor;
+	    };
+	  }();
+
+	  function _possibleConstructorReturn(self, call) {
+	    if (!self) {
+	      throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+	    }
+
+	    return call && (typeof call === "object" || typeof call === "function") ? call : self;
+	  }
+
+	  function _inherits(subClass, superClass) {
+	    if (typeof superClass !== "function" && superClass !== null) {
+	      throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
+	    }
+
+	    subClass.prototype = Object.create(superClass && superClass.prototype, {
+	      constructor: {
+	        value: subClass,
+	        enumerable: false,
+	        writable: true,
+	        configurable: true
+	      }
+	    });
+	    if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
+	  }
+
+	  var ROW = 4;
+	  var COL = 3;
+
+	  function chooseMonth(month) {
+	    var next = this.state.value.clone();
+	    next.month(month);
+	    this.setAndSelectValue(next);
+	  }
+
+	  function noop() {}
+
+	  var MonthTable = function (_Component) {
+	    _inherits(MonthTable, _Component);
+
+	    function MonthTable(props) {
+	      _classCallCheck(this, MonthTable);
+
+	      var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(MonthTable).call(this, props));
+
+	      _this.state = {
+	        value: props.value
+	      };
+	      return _this;
+	    }
+
+	    _createClass(MonthTable, [{
+	      key: 'componentWillReceiveProps',
+	      value: function componentWillReceiveProps(nextProps) {
+	        if ('value' in nextProps) {
+	          this.setState({
+	            value: nextProps.value
+	          });
+	        }
+	      }
+	    }, {
+	      key: 'setAndSelectValue',
+	      value: function setAndSelectValue(value) {
+	        this.setState({
+	          value: value
+	        });
+	        this.props.onSelect(value);
+	      }
+	    }, {
+	      key: 'months',
+	      value: function months() {
+	        var value = this.state.value;
+	        var current = value.clone();
+	        var months = [];
+	        var localeData = value.localeData();
+	        var index = 0;
+	        for (var rowIndex = 0; rowIndex < ROW; rowIndex++) {
+	          months[rowIndex] = [];
+	          for (var colIndex = 0; colIndex < COL; colIndex++) {
+	            current.month(index);
+	            var content = localeData.monthsShort(current);
+	            months[rowIndex][colIndex] = {
+	              value: index,
+	              content: content,
+	              title: content
+	            };
+	            index++;
+	          }
+	        }
+	        return months;
+	      }
+	    }, {
+	      key: 'render',
+	      value: function render() {
+	        var _this2 = this;
+
+	        var props = this.props;
+	        var value = this.state.value;
+	        var today = (0, _index.getTodayTime)(value);
+	        var months = this.months();
+	        var currentMonth = value.month();
+	        var prefixCls = props.prefixCls;
+	        var locale = props.locale;
+	        var contentRender = props.contentRender;
+	        var cellRender = props.cellRender;
+
+	        var monthsEls = months.map(function (month, index) {
+	          var tds = month.map(function (monthData) {
+	            var _classNameMap;
+
+	            var disabled = false;
+	            if (props.disabledDate) {
+	              var testValue = value.clone();
+	              testValue.month(monthData.value);
+	              disabled = props.disabledDate(testValue);
+	            }
+	            var classNameMap = (_classNameMap = {}, _defineProperty(_classNameMap, prefixCls + '-cell', 1), _defineProperty(_classNameMap, prefixCls + '-cell-disabled', disabled), _defineProperty(_classNameMap, prefixCls + '-selected-cell', monthData.value === currentMonth), _defineProperty(_classNameMap, prefixCls + '-current-cell', today.year() === value.year() && monthData.value === today.month()), _classNameMap);
+	            var cellEl = void 0;
+	            if (cellRender) {
+	              var currentValue = value.clone();
+	              currentValue.month(monthData.value);
+	              cellEl = cellRender(currentValue, locale);
+	            } else {
+	              var content = void 0;
+	              if (contentRender) {
+	                var _currentValue = value.clone();
+	                _currentValue.month(monthData.value);
+	                content = contentRender(_currentValue, locale);
+	              } else {
+	                content = monthData.content;
+	              }
+	              cellEl = _react2.default.createElement(
+	                'div',
+	                { className: prefixCls + '-month' },
+	                content
+	              );
+	            }
+	            return _react2.default.createElement(
+	              'td',
+	              {
+	                role: 'gridcell',
+	                key: monthData.value,
+	                onClick: disabled ? null : chooseMonth.bind(_this2, monthData.value),
+	                title: monthData.title,
+	                className: (0, _classnames2.default)(classNameMap)
+	              },
+	              cellEl
+	            );
+	          });
+	          return _react2.default.createElement(
+	            'tr',
+	            { key: index, role: 'row' },
+	            tds
+	          );
+	        });
+
+	        return _react2.default.createElement(
+	          'table',
+	          { className: prefixCls + '-table', cellSpacing: '0', role: 'grid' },
+	          _react2.default.createElement(
+	            'tbody',
+	            { className: prefixCls + '-tbody' },
+	            monthsEls
+	          )
+	        );
+	      }
+	    }]);
+
+	    return MonthTable;
+	  }(_react.Component);
+
+	  MonthTable.defaultProps = {
+	    onSelect: noop
+	  };
+	  MonthTable.propTypes = {
+	    onSelect: _react.PropTypes.func,
+	    cellRender: _react.PropTypes.func,
+	    prefixCls: _react.PropTypes.string,
+	    value: _react.PropTypes.object
+	  };
+	  exports.default = MonthTable;
+	  module.exports = exports['default'];
+	});
 
 /***/ }
 /******/ ])
